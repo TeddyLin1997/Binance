@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import leaf from './images/leaf.svg'
 import account from './images/account.svg'
 import password from './images/password.svg'
@@ -8,10 +9,15 @@ const Login: React.FC = () => {
 		account: '',
 		password: '',
 	})
-
 	const handleInput = (event: React.ChangeEvent<HTMLInputElement> ): void => {
 		setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
 	}
+
+	// router
+	const history = useHistory()
+	const toHomePage = () => history.push('/')
+
+	const handleClick = () => toHomePage()
 
 	return (
 		<div className="py-14 flex flex-col items-center">
@@ -29,7 +35,7 @@ const Login: React.FC = () => {
 				<div className="my-8 flex items-center">
 					<img className="w-8 h-8" src={ account } />
 					<input
-						className="mx-2 p-1 border-b-2 border-secondary bg-primary"
+						className="mx-2 p-1 w-52 border-b-2 border-secondary bg-primary"
 						name="account"
 						type="text"
 						autoComplete="off"
@@ -41,7 +47,7 @@ const Login: React.FC = () => {
 				<div className="my-10 flex items-center">
 					<img className="w-8 h-8" src={ password } />
 					<input
-						className="mx-2 p-1 border-b-2 border-secondary bg-primary"
+						className="mx-2 p-1 w-52 border-b-2 border-secondary bg-primary"
 						name="password"
 						type="password"
 						placeholder="密碼"
@@ -50,8 +56,8 @@ const Login: React.FC = () => {
 				</div>
 
 				<div className="flex flex-col justify-around h-28 font-bold">
-					<button className="py-2 bg-secondary rounded-lg">訪客模式</button>
-					<button className="py-2 bg-active rounded-lg">登入</button>
+					<button onClick={ handleClick } className="py-2 bg-secondary rounded-lg">訪客模式</button>
+					<button onClick={ handleClick } className="py-2 bg-active rounded-lg">登入</button>
 				</div>
 
 			</main>
