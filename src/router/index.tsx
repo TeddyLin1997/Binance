@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
 				<Layout>
 					<Switch>
-						<Route exact path="/" component={ Home } />
+						<Route path="/home" component={ Home } />
 						<Route path="/finance" component={ Finance } />
 						<Route path="/trade" component={ Trade } />
 						<Route path="/assets" component={ Assets } />

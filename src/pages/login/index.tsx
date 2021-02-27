@@ -15,7 +15,7 @@ const Login: React.FC = () => {
 
 	// router
 	const history = useHistory()
-	const toHomePage = () => history.push('/')
+	const toHomePage = () => history.push('/home')
 
 	const handleClick = () => toHomePage()
 
