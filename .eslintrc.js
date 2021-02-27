@@ -21,6 +21,7 @@ module.exports = {
 		'@typescript-eslint'
 	],
 	'rules': {
+		'react/prop-types': 'off',
 		'indent': [
 			'error',
 			'tab'
@@ -32,6 +33,6 @@ module.exports = {
 		'semi': [
 			'error',
 			'never'
-		]
+		],
 	}
 }
