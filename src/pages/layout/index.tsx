@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import home from './images/home.svg'
-import finance from './images/finance.svg'
-import trade from './images/trade.svg'
-import assets from './images/assets.svg'
+import home from '../../images/home.svg'
+import finance from '../../images/finance.svg'
+import trade from '../../images/trade.svg'
+import assets from '../../images/assets.svg'
+import leaf from '../../images/leaf.svg'
+import back from '../../images/back.svg'
+import notify from '../../images/notify.svg'
 
 const navList = [
 	{ label: '首頁', value: 'home', icon: home },
@@ -26,7 +29,7 @@ const Layout: React.FC = (props) => {
 
 		return (
 			<Link
-				className={ active + 'px-4 h-full flex flex-col justify-center items-center fill-current' }
+				className={ active + 'py-1 w-1/4 h-full flex flex-col justify-end items-center fill-current' }
 				to={ item.value }
 				key={ item.value }
 			>
@@ -37,10 +40,19 @@ const Layout: React.FC = (props) => {
 	})
 
 	return (
-		<div>
-			<div> Layout </div>
-			<main> { children } </main>
-			<footer className="fixed bottom-0 w-full h-16 flex justify-around items-center bg-secondary rounded-t-xl">
+		<div className="text-white">
+			<header className="fixed top-0 p-2 flex justify-between w-full h-12 bg-secondary rounded-b">
+				<img className="h-full" src={ back } />
+				<div className="flex h-full items-center">
+					<img className="h-6" src={ leaf } />
+					<span className="ml-2">金融</span>
+				</div>
+				<img className="h-full" src={ notify } />				
+			</header>
+
+			<main className="mt-12 mb-16 p-2"> { children } </main>
+
+			<footer className="fixed bottom-0 w-full h-16 flex justify-between items-center bg-secondary rounded-t-xl">
 				{ renderNav }
 			</footer>
 		</div>

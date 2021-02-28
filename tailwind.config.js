@@ -14,14 +14,16 @@ module.exports = {
 			transparent: 'transparent',
 			current: 'currentColor',
       
-			white: 'white',
+			white: '#fff',
 			black: '#000',
-			primary: '#204056',
+			primary: '#282c34',
 			secondary: '#3B5A6F',
 			active: '#FF9900',
 			green: '#09A582',
 			red: '#FD6162',
+			blue: '#204056',
 			yellow: '#EAB308',
+			gray: '#A2A2A2',
 		},
 		spacing: {
 			px: '1px',
