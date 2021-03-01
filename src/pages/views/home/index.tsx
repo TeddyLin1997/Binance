@@ -7,10 +7,11 @@ import wallet from '../../../images/wallet.svg'
 import HotCrypto from './hot-cryto'
 
 const Home: React.FC = () => {
+	console.log('home')
 
 	return (
 		<div>
-			<header className="rounded-lg overflow-hidden">
+			<header className="w-full h-40 rounded-lg overflow-hidden">
 				<img src={banner1} />
 			</header>
 
