@@ -24,6 +24,8 @@ const initUser = {
 	assets: 0
 }
 
-export const userReducer: Reducer<User, Action> = (state = initUser, action ) => {
+const userReducer: Reducer<User, Action> = (state = initUser, action ) => {
 	return state = Object.assign( {}, state, action.user )
 }
+
+export default userReducer

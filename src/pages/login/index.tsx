@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 	}
 
 	const dispatch = useDispatch()
-	const toHomePage = () => history.push('/home')
+	const toHomePage = () => history.push('/')
 	const getUserInfo = () => {
 		dispatch({type: 'update', user: { isLogin: true, name: 'chris' } })
 	}
