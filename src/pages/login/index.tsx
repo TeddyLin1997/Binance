@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { USER_UPDATE } from '../../store/action-type'
+import { USER_UPDATE } from '../../store/actionTypes'
 import leaf from '../../images/leaf.svg'
 import account from '../../images/account.svg'
 import password from '../../images/password.svg'

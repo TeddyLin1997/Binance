@@ -1,5 +1,5 @@
 import { Reducer } from 'react'
-import * as actionType from './action-type'
+import * as actionType from './actionTypes'
 
 type User = {
   isLogin: boolean,
