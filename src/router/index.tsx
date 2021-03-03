@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { RootStateOrAny, useSelector } from 'react-redux'
 
 import Login from '../pages/login'
 import Layout from '../pages/layout'
@@ -10,9 +11,12 @@ const Trade = lazy(() => import('../pages/views/trade'))
 const Assets = lazy(() => import('../pages/views/assets'))
 
 const App: React.FC = () => {
+	const isLogin = useSelector<RootStateOrAny>(state => state.user.isLogin)
+
 	return (
 		<BrowserRouter>
 			<Switch>
+				<Redirect exact from="/" to={ `/${isLogin ? 'home' : 'login'}` }/>
 				<Route path="/login" component={ Login } />
 
 				<Layout>
