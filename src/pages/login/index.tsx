@@ -9,7 +9,7 @@ const Login: React.FC = () => {
 		account: '',
 		password: '',
 	})
-	const handleIChange = (event: React.ChangeEvent<HTMLInputElement> ): void => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement> ): void => {
 		setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
 	}
 
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
 						type="text"
 						autoComplete="off"
 						placeholder="帳號"
-						onChange={ handleIChange }
+						onChange={ handleChange }
 					/>
 				</div>
 
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
 						name="password"
 						type="password"
 						placeholder="密碼"
-						onChange={ handleIChange }
+						onChange={ handleChange }
 					/>
 				</div>
 
