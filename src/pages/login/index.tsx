@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import leaf from '../../images/leaf.svg'
 import account from '../../images/account.svg'
 import password from '../../images/password.svg'
@@ -15,8 +16,17 @@ const Login: React.FC = () => {
 
 	// router
 	const history = useHistory()
+	const handleClick = () => {
+		getUserInfo()
+		toHomePage()
+	}
+
+	const dispatch = useDispatch()
 	const toHomePage = () => history.push('/home')
-	const handleClick = () => toHomePage()
+	const getUserInfo = () => {
+		dispatch({type: 'update', user: { isLogin: true, name: 'chris' } })
+	}
+
 
 	return (
 		<div className="py-10 flex flex-col items-center text-white">

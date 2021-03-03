@@ -7,11 +7,14 @@ type User = {
   assets: number,
 }
 
-type UserPayload = {
-  isLogin?: boolean,
-  name?: string,
-  id?: string,
-  assets?: number,
+type Action = {
+  type: string,
+  user: {
+    isLogin?: boolean,
+    name?: string,
+    id?: string,
+    assets?: number,
+  }
 }
 
 const initUser = {
@@ -21,6 +24,6 @@ const initUser = {
 	assets: 0
 }
 
-export const userReducer: Reducer<User, UserPayload> = (state = initUser, payload ) => {
-	return state = Object.assign( {}, state, payload )
+export const userReducer: Reducer<User, Action> = (state = initUser, action ) => {
+	return state = Object.assign( {}, state, action.user )
 }

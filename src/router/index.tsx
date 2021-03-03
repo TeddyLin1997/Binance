@@ -11,7 +11,7 @@ const Trade = lazy(() => import('../pages/views/trade'))
 const Assets = lazy(() => import('../pages/views/assets'))
 
 const App: React.FC = () => {
-	const isLogin = useSelector<RootStateOrAny>(state => state.user.isLogin)
+	const isLogin = useSelector((state: RootStateOrAny)  => state.user.isLogin)
 
 	return (
 		<BrowserRouter>
