@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { USER_UPDATE } from '../../store/actionType'
 import leaf from '../../images/leaf.svg'
 import account from '../../images/account.svg'
 import password from '../../images/password.svg'
@@ -24,7 +25,7 @@ const Login: React.FC = () => {
 	const dispatch = useDispatch()
 	const toHomePage = () => history.push('/')
 	const getUserInfo = () => {
-		dispatch({type: 'update', user: { isLogin: true, name: 'chris' } })
+		dispatch({type: USER_UPDATE, user: { isLogin: true, name: 'chris' } })
 	}
 
 
