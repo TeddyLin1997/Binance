@@ -17,17 +17,14 @@ const Login: React.FC = () => {
 
 	// router
 	const history = useHistory()
-	const handleClick = () => {
-		getUserInfo()
+	const handleClick = (mode: string) => {
+		getUserInfo(mode)
 		toHomePage()
 	}
 
 	const dispatch = useDispatch()
 	const toHomePage = () => history.push('/')
-	const getUserInfo = () => {
-		dispatch({type: USER_UPDATE, user: { isLogin: true, name: 'chris' } })
-	}
-
+	const getUserInfo = (mode: string) => dispatch({ type: USER_UPDATE, user: { isLogin: true, mode } })
 
 	return (
 		<div className="py-10 flex flex-col items-center text-white">
@@ -68,8 +65,8 @@ const Login: React.FC = () => {
 				<div className="mt-4 mb-10 px-2 text-right text-active font-bold">註冊帳號</div>
 
 				<div className="flex flex-col justify-around h-28 font-bold">
-					<button onClick={ handleClick } className="py-2 bg-secondary rounded-lg">訪客模式</button>
-					<button onClick={ handleClick } className="py-2 bg-active rounded-lg">登入</button>
+					<button onClick={ () => handleClick('visitor') } className="py-2 bg-secondary rounded-lg">訪客模式</button>
+					<button onClick={ () => handleClick('member') } className="py-2 bg-active rounded-lg">登入</button>
 				</div>
 
 			</main>

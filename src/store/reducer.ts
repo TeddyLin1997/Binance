@@ -3,6 +3,7 @@ import * as actionType from './actionTypes'
 
 type User = {
   isLogin: boolean,
+	mode: string,
   name: string,
   id: string,
   assets: number,
@@ -12,6 +13,7 @@ type Action = {
   type: string,
   user: {
     isLogin?: boolean,
+		mode?: string,
     name?: string,
     id?: string,
     assets?: number,
@@ -20,13 +22,14 @@ type Action = {
 
 const initUser = {
 	isLogin: false,
+	mode: '',
 	name: '',
 	id: '',
 	assets: 0
 }
 
 export const userReducer: Reducer<User, Action> = (state = initUser, action ) => {
-	if (action.type === actionType.USER_UPDATE) return state = Object.assign( {}, state, action.user )
+	if (action.type === actionType.USER_UPDATE) return Object.assign( {}, state, action.user )
 	else return state
 }
 
