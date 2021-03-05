@@ -1,26 +1,21 @@
 import { Reducer } from 'react'
 import * as actionType from './actionTypes'
 
-type User = {
-  isLogin: boolean,
-	mode: string,
-  name: string,
-  id: string,
-  assets: number,
+interface Action<T> {
+	type: string;
+	value: T;
 }
 
-type Action = {
-  type: string,
-  user: {
-    isLogin?: boolean,
-		mode?: string,
-    name?: string,
-    id?: string,
-    assets?: number,
-  }
+// user store
+interface User {
+  isLogin: boolean;
+	mode: string;
+  name: string;
+  id: string;
+  assets: number;
 }
 
-const initUser = {
+const initUser: User = {
 	isLogin: false,
 	mode: '',
 	name: '',
@@ -28,15 +23,15 @@ const initUser = {
 	assets: 0
 }
 
-export const userReducer: Reducer<User, Action> = (state = initUser, action ) => {
-	if (action.type === actionType.USER_UPDATE) return Object.assign( {}, state, action.user )
+export const userReducer: Reducer<User, Action<Partial<User>>> = (state = initUser, action ) => {
+	if (action.type === actionType.USER_UPDATE) return Object.assign( {}, state, action.value )
 	else return state
 }
 
-
+// visit store
 const initVisitList:string[] = []
 
-export const visitReducer: Reducer<string[], { type: string, value: string }> = (state = initVisitList, action ) => {
+export const visitReducer: Reducer<string[], Action<string>> = (state = initVisitList, action ) => {
 	const result = state.slice()
 
 	switch (action.type) {

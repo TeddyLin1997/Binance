@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
 	const dispatch = useDispatch()
 	const toHomePage = () => history.push('/')
-	const getUserInfo = (mode: string) => dispatch({ type: USER_UPDATE, user: { isLogin: true, mode } })
+	const getUserInfo = (mode: string) => dispatch({ type: USER_UPDATE, value: { isLogin: true, mode } })
 
 	return (
 		<div className="py-10 flex flex-col items-center text-white">
