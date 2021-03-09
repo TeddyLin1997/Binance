@@ -2,29 +2,62 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { USER_UPDATE } from '../../store/actionTypes'
+import { registerUser, loginUser } from '../../api/login'
 import leaf from '../../images/leaf.svg'
-import account from '../../images/account.svg'
+import email from '../../images/email.svg'
 import password from '../../images/password.svg'
 
+const modeMapping = {
+	'login': '登入',
+	'register': '註冊',
+}
+
 const Login: React.FC = () => {
-	const [ loginForm, setLoginForm ] = useState<{ account: string, password: string }>({
-		account: '',
+	// input form
+	const [ inputForm, setInputForm ] = useState<{ email: string, password: string }>({
+		email: '',
 		password: '',
 	})
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement> ): void => {
-		setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
+		setInputForm({ ...inputForm, [event.target.name]: event.target.value })
 	}
 
-	// router
+	// login
 	const history = useHistory()
-	const handleClick = (mode: string) => {
-		getUserInfo(mode)
+	const handleClick = async (mode: string) => {
+		// if (mode === 'member') await loginUser({ ...inputForm })
+		// getUserInfo(mode)
 		toHomePage()
 	}
 
 	const dispatch = useDispatch()
+	// const getUserInfo = (mode: string) => dispatch({ type: USER_UPDATE, value: { isLogin: true, mode } })
 	const toHomePage = () => history.push('/')
-	const getUserInfo = (mode: string) => dispatch({ type: USER_UPDATE, value: { isLogin: true, mode } })
+	
+	// typeForm
+	const [ mode, setMode ] = useState< 'login' | 'register' >('login')
+	const RegisterForm = () => {
+		return (
+			<div className="mt-20 flex flex-col justify-around h-28 font-bold">
+				<button onClick={ () => registerUser({ ...inputForm }) }  className="py-2 bg-active rounded-lg">送出</button>
+				<button onClick={ () => setMode('login') } className="py-2 bg-secondary rounded-lg">取消</button>
+			</div>
+		)
+	}
+	const LoginForm = () => {
+		return (
+			<>
+				<div onClick={ () => setMode('register') }  className="mt-4 mb-10 px-2 text-right text-active font-bold">註冊帳號</div>
+				<div className="flex flex-col justify-around h-28 font-bold">
+					<button onClick={ () => handleClick('member') } className="py-2 bg-active rounded-lg">登入</button>
+					<button onClick={ () => handleClick('visitor') } className="py-2 bg-secondary rounded-lg">訪客模式</button>
+				</div>
+			</>
+		)
+	}
+	const TypeForm = (props: { mode: string }) => {
+		return props.mode === 'login' ? <LoginForm /> : <RegisterForm />
+	}
 
 	return (
 		<div className="py-10 flex flex-col items-center text-white">
@@ -37,16 +70,16 @@ const Login: React.FC = () => {
 			</header>
 
 			<main className="mt-28">
-				<div className="text-center text-2xl font-bold">登入</div>
+				<div className="text-center text-2xl font-bold">{ modeMapping[mode] }</div>
 
 				<div className="mt-10 flex items-center">
-					<img className="w-8 h-8" src={ account } />
+					<img className="w-8 h-8" src={ email } />
 					<input
 						className="mx-2 p-1 w-52 border-b-2 border-secondary bg-primary"
-						name="account"
+						name="email"
 						type="text"
 						autoComplete="off"
-						placeholder="帳號"
+						placeholder="信箱"
 						onChange={ handleChange }
 					/>
 				</div>
@@ -62,12 +95,7 @@ const Login: React.FC = () => {
 					/>
 				</div>
 
-				<div className="mt-4 mb-10 px-2 text-right text-active font-bold">註冊帳號</div>
-
-				<div className="flex flex-col justify-around h-28 font-bold">
-					<button onClick={ () => handleClick('visitor') } className="py-2 bg-secondary rounded-lg">訪客模式</button>
-					<button onClick={ () => handleClick('member') } className="py-2 bg-active rounded-lg">登入</button>
-				</div>
+				<TypeForm mode={ mode }/>
 
 			</main>
 
