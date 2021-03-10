@@ -1,18 +1,7 @@
 import { Reducer } from 'react'
 import * as actionType from './actionTypes'
 
-interface Action<T> {
-	type: string;
-	value: T;
-}
-
-// user store
-interface User {
-  isLogin: boolean;
-  uid: string;
-}
-
-const initUser: User = {
+const initUser = {
 	isLogin: false,
 	uid: '',
 }
