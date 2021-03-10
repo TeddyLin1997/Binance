@@ -35,12 +35,16 @@ const Login: React.FC = () => {
 		toHomePage()
 	}
 
-	const login = async () => {
+	const login = async (isVisit: boolean) => {
+		// visit
+		if (isVisit) return successLogin('visite')
+
 		const result = await loginUser({ ...inputForm })
 		if (result.user === undefined) console.log('登入失敗') // message()
 		else successLogin(result.user.uid) // message()
 	}
 
+	// member
 	const register = async () => {
 		const result = await registerUser({ ...inputForm })
 		if (result.user === undefined) return console.log('註冊失敗') // message()
@@ -64,8 +68,8 @@ const Login: React.FC = () => {
 			<>
 				<div onClick={ () => setMode('register') }  className="mt-4 mb-10 px-2 text-right text-active font-bold">註冊帳號</div>
 				<div className="flex flex-col justify-around h-28 font-bold">
-					<button onClick={ () => login() } className="py-2 bg-active rounded-lg">登入</button>
-					<button onClick={ () => login() } className="py-2 bg-secondary rounded-lg">訪客模式</button>
+					<button onClick={ () => login(false) } className="py-2 bg-active rounded-lg">登入</button>
+					<button onClick={ () => login(true) } className="py-2 bg-secondary rounded-lg">訪客模式</button>
 				</div>
 			</>
 		)
