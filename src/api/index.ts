@@ -12,10 +12,9 @@ const xhr = <T>(options: {
 		.catch(() => options.defaultData)
 }
 
-type YahooDefault = {
+type financeApi = {
   quoteResponse: {
     error: null | boolean,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     result: { [propsName: string]: any }[]
   }
 }
@@ -28,7 +27,7 @@ export const getStockInfoService = (list: string[]): Promise<{
 }[]> =>  {
 	const idListStr = list.join(',')
 	const url = 'https://cors-anywhere.herokuapp.com/https://tw.stock.yahoo.com/_td/api/resource/FinancePartnerService.quote;isFormatted=true;symbols='+ idListStr
-	return xhr<YahooDefault>({
+	return xhr<financeApi>({
 		url,
 		method: 'get',
 		defaultData: { quoteResponse: { error: true, result: [] } },

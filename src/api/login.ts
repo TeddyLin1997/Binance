@@ -19,17 +19,14 @@ type User = {
   password: string,
 }
 
-export const registerUser = (formData: User): void => {
-	auth.createUserWithEmailAndPassword(formData.email, formData.password)
-		.then(res => {
-			console.log(res)
-			if (res.user !== null) localStorage.setItem('uid', res.user.uid)
-		})
-		.catch(err => console.log('註冊失敗', err))
+export const registerUser = (formData: User): Promise<any> => {
+	return auth.createUserWithEmailAndPassword(formData.email, formData.password)
+		.then(res => res)
+		.catch(err => err)
 }
 
-export const loginUser = (formData: User): void => {
-	auth.signInWithEmailAndPassword(formData.email, formData.password)
-		.then(res => console.log(res))
-		.catch(err => console.log('登入失敗', err))
+export const loginUser = (formData: User): Promise<any> => {
+	return auth.signInWithEmailAndPassword(formData.email, formData.password)
+		.then(res => res)
+		.catch(err => err)
 }

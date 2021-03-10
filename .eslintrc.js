@@ -22,6 +22,8 @@ module.exports = {
 	],
 	'rules': {
 		'react/prop-types': 'off',
+		// arrow any pending
+		'@typescript-eslint/no-explicit-any': 'off',
 		'indent': [
 			'error',
 			'tab'

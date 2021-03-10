@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { USER_UPDATE } from '../../store/actionTypes'
@@ -22,24 +22,39 @@ const Login: React.FC = () => {
 		setInputForm({ ...inputForm, [event.target.name]: event.target.value })
 	}
 
-	// login
+	// login and register
 	const history = useHistory()
-	const handleClick = async (mode: string) => {
-		// if (mode === 'member') await loginUser({ ...inputForm })
-		// getUserInfo(mode)
+	const toHomePage = () => history.push('/')
+
+	const dispatch = useDispatch()
+	const setUserInfo = (uid: string) => dispatch({ type: USER_UPDATE, value: { isLogin: true, uid: uid } })
+
+	const successLogin = (uid: string) => {
+		localStorage.setItem('uid', uid)
+		setUserInfo(uid)
 		toHomePage()
 	}
 
-	const dispatch = useDispatch()
-	// const getUserInfo = (mode: string) => dispatch({ type: USER_UPDATE, value: { isLogin: true, mode } })
-	const toHomePage = () => history.push('/')
+	const login = async () => {
+		const result = await loginUser({ ...inputForm })
+		if (result.user === undefined) console.log('登入失敗') // message()
+		else successLogin(result.user.uid) // message()
+	}
+
+	const register = async () => {
+		const result = await registerUser({ ...inputForm })
+		if (result.user === undefined) return console.log('註冊失敗') // message()
+		else successLogin(result.user.uid) // message()
+	}
 	
-	// typeForm
-	const [ mode, setMode ] = useState< 'login' | 'register' >('login')
+	// typeForm template
+	const [ mode, setMode ] = useState<'login' | 'register'>('login')
+	useEffect(() => setInputForm({ ...inputForm, email: '', password: '' }), [ mode ])
+
 	const RegisterForm = () => {
 		return (
 			<div className="mt-20 flex flex-col justify-around h-28 font-bold">
-				<button onClick={ () => registerUser({ ...inputForm }) }  className="py-2 bg-active rounded-lg">送出</button>
+				<button onClick={ () => register() }  className="py-2 bg-active rounded-lg">送出</button>
 				<button onClick={ () => setMode('login') } className="py-2 bg-secondary rounded-lg">取消</button>
 			</div>
 		)
@@ -49,8 +64,8 @@ const Login: React.FC = () => {
 			<>
 				<div onClick={ () => setMode('register') }  className="mt-4 mb-10 px-2 text-right text-active font-bold">註冊帳號</div>
 				<div className="flex flex-col justify-around h-28 font-bold">
-					<button onClick={ () => handleClick('member') } className="py-2 bg-active rounded-lg">登入</button>
-					<button onClick={ () => handleClick('visitor') } className="py-2 bg-secondary rounded-lg">訪客模式</button>
+					<button onClick={ () => login() } className="py-2 bg-active rounded-lg">登入</button>
+					<button onClick={ () => login() } className="py-2 bg-secondary rounded-lg">訪客模式</button>
 				</div>
 			</>
 		)
@@ -59,6 +74,7 @@ const Login: React.FC = () => {
 		return props.mode === 'login' ? <LoginForm /> : <RegisterForm />
 	}
 
+	// final
 	return (
 		<div className="py-10 flex flex-col items-center text-white">
 			<header className="flex justify-center items-center">
@@ -76,6 +92,7 @@ const Login: React.FC = () => {
 					<img className="w-8 h-8" src={ email } />
 					<input
 						className="mx-2 p-1 w-52 border-b-2 border-secondary bg-primary"
+						value={ inputForm.email }
 						name="email"
 						type="text"
 						autoComplete="off"
@@ -88,6 +105,7 @@ const Login: React.FC = () => {
 					<img className="w-8 h-8" src={ password } />
 					<input
 						className="mx-2 p-1 w-52 border-b-2 border-secondary bg-primary"
+						value={ inputForm.password }
 						name="password"
 						type="password"
 						placeholder="密碼"

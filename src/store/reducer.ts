@@ -9,18 +9,12 @@ interface Action<T> {
 // user store
 interface User {
   isLogin: boolean;
-	mode: string;
-  name: string;
-  id: string;
-  assets: number;
+  uid: string;
 }
 
 const initUser: User = {
 	isLogin: false,
-	mode: '',
-	name: '',
-	id: '',
-	assets: 0
+	uid: '',
 }
 
 export const userReducer: Reducer<User, Action<Partial<User>>> = (state = initUser, action ) => {
