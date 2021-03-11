@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 	const history = useHistory()
 
 	return (
-		<div>
+		<div className="px-2">
 			<header className="w-full h-40 rounded-lg overflow-hidden">
 				<img src={banner1} />
 			</header>

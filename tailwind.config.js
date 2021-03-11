@@ -24,6 +24,7 @@ module.exports = {
 			blue: '#204056',
 			yellow: '#EAB308',
 			gray: '#A2A2A2',
+			modal: '#00000088',
 		},
 		spacing: {
 			px: '1px',
