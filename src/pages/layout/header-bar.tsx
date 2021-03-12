@@ -5,7 +5,7 @@ import notify from '../../images/notify.svg'
 
 const HeaderBar: React.FC = () => {
 	return (
-		<header className="fixed top-0 p-2 flex justify-between w-full h-12 bg-secondary rounded-b">
+		<header className="fixed top-0 p-2 flex justify-between w-full h-12 bg-secondary rounded-b z-10 shadow-2xl">
 			<img className="h-full" src={ back } />
 			<div className="flex h-full items-center">
 				<img className="h-6" src={ leaf } />
