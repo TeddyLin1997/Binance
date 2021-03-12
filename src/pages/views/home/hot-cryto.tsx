@@ -1,24 +1,23 @@
-import React from 'react'
-
-const hotList = [
-	{ label: 'Bitcoin', price: 51179, change: 100, changePercent: '1.59%' },
-	{ label: 'Ethereum', price: 2067, change: -23, changePercent: '0.83%' },
-	{ label: 'ETH', price: 12.31, change: -0.12, changePercent: '5.35%' }
-]
+import React, { useState, useEffect } from 'react'
+import { getHomeCryptoService } from '../../../api/home'
 
 const hotCrypto: React.FC = () => {
+	const [ hotList, setHotList ] = useState<Finance[]>([])
+	const getCryptoInfoList = async () => setHotList(await getHomeCryptoService())
+	useEffect(() => { getCryptoInfoList() }, [])
+
 	const hotCryptoNode = hotList.map(item => {
 		const color = item.change >= 0 ? 'text-green' : 'text-red'
 		return (
-			<article className="px-2 py-1 w-28 flex flex-col justify-between bg-white rounded-lg font-bold text-center" key={item.label}>
+			<article className="px-2 py-1 w-28 h-20 flex flex-col justify-between bg-white rounded-lg font-bold text-center text-sm" key={item.label}>
 				<span className=" text-secondary">{ item.label }</span>
 				<div className="flex justify-between items-end">
-					<span className="text-xs text-gray">價格</span>
+					<span className="text-gray transform scale-90">價格</span>
 					<span className={ color }>{ item.price }</span>
 				</div>
 				<div className="flex justify-between items-end">
-					<span className="text-xs text-gray">漲跌</span>
-					<span className={ color + ' text-sm' }>{ item.changePercent }</span>
+					<span className="text-gray transform scale-90">漲跌</span>
+					<span className={ color }>{ item.changePercent }</span>
 				</div>
 			</article>
 		)

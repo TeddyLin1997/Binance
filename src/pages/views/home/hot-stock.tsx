@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { getStockInfoService } from '../../../api'
-
-type FinanceInfo = {
-  label: string;
-  price: number;
-  change: number;
-  changePercent: string;
-}
-
-const homeIdList = [ 'AAPL', 'MSFT', 'AMZN', 'GOOG', 'TSLA', 'NFLX', 'FB', 'TSM', 'V', 'MA' ]
+import { getHomeStockService } from '../../../api/home'
 
 const HotStock: React.FC = () => {
-	const [ homeList, setHomeList ] = useState<FinanceInfo[]>([])
-	const getStockInfoList = async () => {
-		const result = await getStockInfoService(homeIdList)
-		setHomeList(result)
-	}
+	const [ homeList, setHomeList ] = useState<Finance[]>([])
+	const getStockInfoList = async () => setHomeList(await getHomeStockService())
 	useEffect(() => { getStockInfoList() }, [])
 
 	
