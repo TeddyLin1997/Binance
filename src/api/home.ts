@@ -1,16 +1,16 @@
-import { xhr, mock } from './xhr'
+import { xhr, mock, getRandom } from './xhr'
 
 mock.onGet('/home/stock').reply(200, [
-	{ label: 'AAPL', price: 121.96, change: 1.98, changePercent: '1.65%' },
-	{ label: 'MSFT', price: 237.13, change: 4.71, changePercent: '2.03%' },
-	{ label: 'AMZN', price: 3113.59, change: -55.95, changePercent: '1.83%	' },
-	{ label: 'GOOG', price: 2114.77, change: -59.74, changePercent: '2.91%' },
-	{ label: 'FB', price: 273.88	, change: -31.54, changePercent: '3.39%' },
-	{ label: 'TSLA', price: 699.60, change: 1.98, changePercent: '4.72%' },
-	{ label: 'BRK', price: 260.91, change: -3.08, changePercent: '1.17%' },
-	{ label: 'TSM', price: 120.58, change: 6.75, changePercent: '5.93%' },
-	{ label: 'V', price: 226.15, change: 2.98, changePercent: '1.34%' },
-	{ label: 'MA', price: 384.38, change: -2.68, changePercent: '0.70%' },
+	{ label: 'AAPL', price: 121.96 + getRandom(1, 12), change: 1.98, changePercent: '1.65%' },
+	{ label: 'MSFT', price: 237.13 + getRandom(1, 23), change: 4.71, changePercent: '2.03%' },
+	{ label: 'AMZN', price: 3113.59 + getRandom(1, 311), change: -55.95, changePercent: '1.83%	' },
+	{ label: 'GOOG', price: 2114.77 + getRandom(1, 210), change: -59.74, changePercent: '2.91%' },
+	{ label: 'FB', price: 273.88 + getRandom(1, 27), change: -31.54, changePercent: '3.39%' },
+	{ label: 'TSLA', price: 699.60 + getRandom(1, 70), change: 1.98, changePercent: '4.72%' },
+	{ label: 'BRK', price: 260.91 + getRandom(1, 26), change: -3.08, changePercent: '1.17%' },
+	{ label: 'TSM', price: 120.58 + getRandom(1, 20), change: 6.75, changePercent: '5.93%' },
+	{ label: 'V', price: 226.15 + getRandom(1, 22), change: 2.98, changePercent: '1.34%' },
+	{ label: 'MA', price: 384.38 + getRandom(1, 38), change: -2.68, changePercent: '0.70%' },
 ])
 export const getHomeStockService = (): Promise<Finance[]> =>  {
 	const url = '/home/stock'

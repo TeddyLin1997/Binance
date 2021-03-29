@@ -12,7 +12,7 @@ const HotStock: React.FC = () => {
 		return (
 			<article className="mb-3 px-4 w-full h-12 flex justify-between items-center text-center bg-white rounded-lg" key={ item.label }>
 				<div className="w-20 text-secondary font-bold">{ item.label }</div>
-				<div className={`w-20 font-bold ${textColor}`}>{ item.price }</div>
+				<div className={`w-20 font-bold ${textColor}`}>{ item.price.toFixed(2) }</div>
 				<div className={`w-20 font-bold ${textColor}`}>{ item.changePercent }</div>
 			</article>
 		)
