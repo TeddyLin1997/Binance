@@ -15,6 +15,6 @@ export const xhr = <T>(options: {
 		.catch(() => options.defaultData)
 }
 
-export const getRandom = (min: number, max: number): number => {
-	return Math.floor(Math.random()*(max - min + 1)) + min
+export const getRandom = (range: number): number => {
+	return Math.floor(Math.random() * (range * 2) + 1) - range
 }
