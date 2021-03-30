@@ -35,7 +35,7 @@ const NavMenu: React.FC = () => {
 	})
 
 	return (
-		<footer className="fixed bottom-0 w-full h-16 flex justify-between items-center bg-secondary rounded-t-xl">
+		<footer className="w-full h-16 flex justify-between items-center bg-secondary rounded-t-xl">
 			{ renderNav }
 		</footer>
 	)
