@@ -8,7 +8,7 @@ const Layout: React.FC = (props) => {
 	return (
 		<div className="text-white">
 			<HeaderBar />
-			<main className="pt-14 pb-16"> { children } </main>
+			<main id="layout" className="py-16 h-screen overflow-auto"> { children } </main>
 			<NavMenu />
 		</div>
 	)
