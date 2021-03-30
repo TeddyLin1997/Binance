@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 	const history = useHistory()
 
 	return (
-		<div className="px-2">
+		<>
 			<header className="w-full h-40 rounded-lg overflow-hidden">
 				<img src={banner1} />
 			</header>
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
 				<span>更多</span>
 				<img className="inline-block h-3" src={ activeGo } />
 			</div>
-		</div>
+		</>
 	)
 }
 

@@ -15,7 +15,6 @@ const getFinanceList = async () => {
 }
 getFinanceList()
 
-
 const Finance: React.FC = () => {
 	const [ activeType, setActiveType ] = useState< 'stock' | 'crypto' >('stock')
 
