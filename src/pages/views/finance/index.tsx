@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { getAllStockService, getAllCryptoService } from '../../../api/finance'
 import plus from '../../../images/plus.svg'
 
@@ -44,11 +45,17 @@ const Finance: React.FC = () => {
 }
 
 const FinanceList: React.FC<{ data: Finance[] }> = (props) => {
+	const history = useHistory()
 	const { data } = props
+
+	const tradeProduct = (item : Finance) => {
+		history.push('/trade', item.label)
+	}
+
 	const renderList  = data.map(item => {
 		const textColor = item.change >= 0 ? 'text-green' : 'text-red'
 		return (
-			<article className="mb-3 px-6 w-full h-12 flex justify-between items-center bg-white text-center" key={ item.label }>
+			<article onClick={ () => tradeProduct(item) } className="mb-3 px-6 w-full h-12 flex justify-between items-center bg-white text-center" key={ item.label }>
 				<div className="w-20 text-secondary font-bold">{ item.label }</div>
 				<div className={`w-20 font-bold text-right ${textColor}`}>{ item.price }</div>
 				<div className={`w-20 font-bold text-right ${textColor}`}>{ item.changePercent }</div>

@@ -5,7 +5,6 @@ mock.onGet('/finance/stock').reply(200, [
 	{ label: 'MSFT', oldPrice: 237.13, change: getRandom(23), changePercent: '' },
 	{ label: 'AMZN', oldPrice: 3113.59, change: getRandom(311), changePercent: ''},
 	{ label: 'GOOG', oldPrice: 2114.77, change: getRandom(211), changePercent: '' },
-	{ label: 'GOOGL', oldPrice: 2100.54, change: getRandom(210), changePercent: '' },
 	{ label: 'FB', oldPrice: 273.88, change: getRandom(273), changePercent: '' },
 	{ label: 'TSLA', oldPrice: 699.60, change: getRandom(70), changePercent: '' },
 	{ label: 'BABA', oldPrice: 240.80, change: getRandom(24), changePercent: ''} ,
