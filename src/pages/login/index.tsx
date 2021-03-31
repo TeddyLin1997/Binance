@@ -18,7 +18,7 @@ const Login: React.FC = () => {
 		email: '',
 		password: '',
 	})
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement> ): void => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
 		setInputForm({ ...inputForm, [event.target.name]: event.target.value })
 	}
 
