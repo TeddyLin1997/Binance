@@ -53,10 +53,8 @@ const Trade: React.FC = () => {
 		change: 10,
 		changePercent: '10.3%',
 	})
-	
-	useEffect(() => {
-		setProduct({ ...product, id: location.state || 'AAPL' })
-	}, [])
+
+	useEffect(() => setProduct({ ...product, id: location.state || 'AAPL' }), [])
 
 	// trade form
 	const [ tradeForm, setTradeForm ] = useState({ forcePrice: 0, amount: 1 })
