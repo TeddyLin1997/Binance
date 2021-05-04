@@ -3,4 +3,5 @@
   "tailwindCSS.includeLanguages": {
     "plaintext": "javascript"
   },
+  "git.ignoreLimitWarning": true,
 }
