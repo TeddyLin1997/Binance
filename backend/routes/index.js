@@ -1,9 +1,10 @@
 const express = require('express');
 const usersRouter = require('./users');
 
-const setControllers = (app) => {
+const setRouters = (app) => {
   //index
-  app.use('/', indexPage());
+  const indexRouter = getIndexRouter()
+  app.use('/', indexRouter);
 
   // service
   app.use('/users', usersRouter);
@@ -12,7 +13,7 @@ const setControllers = (app) => {
   errorHandler(app)
 }
 
-const indexPage = () => {
+const getIndexRouter = () => {
   const router = express.Router();
 
   router.get('/', function(req, res, next) {
@@ -23,6 +24,7 @@ const indexPage = () => {
 }
 
 const errorHandler = (app) => {
+  // error status
   app.use(function(req, res, next) {
     next(createError(404));
   });
@@ -38,4 +40,4 @@ const errorHandler = (app) => {
   });
 }
 
-module.exports = setControllers
+module.exports = setRouters
