@@ -4,14 +4,11 @@ const createError = require('http-errors');
 const usersRouter = require('./users');
 
 const setRouters = (app) => {
-  //index
   const indexRouter = getIndexRouter()
+  
   app.use('/', indexRouter);
-
-  // service
   app.use('/users', usersRouter);
 
-  // error
   errorHandler(app)
 }
 
