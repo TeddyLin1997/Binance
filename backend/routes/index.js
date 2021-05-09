@@ -1,25 +1,11 @@
-const express = require('express');
 const createError = require('http-errors');
-
 const usersRouter = require('./users');
 
 const setRouters = (app) => {
-  const indexRouter = getIndexRouter()
   
-  app.use('/', indexRouter);
   app.use('/users', usersRouter);
 
   errorHandler(app)
-}
-
-const getIndexRouter = () => {
-  const router = express.Router();
-
-  router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-  });
-
-  return router
 }
 
 const errorHandler = (app) => {

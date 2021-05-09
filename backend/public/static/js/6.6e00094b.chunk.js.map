@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/views/assets/index.tsx"],"names":["Assets"],"mappings":"2HAAA,uBAUeA,UARf,WACC,OACC,8BACC","file":"static/js/6.6e00094b.chunk.js","sourcesContent":["import React from 'react'\n\nfunction Assets (): JSX.Element {\n\treturn (\n\t\t<div>\n\t\t\t<div> assets </div>\n\t\t</div>\n\t)\n}\n\nexport default Assets"],"sourceRoot":""}

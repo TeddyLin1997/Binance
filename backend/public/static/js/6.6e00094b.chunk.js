@@ -1,0 +1,2 @@
+(this["webpackJsonpvirtual-exchange"]=this["webpackJsonpvirtual-exchange"]||[]).push([[6],{84:function(e,t,s){"use strict";s.r(t);s(0);var c=s(1);t.default=function(){return Object(c.jsx)("div",{children:Object(c.jsx)("div",{children:" assets "})})}}}]);
+//# sourceMappingURL=6.6e00094b.chunk.js.map
