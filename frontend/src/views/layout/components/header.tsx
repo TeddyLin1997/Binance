@@ -14,8 +14,8 @@ const HeaderBar = () => {
         <NavItem>會員中心</NavItem>
 
         <ButtonGroup>
-          <Button primary>登入</Button>
-          <Button>註冊</Button>
+          <Button>登入</Button>
+          <Button primary>註冊</Button>
         </ButtonGroup>
 
         <Menu src={ apps } onClick={ handleOpen } />
