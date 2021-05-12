@@ -1,3 +1,1 @@
-## Virtual Exchange
-
-React + typescript
+## Binance
