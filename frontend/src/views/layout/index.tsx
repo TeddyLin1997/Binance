@@ -1,8 +1,6 @@
 import React from 'react'
 import HeaderBar from './components/header'
 
-
-
 interface LayoutProps {
   children: React.ReactNode;
 }
