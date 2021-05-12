@@ -1,12 +1,12 @@
 # dependencies
 node_modules
-dist
-public
 dist-ssr
 *.local
 
 # production
 /build
+public
+dist
 
 # misc
 .DS_Store
