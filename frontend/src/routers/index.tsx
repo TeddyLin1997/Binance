@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Layout from '../views/layout'
+import Layout from '../components/layout'
+
+const Home = lazy(() => import('../views/home'))
+const Quote = lazy(() => import('../views/quote'))
+const Member = lazy(() => import('../views/member'))
 
 const App = () => {
+
   return (
     <BrowserRouter>
       
       <Layout>
-        <Switch>
-          <Route path="/" />
-          <Route path="/market" />
-          <Route path="/member" />
-        </Switch>
+        <Suspense fallback={ <div>Loading...</div> }>
+          <Switch>
+            <Route exact path="/" component={ Home } />
+            <Route path="/quote" component={ Quote } />
+            <Route path="/member" component={ Member } />
+          </Switch>
+        </Suspense>
       </Layout>
     </BrowserRouter>
   )
