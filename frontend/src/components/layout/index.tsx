@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const MainView = styled.main`
   margin-top: 64px;
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px - 48px);
 `
 
 interface LayoutProps {

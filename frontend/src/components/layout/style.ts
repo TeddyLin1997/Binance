@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../../assets/style'
+import { colors } from '../../assets/style'
 import { Link } from 'react-router-dom'
 
 export const Header = styled.header`

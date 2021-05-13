@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MenuIcon, Menu, MenuItem } from './style'
+import { MenuIcon, Menu, MenuItem } from '../style'
 import apps from '../../../assets/images/apps.svg'
 
 const AsideMenu = () => {

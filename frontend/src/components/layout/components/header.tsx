@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Header, Logo, NavItem, ButtonGroup, Button } from './style'
+import { Header, Logo, NavItem, ButtonGroup, Button } from '../style'
 import Aside from './aside'
 import logo from '../../../assets/images/logo.png'
 
@@ -15,7 +15,7 @@ const HeaderBar = () => {
 
       <ButtonGroup>
         <Button to="/login" >登入</Button>
-        <Button to="/register" type="primary"  >註冊</Button>
+        <Button to="/register" type="primary" >註冊</Button>
       </ButtonGroup>
 
       <Aside />
