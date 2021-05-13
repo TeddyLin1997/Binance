@@ -1,5 +1,6 @@
 import React from 'react'
 import HeaderBar from './components/header'
+import FooterBar from './components/footer'
 import styled from 'styled-components'
 
 const MainView = styled.main`
@@ -16,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <HeaderBar />
       <MainView> { children } </MainView>
+      <FooterBar />
     </>
   )
 }
