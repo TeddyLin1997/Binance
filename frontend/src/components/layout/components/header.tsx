@@ -14,8 +14,8 @@ const HeaderBar = () => {
       <NavItem to="/member" >會員中心</NavItem>
 
       <ButtonGroup>
-        <Button>登入</Button>
-        <Button primary>註冊</Button>
+        <Button to="/login" >登入</Button>
+        <Button to="/register" type="primary"  >註冊</Button>
       </ButtonGroup>
 
       <Aside />

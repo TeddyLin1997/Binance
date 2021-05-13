@@ -5,6 +5,8 @@ import Layout from '../components/layout'
 const Home = lazy(() => import('../views/home'))
 const Quote = lazy(() => import('../views/quote'))
 const Member = lazy(() => import('../views/member'))
+const Login = lazy(() => import('../views/login'))
+const Register = lazy(() => import('../views/register'))
 
 const App = () => {
 
@@ -17,6 +19,9 @@ const App = () => {
             <Route exact path="/" component={ Home } />
             <Route path="/quote" component={ Quote } />
             <Route path="/member" component={ Member } />
+
+            <Route path="/login" component={ Login } />
+            <Route path="/register" component={ Register } />
           </Switch>
         </Suspense>
       </Layout>

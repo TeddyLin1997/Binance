@@ -36,11 +36,12 @@ export const ButtonGroup = styled.div`
   margin-left: auto;
 `
 
-export const Button = styled.button<{ primary?: boolean }>`
+export const Button = styled(Link)<{ type?: string }>`
   margin: 0 4px;
-  padding: 6px 16px;
+  padding: 8px 16px;
+  font-size: 14px;
   border-radius: 4px;
-  background-color: ${ props => props.primary ? colors.active : 'white' };
+  background-color: ${ props => props.type === 'primary' ? colors.active : 'white' };
   cursor: pointer;
   &:hover {
     opacity: .9;
