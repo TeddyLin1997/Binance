@@ -10,7 +10,7 @@ export const Header = styled.header`
   width: 100%;
   height: 64px;
   align-items: center;
-  background: #12161c;
+  background: ${ colors.dark };
 `
 export const Logo = styled.img`
   height: 100%;
@@ -75,5 +75,5 @@ export const MenuItem = styled(NavItem)`
   color: white;
   font-size: 18px;
   padding: 12px 0;
-  border-top: 2px solid gray;
+  border-bottom: 2px solid ${ colors.dark };
 `
