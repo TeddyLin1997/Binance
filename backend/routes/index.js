@@ -1,11 +1,13 @@
 const createError = require('http-errors')
 const path = require('path')
-const usersRouter = require('./users')
+const userRouter = require('./user')
+const quoteRouter = require('./quote')
 
 const setRouters = (app) => {
-  setupHandler(app)
+  app.use('/user', userRouter)
+  app.use('/quote', quoteRouter)
 
-  app.use('/users', usersRouter)
+  setupHandler(app)
 }
 
 const setupHandler = (app) => {
