@@ -9,11 +9,11 @@ const binance = new Binance().options({
 
 const getTicker = async (limit = 30) => {
   const ticker = await binance.prices()
-  const re = /^.*USD$/
+  const re = /^.*USDT$/
   return Object.keys(ticker)
     .filter(item => re.test(item))
     .slice(0, limit)
-    .map(item => ({ label: item, value: ticker[item] }))
+    .map(item => ({ label: item, value: Number(ticker[item]).toFixed(4) }))
 }
 
 router.post('/crypto', async (req, res, next) => {

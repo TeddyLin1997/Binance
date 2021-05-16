@@ -14,7 +14,6 @@ export const Banner = styled.div`
   justify-content: space-evenly;
   align-items: center;
   max-width: 1024px;
-  /* height: 256px; */
   & > * {
     @media screen and (max-width: 568px) {
       width: 100%;
