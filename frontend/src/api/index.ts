@@ -1,16 +1,36 @@
 import axios, { AxiosPromise } from 'axios'
 
-const API_URL = 'http://localhost:8000'
-// const API_URL = document.domain + ':3000'
+const HOST = document.location.host
+const PORT = document.location.port
 
 const instance = axios.create({
-  baseURL: API_URL,
+  baseURL: `http://${HOST}`,
   method: 'post',
 })
 
-export const getCryptoService = async (limit: number): Promise<{ label: string, value: string }[]> => {
-  return await instance({
-    url: '/quote/crypto',
-    data: { limit },
-  }).then(res => res.data.result)
+let crypto: { [props: string]: Crypto } = {}
+
+const webSocket = new WebSocket(`ws://${PORT === '3000' ? 'localhost:8000' : HOST}`)
+
+// get message
+webSocket.onmessage = event => {
+  crypto = JSON.parse(event.data)
 }
+
+export const getCryptoHomeService = (): Crypto[] => {
+  return [
+    { name: 'BTC', ...crypto['BTCUSDT'] },
+    { name: 'ETH', ...crypto['ETHUSDT'] },
+    { name: 'BNB', ...crypto['BNBUSDT'] },
+    { name: 'ADA', ...crypto['ADAUSDT'] },
+    { name: 'DOGE', ...crypto['DOGEUSDT'] },
+  ].map(item => ({ ...item, changePercent: (Number(item.close) - Number(item.open)) * 100 / Number(item.open) }))
+}
+
+// export const getCryptoService = async (limit: number): Promise<{ label: string, value: string }[]> => {
+//   return await instance({
+//     url: '/quote/crypto',
+//     data: { limit },
+//   }).then(res => res.data.result)
+// }
+

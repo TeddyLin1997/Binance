@@ -1,76 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import {  Wrapper, Section, Article, Button, Head, More } from './crypto.style'
 import { colors } from '../../../assets/style'
-import { getCryptoService } from '../../../api'
-
-type Crypto = {
-  label: string,
-  value: string,
-}
-
-const Section = styled.section`
-  margin: auto;
-  max-width: 1024px;
-  font-weight: bold;
-
-  & > *:not(:last-child) {
-    border-bottom: 1px solid lightgray;
-  }
-`
-
-const Article = styled.article`
-  padding: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  &:hover {
-    background-color: whitesmoke;
-    transition: all .4s;
-  }
-  & > * {
-    width: 30%;
-    text-align: left;
-    font-size: 16px;
-  }
-`
-
-const Button = styled.button`
-  width: fit-content;
-  padding: 8px 12px;
-  border-radius: 6px;
-  color: white;
-  background-color: ${ colors.green };
-`
-
-const Head = styled.div`
-  padding: 8px 12px;
-  display: flex;
-  justify-content: space-between;
-  & > * {
-    font-size: 14px;
-    color: gray;
-  }
-`
-
-const More = styled(Link)`
-  display: block;
-  margin: 24px;
-  font-size: 14px;
-  text-align: center;
-  color: gray;
-  cursor: pointer;
-  &:hover {
-    color: ${ colors.active }
-  }
-`
+import { getCryptoHomeService } from '../../../api'
 
 const Thead = () => (
   <Head>
-    <div style={ { 'textAlign':'left' } }>名稱</div>
-    <div style={ { 'textAlign':'left' } }>最新價</div>
-    <div style={ { 'textAlign':'right' } }>操作</div>
+    <div>名稱</div>
+    <div>最新價</div>
+    <div>24小時漲跌</div>
+    <div>操作</div>
   </Head>
 )
 
@@ -78,25 +16,33 @@ const Crypto = () => {
   const [CryptoList, setCryptoList ] = useState<Crypto[]>([])
 
   useEffect(() => {
-    getCryptoService(5).then(res => setCryptoList(res))
+    const timerID = setInterval(() => setCryptoList(getCryptoHomeService()), 1500)
+    return () => clearInterval(timerID)
   },[])
 
   const cryptoRender = () => CryptoList.map(item => {
+    const isup = item.changePercent >= 0
+    const color = { color: isup ? colors.green : colors.red }
     return (
-      <Article key={ item.label }>
-        <div>{ item.label.replace('USDT', '/USDT') }</div>
-        <div>{ '$' + item.value }</div>
-        <Button> 購買 </Button>
+      <Article key={ item.name }>
+        <div>{ item.name }</div>
+        <div style={ color }>{ `$${Number(item.close).toFixed(4)}` }</div>
+        <div style={ color }>{ `${ isup ? '+' : '-' } ${Math.abs(item.changePercent).toFixed(2)}%` }</div>
+        <div>
+          <Button> 購買 </Button>
+        </div>
       </Article>
     )
   })
 
   return (
-    <Section>
+    <Wrapper>
       <Thead />
-      { cryptoRender() }
+      <Section>
+        { cryptoRender() }
+      </Section>
       <More to="/quote" >查看更多 ＞</More>
-    </Section>
+    </Wrapper>
   )
 }
 

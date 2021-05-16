@@ -7,7 +7,6 @@ const setRouters = require('./routes/index')
 
 const app = express()
 
-console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
   app.use(cors())
   app.use(logger('dev'))
