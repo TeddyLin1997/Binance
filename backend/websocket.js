@@ -11,11 +11,13 @@ binance.websockets.miniTicker(markets => {
 
 const webSocket = require('ws').Server
 
+
 const createWebSocketServer = (server) => {
   const webSocketServer = new webSocket({ server })
+
+  let timerId = null
   
-  webSocketServer.on('connection', ws => {    
-    let timerId = null
+  webSocketServer.on('connection', () => {
     if (timerId) return
     timerId = setInterval(() => {
       webSocketServer.clients.forEach(client => {

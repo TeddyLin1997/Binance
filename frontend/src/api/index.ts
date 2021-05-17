@@ -8,7 +8,7 @@ const instance = axios.create({
   method: 'post',
 })
 
-let crypto: { [props: string]: Crypto } = {}
+let crypto: { [props: string]: Omit<Crypto, 'name'> } = {}
 
 const webSocket = new WebSocket(`ws://${PORT === '3000' ? 'localhost:8000' : HOST}`)
 
