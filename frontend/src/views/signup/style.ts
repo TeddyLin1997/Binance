@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { colors } from '../../assets/style'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import check from '../../assets/images/check.svg'
 
 export const SignForm = styled.div`
   @media screen and (max-width: 768px) {
@@ -67,6 +68,7 @@ export const Look = styled.img`
 
 export const Accept = styled.div`
   margin-top: 84px;
+  width: fit-content;
   display: flex;
   align-items: center;
   text-align: left;
@@ -76,20 +78,35 @@ export const Accept = styled.div`
   }
 `
 
-export const Checkbox = styled.input`
+export const Checkbox = styled.div`
+  display: inline-block;
   margin-right: 8px;
   width: 15px;
   height: 15px;
+  background-image: url(${ check });
+  background-color: white;
+  background-size: contain;
   &:checked {
-    color: ${ colors.active };
     background-color: ${ colors.active };
   }
 `
 
+export const SubLabel = styled.label`
+  font-size: 14px;
+  cursor: pointer;
+`
+
 export const Button = styled.button`
-  margin: 12px 0;
+  margin: 12px 0 24px;
   padding: 8px 0;
   width: 100%;
   border-radius: 4px;
   background-color: ${ colors.active };
+`
+
+export const Login = styled(Link)`
+  color: ${ colors.active };
+  &:hover {
+    border-bottom: 1px solid ${ colors.active };
+  }
 `
