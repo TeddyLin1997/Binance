@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../assets/style'
 import { Link } from 'react-router-dom'
-import check from '../../assets/images/check.svg'
 
 export const SignForm = styled.div`
   @media screen and (max-width: 768px) {
@@ -64,14 +63,6 @@ export const Look = styled.img`
   &:hover {
     opacity: .5;
   }
-`
-
-export const Button = styled.button`
-  margin: 12px 0 24px;
-  padding: 8px 0;
-  width: 100%;
-  border-radius: 4px;
-  background-color: ${ colors.active };
 `
 
 export const Login = styled(Link)`

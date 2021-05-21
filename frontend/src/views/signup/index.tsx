@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
-import { SignForm, FormItem, Look, Button, Login } from './style'
+import { SignForm, FormItem, Look, Login } from './style'
 import canSee from '../../assets/images/can-see.svg'
 import cannotSee from '../../assets/images/cannot-see.svg'
 import CheckBox from '../../components/checkbox'
+import Button from '../../components/button'
+
+const buttonStyle = {
+  margin: '12px 0 24px',
+  padding: '8px 0',
+}
 
 const SignUp = () => {
   const [ isBlank, setIsBlank ] = useState(true)
   const handleBlank = () => setIsBlank(prev => !prev)
-
 
   //Form
   const [ isAgree, setIsAgree ] = useState(false)
@@ -31,7 +36,7 @@ const SignUp = () => {
 
       <CheckBox value={ isAgree } handler={ setIsAgree } content="同意此服務條款" style={ { marginTop: '84px' } } />
 
-      <Button>註冊</Button>
+      <Button label="註冊" type="primary" style={ buttonStyle } />
 
       <sub>
         註冊過？
