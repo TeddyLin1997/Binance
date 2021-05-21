@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { colors } from '../../assets/style'
 
+export const HomeView = styled.div`
+  width: 100%;
+`
+
 export const Header = styled.header`
   background: #0b0e11;
 `

@@ -11,7 +11,6 @@ binance.websockets.miniTicker(markets => {
 
 const webSocket = require('ws').Server
 
-
 const createWebSocketServer = (server) => {
   const webSocketServer = new webSocket({ server })
 

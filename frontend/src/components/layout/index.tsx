@@ -2,11 +2,7 @@ import React from 'react'
 import HeaderBar from './components/header'
 import FooterBar from './components/footer'
 import styled from 'styled-components'
-
-const MainView = styled.main`
-  margin-top: 64px;
-  min-height: calc(100vh - 64px - 48px);
-`
+import { MainView } from './style'
 
 interface LayoutProps {
   children: React.ReactNode;

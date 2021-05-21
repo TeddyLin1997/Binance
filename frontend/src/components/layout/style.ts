@@ -2,6 +2,14 @@ import styled from 'styled-components'
 import { colors } from '../../assets/style'
 import { Link } from 'react-router-dom'
 
+export const MainView = styled.main`
+  display: flex;
+  margin-top: 64px;
+  width: 100%;
+  min-height: calc(100vh - 112px);
+  background-color: whitesmoke;
+`
+
 export const Header = styled.header`
   position: fixed;
   top: 0;

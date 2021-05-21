@@ -4,6 +4,7 @@ interface Colors {
   active: string;
   green: string;
   red: string;
+  cream: string;
 }
 
 export const colors: Colors = {
@@ -12,4 +13,5 @@ export const colors: Colors = {
   active: '#f8d030',
   green: '#0ECB81',
   red: '#f6465d',
+  cream: '#b6b0a6',
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../../assets/style'
 
-const Footer = styled.div`
+const Footer = styled.footer`
   margin: auto;
   height: 48px;
   line-height: 48px;

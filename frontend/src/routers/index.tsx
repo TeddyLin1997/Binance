@@ -5,8 +5,8 @@ import Layout from '../components/layout'
 const Home = lazy(() => import('../views/home'))
 const Quote = lazy(() => import('../views/quote'))
 const Member = lazy(() => import('../views/member'))
-const Login = lazy(() => import('../views/login'))
-const Register = lazy(() => import('../views/register'))
+const SignIn = lazy(() => import('../views/signin'))
+const SignUp = lazy(() => import('../views/signup'))
 
 const App = () => {
 
@@ -20,8 +20,8 @@ const App = () => {
             <Route path="/quote" component={ Quote } />
             <Route path="/member" component={ Member } />
 
-            <Route path="/login" component={ Login } />
-            <Route path="/register" component={ Register } />
+            <Route path="/sign-in" component={ SignIn } />
+            <Route path="/sign-up" component={ SignUp } />
           </Switch>
         </Suspense>
       </Layout>

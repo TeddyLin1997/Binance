@@ -6,11 +6,14 @@
   border: none;
   text-decoration: none;
   user-select: none;
-  color: black;
 }
 
 body {
   font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: black;
 }
