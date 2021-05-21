@@ -36,7 +36,12 @@ const SignUp = () => {
 
       <CheckBox value={ isAgree } handler={ setIsAgree } content="同意此服務條款" style={ { marginTop: '84px' } } />
 
-      <Button label="註冊" type="primary" style={ buttonStyle } />
+      <Button
+        label="註冊"
+        style={ buttonStyle }
+        onClick={ () => {} }
+        primary
+      />
 
       <sub>
         註冊過？

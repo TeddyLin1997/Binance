@@ -37,14 +37,6 @@ export const SubTitle = styled.div`
   font-weight: bold;
 `
 
-export const Button = styled(Link)`
-  display: inline-block;
-  margin-top: 72px;
-  padding: 12px 36px;
-  border-radius: 6px;
-  background-color: ${ colors.active };
-`
-
 export const Images = styled.img`
   height: auto;
   vertical-align: middle;

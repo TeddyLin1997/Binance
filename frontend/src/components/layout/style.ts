@@ -42,18 +42,7 @@ export const NavItem = styled(Link)`
 export const ButtonGroup = styled.div`
   @media screen and (max-width: 568px) { display: none; }
   margin-left: auto;
-`
-
-export const Button = styled(Link)<{ type?: string }>`
-  margin: 0 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 4px;
-  background-color: ${ props => props.type === 'primary' ? colors.active : 'white' };
-  cursor: pointer;
-  &:hover {
-    opacity: .9;
-  }
+  display: flex;
 `
 
 export const MenuIcon = styled.img`

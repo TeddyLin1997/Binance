@@ -1,12 +1,12 @@
-import React, { Children } from 'react'
-// import { useHistory } from "react-router-dom"
+import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../assets/style'
 
 interface Button {
-  type?: 'primary';
+  primary?: Boolean;
   label: String;
   style?: { [propsName: string]: String };
+  onClick: Function;
 }
 
 const StyleButton = styled.div<{ isPrimary?: Boolean }>`
@@ -14,14 +14,18 @@ const StyleButton = styled.div<{ isPrimary?: Boolean }>`
   border-radius: 4px;
   background-color: ${ prop => prop.isPrimary ? colors.active : 'white' };
   cursor: pointer;
-  &:hover {
+  &:active {
     opacity: .8;
   }
 `
 
-const Button = ({ type, style, label }: Button) => {
+const Button = ({ primary, label, style, onClick }: Button) => {
   return (
-    <StyleButton style={ style } isPrimary={ type === 'primary' } >
+    <StyleButton
+      style={ style }
+      isPrimary={ primary }
+      onClick={ () => onClick() }
+    >
       { label }
     </StyleButton>
   )

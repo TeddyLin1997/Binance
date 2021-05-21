@@ -1,7 +1,6 @@
 import React from 'react'
 import HeaderBar from './components/header'
 import FooterBar from './components/footer'
-import styled from 'styled-components'
 import { MainView } from './style'
 
 interface LayoutProps {

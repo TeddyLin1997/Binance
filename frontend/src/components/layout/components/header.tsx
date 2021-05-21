@@ -1,11 +1,19 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Header, Logo, NavItem, ButtonGroup, Button } from '../style'
+import { Header, Logo, NavItem, ButtonGroup } from '../style'
+import Button from '../../button'
 import Aside from './aside'
 import logo from '../../../assets/images/logo.png'
 
+const buttonStyle = {
+  margin: '0 4px',
+  padding: '6px 16px',
+  fontSize: '14px',
+}
+
 const HeaderBar = () => {
   const history = useHistory()
+  const handlePush = (route: String) => history.push(`/${route}`)
 
   return (
     <Header>
@@ -14,8 +22,17 @@ const HeaderBar = () => {
       <NavItem to="/member" >會員中心</NavItem>
 
       <ButtonGroup>
-        <Button to="/sign-in" >登入</Button>
-        <Button to="/sign-up" type="primary" >註冊</Button>
+        <Button 
+          label="登入"
+          style={ buttonStyle }
+          onClick={ () => handlePush('sign-in') }
+        />
+        <Button
+          label="註冊"
+          style={ buttonStyle }
+          onClick={ () => handlePush('sign-up') }
+          primary
+        />
       </ButtonGroup>
 
       <Aside />
