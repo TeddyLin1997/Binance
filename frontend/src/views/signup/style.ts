@@ -66,36 +66,6 @@ export const Look = styled.img`
   }
 `
 
-export const Accept = styled.div`
-  margin-top: 84px;
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  text-align: left;
-  vertical-align: middle;
-  & > * {
-    display: inline;
-  }
-`
-
-export const Checkbox = styled.div`
-  display: inline-block;
-  margin-right: 8px;
-  width: 15px;
-  height: 15px;
-  background-image: url(${ check });
-  background-color: white;
-  background-size: contain;
-  &:checked {
-    background-color: ${ colors.active };
-  }
-`
-
-export const SubLabel = styled.label`
-  font-size: 14px;
-  cursor: pointer;
-`
-
 export const Button = styled.button`
   margin: 12px 0 24px;
   padding: 8px 0;
