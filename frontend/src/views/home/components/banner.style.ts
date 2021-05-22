@@ -1,28 +1,18 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { colors } from '../../assets/style'
 
-export const HomeView = styled.div`
-  width: 100%;
-`
-
-export const Header = styled.header`
-  background: #0b0e11;
-`
-
-export const Banner = styled.div`
-  margin: auto;
-  padding: 24px;
+export const Wrapper = styled.div`
+  padding: 24px 76px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  max-width: 1024px;
+  background-color: #0b0e11;
   & > * {
-    @media screen and (max-width: 568px) {
+    @media screen and (max-width: 768px) {
       width: 100%;
     }
     width: 50%;
+    max-width: 512px;
   }
 `
 

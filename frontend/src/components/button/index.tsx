@@ -14,8 +14,11 @@ const StyleButton = styled.div<{ isPrimary?: Boolean }>`
   border-radius: 4px;
   background-color: ${ prop => prop.isPrimary ? colors.active : 'white' };
   cursor: pointer;
-  &:active {
+  &:hover {
     opacity: .8;
+  }
+  &:active {
+    opacity: .5;
   }
 `
 
