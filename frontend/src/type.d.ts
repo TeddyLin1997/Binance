@@ -9,3 +9,7 @@ interface Crypto {
   volume: string;
   changePercent: number;
 }
+
+interface User {
+  name: string
+}

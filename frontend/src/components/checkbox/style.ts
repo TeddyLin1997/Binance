@@ -6,7 +6,7 @@ export const Accept = styled.div`
   position: relative;
 `
 
-export const Check = styled.div<{ value: Boolean }>`
+export const Check = styled.div<{ value: boolean }>`
   width: 15px;
   height: 15px;
   background-image: url(${ check });

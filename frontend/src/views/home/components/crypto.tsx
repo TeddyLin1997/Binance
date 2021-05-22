@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {  Wrapper, Section, Article, Button, Head, More } from './crypto.style'
 import { colors } from '../../../assets/style'
-import { getCryptoHomeService } from '../../../api'
+import { getCryptoHomeService } from '../../../api/quote'
 
 const Thead = React.memo(() => (
   <Head>

@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import { colors } from '../../assets/style'
 
 interface Button {
-  primary?: Boolean;
-  label: String;
-  style?: { [propsName: string]: String };
+  primary?: boolean;
+  label: string;
+  style?: { [propsName: string]: string };
   onClick: Function;
 }
 
-const StyleButton = styled.div<{ isPrimary?: Boolean }>`
+const StyleButton = styled.div<{ isPrimary?: boolean }>`
   color: black;
   border-radius: 4px;
   background-color: ${ prop => prop.isPrimary ? colors.active : 'white' };

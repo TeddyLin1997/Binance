@@ -2,9 +2,9 @@ import React from 'react'
 import { Accept, Check, SubLabel } from './style'
 
 interface CheckBox {
-  value: Boolean;
+  value: boolean;
   handler: Function;
-  content: String;
+  content: string;
   style?: {
     [propsName: string]: string;
   }

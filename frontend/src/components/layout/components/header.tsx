@@ -13,7 +13,7 @@ const buttonStyle = {
 
 const HeaderBar = () => {
   const history = useHistory()
-  const handlePush = (route: String) => history.push(`/${route}`)
+  const handlePush = (route: string) => history.push(`/${route}`)
 
   return (
     <Header>
