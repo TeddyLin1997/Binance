@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Layout from '../components/layout'
+import Loading from '../components/loading'
 
 const Home = lazy(() => import('../views/home'))
 const Quote = lazy(() => import('../views/quote'))
@@ -12,9 +13,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      
       <Layout>
-        <Suspense fallback={ <div>Loading...</div> }>
+        <Suspense fallback={ <Loading /> }>
           <Switch>
             <Route exact path="/" component={ Home } />
             <Route path="/quote" component={ Quote } />

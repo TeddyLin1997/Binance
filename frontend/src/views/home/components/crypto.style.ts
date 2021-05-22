@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const Section = styled.section`
   height: 337px;
   font-weight: bold;
-  & > * {
+  & > article {
     border-bottom: 1px solid lightgray;
   }
 `

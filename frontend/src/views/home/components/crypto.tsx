@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {  Wrapper, Section, Article, Button, Head, More } from './crypto.style'
 import { colors } from '../../../assets/style'
 import { getCryptoHomeService } from '../../../api/quote'
+import Loading from '../../../components/loading'
 
 const Thead = React.memo(() => (
   <Head>
@@ -13,10 +14,14 @@ const Thead = React.memo(() => (
 ))
 
 const CryptoList = () => {
+  const [isLoading, setIsLoading ] = useState(true)
   const [CryptoList, setCryptoList ] = useState<Crypto[]>([])
 
   useEffect(() => {
-    const timerID = setInterval(() => setCryptoList(getCryptoHomeService()), 1500)
+    const timerID = setInterval(() => {
+      setCryptoList(getCryptoHomeService())
+      setIsLoading(false)
+    }, 1500)
     return () => clearInterval(timerID)
   },[])
 
@@ -36,7 +41,7 @@ const CryptoList = () => {
   return (
     <Section>
       <Thead />
-      { cryptoRender() }
+      { isLoading ? <Loading /> : cryptoRender() }
     </Section>
   )
 }
