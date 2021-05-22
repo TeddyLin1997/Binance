@@ -1,7 +1,13 @@
+const http = require('http')
+const debug = require('debug')('backend:server')
 const app = require('../app')
 const createWebSocketServer = require('../websocket')
-const debug = require('debug')('backend:server')
-const http = require('http')
+const db = require('../db')
+
+// Connect database
+db.connect((err) => {
+  console.log(`Database connecting ${err ? 'error' : 'success' }`)
+})
 
 // Create HTTP server.
 const server = http.createServer(app)

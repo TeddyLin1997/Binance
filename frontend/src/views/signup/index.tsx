@@ -3,6 +3,7 @@ import { SignForm, Login } from './style'
 import CheckBox from '../../components/checkbox'
 import Button from '../../components/button'
 import FormInput from '../../components/form-input'
+import { createUserService } from '../../api/user'
 
 const buttonStyle = {
   margin: '12px 0 24px',
@@ -14,6 +15,10 @@ const SignUp = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ isAgree, setIsAgree ] = useState(false)
+
+  const createUser = () => {
+    createUserService({ account, email, password })
+  }
 
   return (
     <SignForm>
@@ -44,7 +49,7 @@ const SignUp = () => {
       <Button
         label="註冊"
         style={ buttonStyle }
-        onClick={ () => {} }
+        onClick={ createUser }
         primary
       />
 

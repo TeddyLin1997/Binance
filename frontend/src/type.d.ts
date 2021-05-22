@@ -11,5 +11,7 @@ interface Crypto {
 }
 
 interface User {
-  name: string
+  account: string;
+  email: string;
+  password: string;
 }

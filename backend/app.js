@@ -6,12 +6,14 @@ const cookieParser = require('cookie-parser')
 const setRouters = require('./routes/index')
 
 const app = express()
+const NODE_ENV = app.get('env')
 
-if (process.env.NODE_ENV === 'development') {
+// develop allow cors
+if (NODE_ENV === 'development') {
   app.use(cors())
-  app.use(logger('dev'))
 }
 
+app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
