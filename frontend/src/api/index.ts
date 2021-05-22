@@ -2,8 +2,7 @@ import axios from 'axios'
 
 const PORT = '8000'
 const DOMAIN = document.domain
-// const HOST = document.location.host
-const HOST = `${DOMAIN}:${PORT}`
+const HOST = import.meta.env.DEV ? `${DOMAIN}:${PORT}` : document.location.host
 
 export const AxiosInstance = axios.create({
   baseURL: `http://${HOST}`,
