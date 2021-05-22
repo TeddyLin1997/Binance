@@ -3,14 +3,14 @@ import {  Wrapper, Section, Article, Button, Head, More } from './crypto.style'
 import { colors } from '../../../assets/style'
 import { getCryptoHomeService } from '../../../api'
 
-const Crypto = () => {
-  return (
-    <Wrapper>
-      <CryptoList />
-      <More to="/quote" >查看更多 ＞</More>
-    </Wrapper>
-  )
-}
+const Thead = React.memo(() => (
+  <Head>
+    <div>名稱</div>
+    <div>價格</div>
+    <div>24小時漲跌</div>
+    <div>操作</div>
+  </Head>
+))
 
 const CryptoList = () => {
   const [CryptoList, setCryptoList ] = useState<Crypto[]>([])
@@ -33,20 +33,20 @@ const CryptoList = () => {
     )
   })
 
-  const Thead = () => (
-    <Head>
-      <div>名稱</div>
-      <div>價格</div>
-      <div>24小時漲跌</div>
-      <div>操作</div>
-    </Head>
-  )
-
   return (
     <Section>
       <Thead />
       { cryptoRender() }
     </Section>
+  )
+}
+
+const Crypto = () => {
+  return (
+    <Wrapper>
+      <CryptoList />
+      <More to="/quote" >查看更多 ＞</More>
+    </Wrapper>
   )
 }
 
