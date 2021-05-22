@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { SignForm, FormItem, Look, Login } from './style'
-import canSee from '../../assets/images/can-see.svg'
-import cannotSee from '../../assets/images/cannot-see.svg'
+import { SignForm, Login } from './style'
 import CheckBox from '../../components/checkbox'
 import Button from '../../components/button'
+import FormInput from '../../components/form-input'
 
 const buttonStyle = {
   margin: '12px 0 24px',
@@ -11,11 +10,11 @@ const buttonStyle = {
 }
 
 const SignUp = () => {
-  const [ isBlank, setIsBlank ] = useState(true)
-  const handleBlank = () => setIsBlank(prev => !prev)
-
-  //Form
+  const [ account, setAccount ] = useState('')
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
   const [ isAgree, setIsAgree ] = useState(false)
+
   return (
     <SignForm>
       <div>
@@ -23,16 +22,22 @@ const SignUp = () => {
         <sub>歡迎加入幣安</sub>
       </div>
 
-      <FormItem>
-        <div>郵箱</div>
-        <input type="text"/>
-      </FormItem>
+      <FormInput
+        label="使用者名稱"
+        onChange={ event => setAccount(event.target.value) }
+      />
 
-      <FormItem>
-        <div>密碼</div>
-        <input type={ isBlank ? 'password' : 'text' } />
-        <Look src={ isBlank ? cannotSee : canSee } onClick={ handleBlank } draggable="false" />
-      </FormItem>
+      <FormInput
+        label="郵箱"
+        onChange={ event => setEmail(event.target.value) }
+        type="email"
+      />
+      
+      <FormInput
+        label="密碼"
+        onChange={ event => setPassword(event.target.value) }
+        type="password"
+      />
 
       <CheckBox value={ isAgree } handler={ setIsAgree } content="同意此服務條款" style={ { marginTop: '84px' } } />
 
