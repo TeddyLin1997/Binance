@@ -19,6 +19,7 @@ export const Header = styled.header`
   height: 64px;
   align-items: center;
   background: ${ colors.dark };
+  z-index: 9999;
 `
 export const Logo = styled.img`
   height: 100%;
