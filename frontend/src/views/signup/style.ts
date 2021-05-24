@@ -6,12 +6,10 @@ export const SignForm = styled.form`
   @media screen and (max-width: 768px) {
     margin: 0;
     width: 100%;
-    height: calc(100vh - 112px);
   }
   margin: 40px auto;
   padding: 24px;
   width: 386px;
-  height: fit-content;
   color: ${ colors.cream };
   text-align: center;
   border-radius: 2px;

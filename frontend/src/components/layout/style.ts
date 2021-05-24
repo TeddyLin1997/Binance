@@ -6,7 +6,9 @@ export const MainView = styled.main`
   display: flex;
   margin-top: 64px;
   width: 100%;
+  height: 100%;
   min-height: calc(100vh - 112px);
+  overflow: auto;
   background-color: whitesmoke;
 `
 
@@ -63,7 +65,7 @@ export const Menu = styled.aside<{ isOpen: boolean }>`
   width: 180px;
   color: white;
   text-align: center;
-  background-color: ${ colors.gray };
+  background-color: ${ colors.dark };
 `
 
 export const MenuItem = styled(NavItem)`
@@ -73,5 +75,5 @@ export const MenuItem = styled(NavItem)`
   color: white;
   font-size: 18px;
   padding: 12px 0;
-  border-bottom: 2px solid ${ colors.dark };
+  border-top: 2px solid ${ colors.gray };
 `

@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
+  @media screen and (max-width: 768px) {
+    padding: 24px;
+  }
   padding: 24px 76px;
   display: flex;
   flex-wrap: wrap;
