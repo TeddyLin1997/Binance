@@ -1,25 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { UseFormRegisterReturn } from 'react-hook-form'
 import { Accept, Check, SubLabel } from './style'
 
 interface CheckBox {
-  value: boolean;
-  handler: Function;
+  value: UseFormRegisterReturn;
+  model: boolean;
   content: string;
   style?: {
     [propsName: string]: string;
   }
 }
 
-const CheckBox = ({ value, handler, content, style }: CheckBox) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handler(event.target.checked)
-  }
+const CheckBox =  ({ value, model, content, style }: CheckBox) => {
+  const [ isCheck, setIsCheck ] = useState(model)
+  const handleClick = () => setIsCheck(prev => !prev)
 
   return (
     <Accept style={ style }>
-      <input onChange={ handleChange } style={ { display: 'none' } } id="agree" type="checkbox"/>
-      <Check value={ value }/>
-      <SubLabel htmlFor="agree" >{ content }</SubLabel>
+      <input { ...value } id="agree" type="checkbox" style={ { display: 'none' } } />
+      <Check value={ isCheck } />
+      <SubLabel htmlFor="agree" onClick={ handleClick } >{ content }</SubLabel>
     </Accept>
   )
 }

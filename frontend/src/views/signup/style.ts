@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../assets/style'
 import { Link } from 'react-router-dom'
 
-export const SignForm = styled.div`
+export const SignForm = styled.form`
   @media screen and (max-width: 768px) {
     margin: 0;
     width: 100%;

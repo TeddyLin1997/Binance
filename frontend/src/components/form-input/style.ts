@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../assets/style'
 
 export const FormItem = styled.div`
-  margin: 24px 0;
+  margin-top: 24px;
   position: relative;
   text-align: left;
 
