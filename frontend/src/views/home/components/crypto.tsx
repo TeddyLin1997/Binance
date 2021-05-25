@@ -4,14 +4,13 @@ import { colors } from '../../../assets/style'
 import { getCryptoHomeService } from '../../../api/quote'
 import Loading from '../../../components/loading'
 
-const Thead = React.memo(() => (
-  <Head>
-    <div>名稱</div>
-    <div>價格</div>
-    <div>24小時漲跌</div>
-    <div>操作</div>
-  </Head>
-))
+export default function Crypto () {
+  return (
+    <Wrapper>
+      <CryptoList />
+    </Wrapper>
+  )
+}
 
 const CryptoList = () => {
   const [isLoading, setIsLoading ] = useState(true)
@@ -31,28 +30,30 @@ const CryptoList = () => {
     return (
       <Article key={ item.name }>
         <div>{ item.name }</div>
-        <div style={ color }>{ `$${Number(item.close).toFixed(4)}` }</div>
-        <div style={ color }>{ `${ isup ? '+' : '-' } ${Math.abs(item.changePercent).toFixed(2)}%` }</div>
+        <div style={ color }>{ item.close ? `$${Number(item.close).toFixed(4)}` : '–' }</div>
+        <div style={ color }>{ item.changePercent ? `${ isup ? '+' : '-' } ${Math.abs(item.changePercent).toFixed(2)}%` : '–' }</div>
         <div><Button>購買</Button></div>
       </Article>
     )
   })
 
   return (
-    <Section>
+    isLoading ? <Loading /> :
+    <>
       <Thead />
-      { isLoading ? <Loading /> : cryptoRender() }
-    </Section>
-  )
-}
-
-const Crypto = () => {
-  return (
-    <Wrapper>
-      <CryptoList />
+      <Section>
+        { cryptoRender() }
+      </Section>
       <More to="/quote" >查看更多 ＞</More>
-    </Wrapper>
+    </>
   )
 }
 
-export default Crypto
+const Thead = React.memo(() => (
+  <Head>
+    <div>名稱</div>
+    <div>價格</div>
+    <div>24小時漲跌</div>
+    <div>操作</div>
+  </Head>
+))

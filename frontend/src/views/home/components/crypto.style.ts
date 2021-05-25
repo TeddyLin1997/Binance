@@ -4,13 +4,14 @@ import { colors } from '../../../assets/style'
 
 export const Wrapper = styled.div`
   margin: auto;
-  padding: 12px;
+  padding: 24px 12px;
+  width: 100%;
   max-width: 1024px;
   text-align: center;
 `
 
 export const Section = styled.section`
-  height: 337px;
+  height: 300px;
   font-weight: bold;
   & > article {
     border-bottom: 1px solid lightgray;
@@ -89,7 +90,7 @@ export const Button = styled.button`
 `
 
 export const More = styled(Link)`
-  margin-top: 24px;
+  margin-top: 48px;
   display: inline-block;
   font-size: 14px;
   font-weight: bold;

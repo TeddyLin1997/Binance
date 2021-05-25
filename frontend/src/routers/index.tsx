@@ -22,6 +22,9 @@ const App = () => {
 
             <Route path="/sign-in" component={ SignIn } />
             <Route path="/sign-up" component={ SignUp } />
+
+            {/* test page */}
+            <Route path="/test" component={ Loading } />
           </Switch>
         </Suspense>
       </Layout>

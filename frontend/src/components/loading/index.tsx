@@ -4,7 +4,6 @@ import { colors } from '../../assets/style'
 
 const Wrapper = styled.div`
   width: 100%;
-  height: inherit;
   display: flex;
 `
 
