@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MenuIcon, Menu, MenuItem } from '../style'
+import { Menu, MenuItem, Icon } from './aside.style'
 import apps from '../../../assets/images/apps.svg'
 
 const AsideMenu = () => {
@@ -8,7 +8,7 @@ const AsideMenu = () => {
 
   return (
     <>
-      <MenuIcon src={ apps } onClick={ handleOpen } />
+      <Icon src={ apps } onClick={ handleOpen } />
       <Menu isOpen={ isOpen } >
         <MenuItem to="/sign-in" >登入</MenuItem>
         <MenuItem to="/" >首頁</MenuItem>

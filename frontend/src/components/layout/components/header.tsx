@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { Suspense, useState, useEffect, lazy } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Header, Logo, NavItem, ButtonGroup } from '../style'
-import Button from '../../button'
+import { Header, Logo, NavItem, ButtonGroup, buttonStyle } from './header.style'
 import Aside from './aside'
+import Button from '../../button'
 import logo from '../../../assets/images/logo.png'
 
-const buttonStyle = {
-  margin: '0 4px',
-  padding: '6px 16px',
-  fontSize: '14px',
-}
+const isPhoneMode = (width: number) => width <= 568
+console.log(isPhoneMode(document.body.clientWidth))
 
 const HeaderBar = () => {
   const history = useHistory()
   const handlePush = (route: string) => history.push(`/${route}`)
+
+  const [ showAside, setShowAside ] = useState(isPhoneMode(document.body.clientWidth))
+  const handleResize = (event: any) => {
+    if (isPhoneMode(event.target.innerWidth)) setShowAside(true)
+    else setShowAside(false)
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <Header>
@@ -35,7 +42,7 @@ const HeaderBar = () => {
         />
       </ButtonGroup>
 
-      <Aside />
+      { showAside ? <Aside /> : null }
     </Header>
   )
 }
