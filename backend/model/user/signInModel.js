@@ -9,10 +9,23 @@ const vertifyPassword = (password, hash) => {
 }
 
 const run = async (req) => {
-  const account = req.body.password || null
-  const password = req.body.password || null
+  const account = req.body.account
+  const password = req.body.password
+  const rules = [
+    { 
+      name: 'account',
+      type: 'string',
+      value: account,
+      valid: validAccount
+    },
+    {
+      name: 'password',
+      type: 'string',
+      value: password,
+      valid: validPassword,
+    },
+  ]
   
-  const rules = [ validAccount.test(account), validPassword.test(password) ]
   const value = [ account ]
   const sql = 'select * from user where account=?'
   return resJson(rules, sql, value, async (rows, fields) => {

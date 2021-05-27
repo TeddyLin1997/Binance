@@ -4,11 +4,21 @@ const resJson = async (rules, sql, value, callback) => {
   const res = { error: false, msg: '', result: null }
 
   // validate
-  if (!rules.every(item => item)) {
-    res.error = true
-    res.msg = 'type error'
-    return res
-  }
+  const isValid = rules.every(item => {
+    if ( typeof item.value !== item.type) {
+      res.error = true
+      res.msg = `${item.name} type is ${item.type}`
+      return false
+    }
+    if (item.valid && !item.valid.test(item.value)) {
+      res.error = true
+      res.msg = `${item.name} validate error`
+      return false
+    }
+    return true
+  })
+
+  if (!isValid) return res
 
   // sql
   return new Promise((resolve, reject) => {
