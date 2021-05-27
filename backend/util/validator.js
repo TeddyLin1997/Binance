@@ -1,9 +1,9 @@
-const account = /^\w{4,16}$/
-const email = /^\w+\@\w+\.\w+$/
-const password = /^\w{8,16}$/
+const validAccount = /^\w{4,16}$/
+const validEmail = /^\w+\@\w+\.\w+$/
+const validPassword = /^\w{8,16}$/
 
 module.exports = {
-  account,
-  email,
-  password,
+  validAccount,
+  validEmail,
+  validPassword,
 }

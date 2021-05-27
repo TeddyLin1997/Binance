@@ -1,22 +1,22 @@
 const db = require('../db')
 
 const resJson = async (rules, sql, value, callback) => {
-  const res = { error: false, msg: 'SUCCESS', result: null }
+  const res = { error: false, msg: '', result: null }
 
   // validate
   if (!rules.every(item => item)) {
     res.error = true
-    res.msg = 'TYPE ERROR'
+    res.msg = 'type error'
     return res
   }
 
   // sql
-  return await new Promise((resolve, reject) => {
-    db.query(sql, value, (err, rows, fields) => {
-      if (!err) res.result = callback(rows, fields)
+  return new Promise((resolve, reject) => {
+    db.query(sql, value, async (err, rows, fields) => {
+      if (!err) res.result = await callback(rows, fields)
       else {
         res.error = true
-        res.msg = 'SQL ERROR'
+        res.msg = 'sql error'
         console.log('SQL Message: ', err.sqlMessage)
       }
       resolve(res)
@@ -24,4 +24,4 @@ const resJson = async (rules, sql, value, callback) => {
   })
 }
 
-module.exports = { resJson }
+module.exports = { db, resJson }
