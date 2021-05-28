@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const { resJson } = require('../../util')
 const { validAccount, validPassword, validEmail } = require('../../util/validator')
 

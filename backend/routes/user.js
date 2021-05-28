@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const user = require('../model/user')
+const { auth }  = require('../middleware')
 
 router.get('/', function(req, res, next) {
   res.send('user service is runing')
