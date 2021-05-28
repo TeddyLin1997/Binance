@@ -1,20 +1,18 @@
 const express = require('express')
 const router = express.Router()
 const user = require('../model/user')
-const { auth }  = require('../middleware')
+const { auth }  = require('../common/middleware')
 
 router.get('/', function(req, res, next) {
   res.send('user service is runing')
 })
 
 router.post('/sign-up', async function(req, res, next) {
-  const result = await user.signUpModel(req)
-  res.send(result)
+  user.signUpModel(req, res)
 })
 
 router.post('/sign-in', async function(req, res, next) {
-  const result = await user.signInModel(req)
-  res.send(result)
+  user.signInModel(req, res)
 })
 
 module.exports = router

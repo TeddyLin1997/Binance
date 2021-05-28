@@ -6,7 +6,6 @@ import Button from '../../button'
 import logo from '../../../assets/images/logo.png'
 
 const isPhoneMode = (width: number) => width <= 568
-console.log(isPhoneMode(document.body.clientWidth))
 
 const HeaderBar = () => {
   const history = useHistory()

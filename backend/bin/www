@@ -1,8 +1,8 @@
 const http = require('http')
 const debug = require('debug')('backend:server')
 const app = require('../app')
-const createWebSocketServer = require('../websocket')
-const db = require('../db')
+const createWebSocketServer = require('../common/websocket.js')
+const db = require('../common/db.js')
 
 // Connect database
 db.connect((err) => {
