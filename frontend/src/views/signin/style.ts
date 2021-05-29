@@ -24,8 +24,3 @@ export const SignUp = styled(Link)`
     border-bottom: 1px solid ${ colors.active };
   }
 `
-
-export const DialogContent = styled.div`
-  text-align: center;
-  color: white
-`

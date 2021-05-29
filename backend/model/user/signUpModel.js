@@ -8,7 +8,9 @@ const run = async (req, res) => {
   
   const value = [ req.body.account, req.body.email, await hashPassword(req.body.password) ]
   const sql = 'insert into user set account=?, email=?, password=?'
-  const json = await resJson(sql, value, () => true )
+  const json = await resJson(sql, value, res => res.result = true )
+  // 特例處理 未來需修正
+  if (json.error) json.result = '已有相同使用者名稱'
 
   res.status(200).json(json)
 }

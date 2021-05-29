@@ -1,34 +1,35 @@
 import React, { useState } from 'react'
-import { useForm } from "react-hook-form";
-import { SignUpService } from '../../api/user'
+import { useHistory } from 'react-router-dom'
+import { useForm } from "react-hook-form"
+import { SignUpService, SignInService } from '../../api/user'
 import { SignForm, Login, DialogContent } from './style'
 import CheckBox from '../../components/checkbox'
 import Button from '../../components/button'
 import FormInput from '../../components/form-input'
 import FormError from '../../components/form-error'
-import Dialog from '../../components/dialog'
+
+interface SignUpForm extends User { isAgree: boolean }
 
 const SignUp = () => {
-  const [ isShowDialog, setIsShowDialog ] = useState(false)
-  const [ errorMsg, setErrorMsg ] = useState('')
+  const history = useHistory()
 
   const {
     register,
     getValues,
     handleSubmit,
     formState: { errors },
-  } = useForm<User, { isAgree: boolean }>()
+  } = useForm<SignUpForm>()
 
-  const createUser = handleSubmit(async (data) => {
+  const createUser = handleSubmit(async data => {
     const result = await SignUpService(data)
-    if (result.error) return setError('註冊失敗')
-    // 登入
+
+    if (result.error && typeof result.result === 'string') setError(result.result)
+    else history.push('/sign-in', { account: data.account, password: data.password })
   })
 
-  const setError = (message: string) => {
-    setIsShowDialog(true)
-    setErrorMsg(message)
-  }
+  // error
+  const [ errorMsg, setErrorMsg ] = useState('')
+  const setError = (message: string) => setErrorMsg(message)
 
   return (
     <>
@@ -87,6 +88,7 @@ const SignUp = () => {
           onClick={ createUser }
           primary
         />
+        <FormError msg={ errorMsg } />
 
         <sub>
           註冊過？
@@ -94,10 +96,6 @@ const SignUp = () => {
         </sub>
         
       </SignForm>
-
-      <Dialog value={ isShowDialog } handler={ setIsShowDialog } >
-        <DialogContent>{ errorMsg }</DialogContent>
-      </Dialog>
     </>
   )
 }

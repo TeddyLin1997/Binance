@@ -1,6 +1,6 @@
 import { AxiosInstance } from './index'
 
-export const SignUpService = async (data: User): Promise<ApiResponse<string | boolean>> => {
+export const SignUpService = async (data: User): Promise<ApiResponse<boolean>> => {
   return await AxiosInstance({
     url: '/user/sign-up',
     data,

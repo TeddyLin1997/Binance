@@ -10,15 +10,19 @@ const run = async (req, res) => {
   
   const value = [ req.body.account ]
   const sql = 'select * from user where account=?'
-  const json = await resJson(sql, value, (rows, fields) => {
-    let result = false
-    if (rows.length && vertifyPassword(req.body.password, rows[0].password)) {
+  const json = await resJson(sql, value, async (res, rows) => {
+    if (rows.length === 0) {
+      res.error = true
+      res.result = '無此使用者名稱'
+    } else if (!await vertifyPassword(req.body.password, rows[0].password)) {
+      res.error = true
+      res.result = '密碼錯誤'
+    } else {
       const payload = { id: rows[0].id, account: rows[0].account }
-      result = { ...payload, token: createToken(payload) }
+      res.result = { ...payload, token: createToken(payload) }
     }
-    return result
   })
-  
+
   res.status(200).json(json)
 }
 
@@ -36,7 +40,9 @@ const validateRules = (req, res) => {
 
 const vertifyPassword = (password, hash) => {
   return new Promise((resolve, reject) => {
-    bcrypt.compare(password, hash, (err, isSame) => resolve(isSame))
+    bcrypt.compare(password, hash, (err, isSame) => {
+      resolve(isSame)
+    })
   })
 }
 

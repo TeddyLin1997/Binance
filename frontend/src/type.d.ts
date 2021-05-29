@@ -1,6 +1,6 @@
 interface ApiResponse<T> {
   error: boolean;
-  result: T;
+  result: T | string;
   status: number;
 }
 

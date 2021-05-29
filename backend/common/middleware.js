@@ -40,16 +40,16 @@ const validator = (rules) => {
 }
 
 const resJson = (sql, value, callback) => {
-  const res = { error: false, status: 200, result: null }
+  const res = { error: false, status: 200, result: '' }
 
   // sql
   return new Promise((resolve, reject) => {
     db.query(sql, value, async (err, rows, fields) => {
-      if (!err) res.result = await callback(rows, fields)
+      if (!err) await callback(res, rows, fields)
       else {
         res.error = true
         res.status = 500
-        res.result = err.sqlMessage
+        res.result = '遠端伺服器發生錯誤'
       }
       resolve(res)
     })

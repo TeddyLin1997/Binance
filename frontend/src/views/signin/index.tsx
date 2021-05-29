@@ -1,21 +1,24 @@
-import React, { useState, KeyboardEvent } from 'react'
-import { useForm } from "react-hook-form";
+import React, { useState, KeyboardEvent, useEffect } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useForm } from "react-hook-form"
 import { SignInService } from '../../api/user'
-import { SignForm, SignUp, DialogContent } from './style'
+import { SignForm, SignUp } from './style'
 import Button from '../../components/button'
 import FormInput from '../../components/form-input'
 import FormError from '../../components/form-error'
-import Dialog from '../../components/dialog'
+
+type LoginForm = Omit<User, 'email'>
 
 const SignIn = () => {
-  const [ isShowDialog, setIsShowDialog ] = useState(false)
-  const [ errorMsg, setErrorMsg ] = useState('')
+  const history = useHistory()
+  const location = useLocation()
+  const state = location.state as LoginForm  
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Omit<User, 'email'>>()
+  } = useForm<LoginForm>({ defaultValues: state })
 
   const handleEnter = (event: KeyboardEvent) => {
     if (event.key === 'Enter') login()
@@ -23,14 +26,16 @@ const SignIn = () => {
 
   const login = handleSubmit(async (data) => {
     const result = await SignInService(data)
-    if (result.error) return setError('登入失敗')
-    // 跳轉
+
+    if (result.error && typeof result.result === 'string') setError(result.result)
+    else history.push('/')
+    // 儲存 user info
   })
 
-  const setError = (message: string) => {
-    setIsShowDialog(true)
-    setErrorMsg(message)
-  }
+  const [ errorMsg, setErrorMsg ] = useState('')
+  const setError = (message: string) => setErrorMsg(message)
+
+  useEffect(() => { if (state) login() }, [])
 
   return (
     <>
@@ -51,6 +56,7 @@ const SignIn = () => {
           }) }
         />
         <FormError msg={ errors.account?.message } />
+
         
         <FormInput
           label="密碼"
@@ -72,17 +78,13 @@ const SignIn = () => {
           onClick={ login }
           primary
         />
+        <FormError msg={ errorMsg } />
 
         <sub>
           尚未註冊？ {'\u00A0'}
           <SignUp to="/sign-up">註冊</SignUp>
         </sub>
-        
       </SignForm>
-
-      <Dialog value={ isShowDialog } handler={ setIsShowDialog } >
-        <DialogContent>{ errorMsg }</DialogContent>
-      </Dialog>
     </>
   )
 }
