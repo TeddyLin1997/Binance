@@ -18,7 +18,7 @@ const FormInput = ({ label, value, type }: FormInput) => {
   return (
     <FormItem>
       <Label>{ label }</Label>
-      <Input { ...value } type={ getType() } />
+      <Input { ...value } type={ getType() } autoComplete="off" />
       { 
         type === 'password' && 
         <Look src={ isBlank ? cannotSee : canSee } onClick={ handleBlank } draggable="false" />

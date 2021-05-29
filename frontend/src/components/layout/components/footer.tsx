@@ -11,7 +11,7 @@ const Footer = styled.footer`
   text-align: center;
   border-top: 1px solid ${ colors.gray };
   background-color: black;
-  z-index: 9999;
+  z-index: 10;
 `
 
 const FooterBar = () => <Footer>Binance @ 2021</Footer>
