@@ -1,19 +1,12 @@
 import React, { useState } from 'react'
+import { useForm } from "react-hook-form";
+import { SignUpService } from '../../api/user'
 import { SignForm, Login, DialogContent } from './style'
 import CheckBox from '../../components/checkbox'
 import Button from '../../components/button'
 import FormInput from '../../components/form-input'
 import FormError from '../../components/form-error'
 import Dialog from '../../components/dialog'
-import { createUserService } from '../../api/user'
-import { useForm } from "react-hook-form";
-
-interface FormValues {
-  account: string;
-  email: string;
-  password: string;
-  isAgree: boolean;
-}
 
 const SignUp = () => {
   const [ isShowDialog, setIsShowDialog ] = useState(false)
@@ -24,10 +17,10 @@ const SignUp = () => {
     getValues,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>()
+  } = useForm<User, { isAgree: boolean }>()
 
   const createUser = handleSubmit(async (data) => {
-    const result = await createUserService(data)
+    const result = await SignUpService(data)
     if (result.error) return setError('註冊失敗')
     // 登入
   })

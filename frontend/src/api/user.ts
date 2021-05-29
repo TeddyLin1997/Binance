@@ -1,14 +1,21 @@
 import { AxiosInstance } from './index'
 
-type SignUp = {
-  error: boolean;
-  result: string;
-  status: number;
-}
-
-export const createUserService = async (data: User): Promise<SignUp> => {
+export const SignUpService = async (data: User): Promise<ApiResponse<string | boolean>> => {
   return await AxiosInstance({
     url: '/user/sign-up',
+    data,
+  }).then(res => res.data)
+}
+
+type SignIn = {
+  id: string;
+  account: string;
+  token: string;
+}
+
+export const SignInService = async (data: Omit<User, 'email'>): Promise<ApiResponse<SignIn>> => {
+  return await AxiosInstance({
+    url: '/user/sign-in',
     data,
   }).then(res => res.data)
 }

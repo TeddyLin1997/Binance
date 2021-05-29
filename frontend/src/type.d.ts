@@ -1,3 +1,9 @@
+interface ApiResponse<T> {
+  error: boolean;
+  result: T;
+  status: number;
+}
+
 interface Crypto {
   name: string;
   close: string;

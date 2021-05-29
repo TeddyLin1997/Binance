@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Wrapper, Title, SubTitle, Images } from './index.style'
+import { Wrapper, Title, SubTitle, Images } from './style'
 import Taipei from '../../../assets/images/taipei.png'
 import Button from '../../../components/button'
 
