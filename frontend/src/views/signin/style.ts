@@ -18,7 +18,7 @@ export const SignForm = styled.form`
   background: ${ colors.gray };
 `
 
-export const SignUp = styled(Link)`
+export const SubLink = styled(Link)`
   color: ${ colors.active };
   &:hover {
     border-bottom: 1px solid ${ colors.active };

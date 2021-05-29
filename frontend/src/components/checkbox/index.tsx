@@ -3,16 +3,16 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 import { Accept, Check, SubLabel } from './style'
 
 interface CheckBox {
+  initValue: boolean;
   value: UseFormRegisterReturn;
-  model: boolean;
   content: string;
   style?: {
     [propsName: string]: string;
   }
 }
 
-const CheckBox =  ({ value, model, content, style }: CheckBox) => {
-  const [ isCheck, setIsCheck ] = useState(model)
+const CheckBox =  ({ initValue, value, content, style }: CheckBox) => {
+  const [ isCheck, setIsCheck ] = useState(initValue)
   const handleClick = () => setIsCheck(prev => !prev)
 
   return (

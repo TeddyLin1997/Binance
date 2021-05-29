@@ -9,7 +9,9 @@ interface Button {
   onClick: Function;
 }
 
-const StyleButton = styled.div<{ isPrimary?: boolean }>`
+const StyleButton = styled.button<{ isPrimary?: boolean }>`
+  display: block;
+  width: 100%;
   color: black;
   border-radius: 4px;
   background-color: ${ prop => prop.isPrimary ? colors.active : 'white' };

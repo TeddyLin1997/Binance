@@ -18,14 +18,9 @@ export const SignForm = styled.form`
   background: ${ colors.gray };
 `
 
-export const Login = styled(Link)`
+export const SubLink = styled(Link)`
   color: ${ colors.active };
   &:hover {
     border-bottom: 1px solid ${ colors.active };
   }
-`
-
-export const DialogContent = styled.div`
-  text-align: center;
-  color: white
 `

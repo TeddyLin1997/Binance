@@ -2,10 +2,11 @@ import React, { useState, KeyboardEvent, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { SignInService } from '../../api/user'
-import { SignForm, SignUp } from './style'
-import Button from '../../components/button'
+import { SignForm, SubLink } from './style'
 import FormInput from '../../components/form-input'
 import FormError from '../../components/form-error'
+import FormButton from '../../components/form-button'
+import useLoader from '../../hooks/useLoader'
 
 type LoginForm = Omit<User, 'email'>
 
@@ -24,8 +25,12 @@ const SignIn = () => {
     if (event.key === 'Enter') login()
   }
 
-  const login = handleSubmit(async (data) => {
+  const [ isLoading, loadAction ] = useLoader()
+
+  const login = handleSubmit(async data => {
+    loadAction('load')
     const result = await SignInService(data)
+    loadAction('unload')
 
     if (result.error && typeof result.result === 'string') setError(result.result)
     else history.push('/')
@@ -39,50 +44,46 @@ const SignIn = () => {
 
   return (
     <>
-      <SignForm>
+      <SignForm onSubmit={ login }>
         <div>
           <h2 style={ { color: 'whitesmoke' } } >登入</h2>
           <sub>歡迎加入幣安</sub>
         </div>
-
-        <FormInput
-          label="使用者名稱"
-          value={ register('account', {
-            required: '必填',
-            pattern: {
-              value: /^\w{4,16}$/,
-              message: '必須介於 4 到 16 個字元',
-            },
-          }) }
-        />
-        <FormError msg={ errors.account?.message } />
-
         
-        <FormInput
-          label="密碼"
-          value={ register('password', {
-            required: '必填',
-            pattern: {
-              value: /^\w{8,16}$/,
-              message: '必須介於 8 到 16 個字元'
-            }
-          }) }
-          type="password"
-          onKeyUp={ handleEnter }
-        />
-        <FormError msg={ errors.password?.message } />
+        <fieldset disabled={ isLoading } >
+          <FormInput
+            label="使用者名稱"
+            value={ register('account', {
+              required: '必填',
+              pattern: {
+                value: /^\w{4,16}$/,
+                message: '必須介於 4 到 16 個字元',
+              },
+            }) }
+          />
+          <FormError msg={ errors.account?.message } />
+          
+          <FormInput
+            label="密碼"
+            value={ register('password', {
+              required: '必填',
+              pattern: {
+                value: /^\w{8,16}$/,
+                message: '必須介於 8 到 16 個字元'
+              }
+            }) }
+            type="password"
+            onKeyUp={ handleEnter }
+          />
+          <FormError msg={ errors.password?.message } />
 
-        <Button
-          label="登入"
-          style={ { margin: '36px 0 24px', padding: '8px 0' } }
-          onClick={ login }
-          primary
-        />
-        <FormError msg={ errorMsg } />
+          <FormButton label="登入"/>
+          <FormError msg={ errorMsg } />
+        </fieldset>
 
         <sub>
           尚未註冊？ {'\u00A0'}
-          <SignUp to="/sign-up">註冊</SignUp>
+          <SubLink to="/sign-up">註冊</SubLink>
         </sub>
       </SignForm>
     </>
