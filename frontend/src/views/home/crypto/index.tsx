@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  Wrapper, Section, Article, Button, Head, More } from './crypto.style'
+import {  Wrapper, Section, Article, Button, Head, More } from './index.style'
 import { colors } from '../../../assets/style'
 import { getCryptoHomeService } from '../../../api/quote'
 import Loading from '../../../components/loading'

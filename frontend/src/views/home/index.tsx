@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Crypto from './components/crypto'
-import Banner from './components/banner'
+import Crypto from './crypto'
+import Banner from './banner'
 
 
 const HomeView = styled.div`
