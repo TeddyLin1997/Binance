@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
   margin: auto;
-  padding: 24px 12px;
+  padding: 0 12px;
   width: 100%;
   max-width: 1024px;
   text-align: center;
@@ -90,7 +90,7 @@ export const Button = styled.button`
 `
 
 export const More = styled(Link)`
-  margin-top: 48px;
+  margin: 48px 0 12px;
   display: inline-block;
   font-size: 14px;
   font-weight: bold;
