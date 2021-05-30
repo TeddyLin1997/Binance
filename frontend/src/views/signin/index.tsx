@@ -1,12 +1,12 @@
 import React, { useState, KeyboardEvent, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { SignInService } from '../../api/user'
-import { SignForm, SubLink } from './style'
-import FormInput from '../../components/form-input'
-import FormError from '../../components/form-error'
-import FormButton from '../../components/form-button'
-import useLoader from '../../hooks/useLoader'
+import { SignInService } from '@/api/user'
+import { SignForm, SubLink } from './index.style'
+import FormInput from '@/components/form-input'
+import FormError from '@/components/form-error'
+import FormButton from '@/components/form-button'
+import useLoader from '@/hooks/useLoader'
 
 type LoginForm = Omit<User, 'email'>
 
@@ -61,7 +61,7 @@ const SignIn = () => {
               },
             }) }
           />
-          <FormError msg={ errors.account?.message } />
+          <FormError msg={ errors.account?.message || '' } />
           
           <FormInput
             label="密碼"
@@ -75,7 +75,7 @@ const SignIn = () => {
             type="password"
             onKeyUp={ handleEnter }
           />
-          <FormError msg={ errors.password?.message } />
+          <FormError msg={ errors.password?.message || '' } />
 
           <FormButton label="登入"/>
           <FormError msg={ errorMsg } />

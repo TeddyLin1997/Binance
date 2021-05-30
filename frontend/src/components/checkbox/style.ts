@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { colors } from '../../assets/style'
-import check from '../../assets/images/check.svg'
+import { colors } from 'style/index'
+import check from 'images/check.svg'
 
 export const Accept = styled.div`
   position: relative;

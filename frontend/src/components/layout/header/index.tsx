@@ -1,9 +1,9 @@
-import React, { Suspense, useState, useEffect, lazy } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Header, Logo, NavItem, ButtonGroup, buttonStyle } from './header.style'
-import Aside from './aside'
-import Button from '../../button'
-import logo from '../../../assets/images/logo.png'
+import { Header, Logo, NavItem, ButtonGroup, buttonStyle } from './index.style'
+import logo from 'images/logo.png'
+import Button from '@/components/button'
+import Aside from '../aside'
 
 const isPhoneMode = (width: number) => width <= 568
 

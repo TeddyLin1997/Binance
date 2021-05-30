@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Menu, MenuItem, Icon } from './aside.style'
-import apps from '../../../assets/images/apps.svg'
+import { Menu, MenuItem, Icon } from './index.style'
+import apps from 'images/apps.svg'
 
 const AsideMenu = () => {
+  console.log(123)
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = () =>setIsOpen((prev) => !prev)
 

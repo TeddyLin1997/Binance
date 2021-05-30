@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import HeaderBar from './components/header'
-import FooterBar from './components/footer'
+import HeaderBar from './header'
+import FooterBar from './footer'
 import { MainView } from './index.style'
 
 interface LayoutProps {

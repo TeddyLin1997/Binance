@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { colors } from '../../assets/style'
+import { colors } from 'style/index'
 
 const Wrapper = styled.div`
   width: 100%;

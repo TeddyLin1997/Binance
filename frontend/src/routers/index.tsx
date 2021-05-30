@@ -1,13 +1,13 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Layout from '../components/layout'
-import Loading from '../components/loading'
+import Layout from '@/components/layout'
+import Loading from '@/components/loading'
 
-const Home = lazy(() => import('../views/home'))
-const Quote = lazy(() => import('../views/quote'))
-const Member = lazy(() => import('../views/member'))
-const SignIn = lazy(() => import('../views/signin'))
-const SignUp = lazy(() => import('../views/signup'))
+const Home = lazy(() => import('@/views/home'))
+const Quote = lazy(() => import('@/views/quote'))
+const Member = lazy(() => import('@/views/member'))
+const SignIn = lazy(() => import('@/views/signin'))
+const SignUp = lazy(() => import('@/views/signup'))
 
 const App = () => {
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../../../assets/style'
+import { colors } from 'style/index'
 
 const Footer = styled.footer`
   margin: auto;

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Wrapper, Title, SubTitle, Images } from './style'
-import Taipei from '../../../assets/images/taipei.png'
-import Button from '../../../components/button'
+import { Wrapper, Title, SubTitle, Images } from './index.style'
+import Taipei from 'images/taipei.png'
+import Button from '@/components/button'
 
 const buttonStyle = {
   width: 'fit-content',

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { SignUpService } from '../../api/user'
-import { SignForm, SubLink } from './style'
-import CheckBox from '../../components/checkbox'
-import FormInput from '../../components/form-input'
-import FormError from '../../components/form-error'
-import FormButton from '../../components/form-button'
-import useLoader from '../../hooks/useLoader'
+import { SignUpService } from '@/api/user'
+import { SignForm, SubLink } from './index.style'
+import FormInput from '@/components/form-input'
+import FormError from '@/components/form-error'
+import FormButton from '@/components/form-button'
+import useLoader from '@/hooks/useLoader'
+import CheckBox from '@/components/checkbox'
 
 interface SignUpForm extends User { isAgree: boolean }
 
@@ -55,7 +55,7 @@ const SignUp = () => {
               },
             }) }
           />
-          <FormError msg={ errors.account?.message } />
+          <FormError msg={ errors.account?.message || '' } />
 
           <FormInput
             label="郵箱"
@@ -68,7 +68,7 @@ const SignUp = () => {
             }) }
             type="email"
           />
-          <FormError msg={ errors.email?.message } />
+          <FormError msg={ errors.email?.message || '' } />
           
           <FormInput
             label="密碼"
@@ -81,7 +81,7 @@ const SignUp = () => {
             }) }
             type="password"
           />
-          <FormError msg={ errors.password?.message } />
+          <FormError msg={ errors.password?.message || '' } />
           
           <div style={ { position: 'relative', top: '32px' } }>
             <CheckBox 

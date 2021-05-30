@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import {  Wrapper, Section, Article, Button, Head, More } from './index.style'
-import { colors } from '../../../assets/style'
-import { getCryptoHomeService } from '../../../api/quote'
-import Loading from '../../../components/loading'
+import { colors } from 'style/index'
+import { getCryptoHomeService } from '@/api/quote'
+import Loading from '@/components/loading'
 
-export default function Crypto () {
-  return (
-    <Wrapper>
-      <CryptoList />
-    </Wrapper>
-  )
-}
+const Thead = React.memo(() => (
+  <Head>
+    <div>名稱</div>
+    <div>價格</div>
+    <div>24小時漲跌</div>
+    <div>操作</div>
+  </Head>
+))
 
 const CryptoList = () => {
   const [isLoading, setIsLoading ] = useState(true)
@@ -49,11 +50,12 @@ const CryptoList = () => {
   )
 }
 
-const Thead = React.memo(() => (
-  <Head>
-    <div>名稱</div>
-    <div>價格</div>
-    <div>24小時漲跌</div>
-    <div>操作</div>
-  </Head>
-))
+const Crypto = () => {
+  return (
+    <Wrapper>
+      <CryptoList />
+    </Wrapper>
+  )
+}
+
+export default Crypto

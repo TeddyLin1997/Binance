@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Crypto from './crypto'
 import Banner from './banner'
 
-
 const HomeView = styled.div`
   display: flex;
   flex-direction: column;

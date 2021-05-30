@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../../assets/style'
+import { colors } from 'style/index'
 
 const Submit = styled.input`
   margin: 36px 0 24px;

@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react'
+import Button from '@/components/button'
 import styled from 'styled-components'
-import { colors } from '../../assets/style'
-import Button from '../button'
+import { colors } from 'style/index'
 
 const Mask = styled.div<{ isShow: boolean }>`
   position: fixed;

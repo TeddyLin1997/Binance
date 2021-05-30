@@ -1,8 +1,8 @@
 import React, { useState, KeyboardEvent } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import { FormItem, Label, Input, Look } from './style'
-import canSee from '../../assets/images/can-see.svg'
-import cannotSee from '../../assets/images/cannot-see.svg'
+import { FormItem, Label, Input, Look } from './index.style'
+import canSee from 'images/can-see.svg'
+import cannotSee from 'images/cannot-see.svg'
 
 interface FormInput {
   label: string;

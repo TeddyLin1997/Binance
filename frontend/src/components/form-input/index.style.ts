@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../assets/style'
+import { colors } from 'style/index'
 
 export const FormItem = styled.div`
   margin-top: 24px;

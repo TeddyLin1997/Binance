@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { colors } from '../../assets/style'
+import React from 'react'
+import { colors } from 'style/index'
 
 interface FormError {
-  msg?: string;
+  msg: string;
 }
 
 const FormError = ({ msg }: FormError) => {
