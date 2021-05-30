@@ -1,20 +1,24 @@
 import React, { useState, KeyboardEvent, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from "react-hook-form"
+import { useDispatch } from 'react-redux'
 import { SignInService } from '@/api/user'
 import { SignForm, SubLink } from './index.style'
 import FormInput from '@/components/form-input'
 import FormError from '@/components/form-error'
 import FormButton from '@/components/form-button'
 import useLoader from '@/hooks/useLoader'
+import { setUser } from 'action/user'
 
 type LoginForm = Omit<User, 'email'>
 
 const SignIn = () => {
+  // router
   const history = useHistory()
   const location = useLocation()
-  const state = location.state as LoginForm  
 
+  // form
+  const state = location.state as LoginForm  
   const {
     register,
     handleSubmit,
@@ -25,21 +29,26 @@ const SignIn = () => {
     if (event.key === 'Enter') login()
   }
 
+  // login
+  const dispatch = useDispatch()
   const [ isLoading, loadAction ] = useLoader()
-
   const login = handleSubmit(async data => {
     loadAction('load')
     const result = await SignInService(data)
     loadAction('unload')
 
     if (result.error && typeof result.result === 'string') setError(result.result)
-    else history.push('/')
-    // 儲存 user info
+    else {
+      dispatch(setUser(result.result))
+      history.push('/')
+    }
   })
 
+  // error
   const [ errorMsg, setErrorMsg ] = useState('')
   const setError = (message: string) => setErrorMsg(message)
 
+  // init
   useEffect(() => { if (state) login() }, [])
 
   return (

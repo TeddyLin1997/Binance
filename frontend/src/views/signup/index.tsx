@@ -12,8 +12,10 @@ import CheckBox from '@/components/checkbox'
 interface SignUpForm extends User { isAgree: boolean }
 
 const SignUp = () => {
+  // router
   const history = useHistory()
 
+  // form
   const {
     register,
     getValues,
@@ -21,8 +23,8 @@ const SignUp = () => {
     formState: { errors },
   } = useForm<SignUpForm>()
 
+  // register
   const [ isLoading, loadAction ] = useLoader()
-
   const createUser = handleSubmit(async data => {
     loadAction('load')
     const result = await SignUpService(data)

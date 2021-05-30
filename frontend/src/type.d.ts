@@ -1,3 +1,7 @@
+interface RootState {
+  user: UserInfo;
+}
+
 interface ApiResponse<T> {
   error: boolean;
   result: T | string;
@@ -20,4 +24,10 @@ interface User {
   account: string;
   email: string;
   password: string;
+}
+
+interface UserInfo {
+  id: number;
+  account: string;
+  token: string;
 }

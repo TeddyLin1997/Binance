@@ -6,8 +6,12 @@ const HOST = import.meta.env.DEV ? `${DOMAIN}:${PORT}` : document.location.host
 
 export const AxiosInstance = axios.create({
   baseURL: `http://${HOST}`,
-  method: 'post',
+  method: 'get',
 })
+
+export const setAxiosAuth = (token: string) => {
+  AxiosInstance.defaults.headers['Authorization'] = token
+}
 
 export const webSocket = new WebSocket(`ws://${HOST}`)
 
