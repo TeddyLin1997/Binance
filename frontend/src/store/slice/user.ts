@@ -9,8 +9,8 @@ const initialState: UserInfo =  {
   token: '',
 }
 
-const localUser = localStorage.getItem(LOCAL_STORAGE_NAME)
-const userInfo: UserInfo = localUser ? JSON.parse(localUser) : initialState
+const localInfo = localStorage.getItem(LOCAL_STORAGE_NAME)
+const userInfo: UserInfo = localInfo ? JSON.parse(localInfo) : initialState
 
 if (userInfo.token) setAxiosAuth(userInfo.token)
 

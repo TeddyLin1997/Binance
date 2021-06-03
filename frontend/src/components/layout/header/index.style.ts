@@ -13,6 +13,7 @@ export const Header = styled.header`
   background: ${ colors.dark };
   z-index: 10;
 `
+
 export const Logo = styled.img`
   height: 100%;
   cursor: pointer;
@@ -30,15 +31,3 @@ export const NavItem = styled(Link)`
     color: ${colors.active};
   }
 `
-
-export const ButtonGroup = styled.div`
-  @media screen and (max-width: 568px) { display: none; }
-  margin-left: auto;
-  display: flex;
-`
-
-export const buttonStyle = {
-  margin: '0 4px',
-  padding: '6px 16px',
-  fontSize: '14px',
-}
