@@ -10,8 +10,11 @@ export const Wrapper = styled.div`
   text-align: center;
 `
 
+export const Container = styled.div`
+  height: 417px;
+`
+
 export const Section = styled.section`
-  height: 300px;
   font-weight: bold;
   & > article {
     border-bottom: 1px solid lightgray;

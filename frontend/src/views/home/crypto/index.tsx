@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  Wrapper, Section, Article, Button, Head, More } from './index.style'
+import { Container, Wrapper, Section, Article, Button, Head, More } from './index.style'
 import { colors } from 'style/index'
 import { getCryptoHomeService } from '@/api/quote'
 import Loading from '@/components/loading'
@@ -39,14 +39,18 @@ const CryptoList = () => {
   })
 
   return (
-    isLoading ? <Loading /> :
-    <>
-      <Thead />
-      <Section>
-        { cryptoRender() }
-      </Section>
-      <More to="/quote" >查看更多 ＞</More>
-    </>
+    <Container>
+      {
+        isLoading ? <Loading /> :
+        <>
+          <Thead />
+          <Section>
+            { cryptoRender() }
+          </Section>
+          <More to="/quote" >查看更多 ＞</More>
+        </>
+      }
+    </Container>
   )
 }
 
