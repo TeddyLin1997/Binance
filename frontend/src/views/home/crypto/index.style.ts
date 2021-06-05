@@ -10,7 +10,8 @@ export const Wrapper = styled.div`
   text-align: center;
 `
 
-export const Container = styled.div`
+export const Container = styled.div<{ isLoading: boolean }>`
+  display: ${ props => props.isLoading ? 'flex' : 'block' };
   height: 417px;
 `
 

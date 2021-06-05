@@ -39,7 +39,7 @@ const CryptoList = () => {
   })
 
   return (
-    <Container>
+    <Container isLoading={ isLoading } >
       {
         isLoading ? <Loading /> :
         <>
