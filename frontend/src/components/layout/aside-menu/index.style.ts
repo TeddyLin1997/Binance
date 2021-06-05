@@ -7,8 +7,8 @@ export const Container = styled.div`
 `
 
 export const Icon = styled.img`
-  margin-right: 12px;
   height: 24px;
+  vertical-align: middle;
 `
 
 export const Menu = styled.aside<{ isOpen: boolean }>`
@@ -32,8 +32,13 @@ export const MenuItem = styled(Link)`
   font-weight: bold;
   font-size: 18px;
   border-top: 2px solid ${ colors.gray };
-  cursor: pointer;
-  &:hover {
-    color: ${colors.active};
-  }
+`
+
+export const MenuLogOut = styled.div`
+  margin: 0;
+  padding: 12px 0;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-top: 2px solid ${ colors.gray };
 `

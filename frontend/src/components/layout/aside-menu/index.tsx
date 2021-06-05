@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react'
-import { Container, Menu, MenuItem, Icon } from './index.style'
+import React, { useState, useRef, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Container, Icon, Menu, MenuItem, MenuLogOut } from './index.style'
 import useClickOutside from '@/hooks/useClickOutside'
 import apps from 'images/apps.svg'
 
@@ -13,17 +14,22 @@ const AsideMenu = () => {
     if (menuElement.current.contains(event.target as HTMLElement)) return
     setIsOpen(false)
   }
-
   useClickOutside(handleClose)
+
+  const isLogin = useSelector((state: RootState) => state.user.account) !== ''
 
   return (
     <Container ref={ menuElement } >
       <Icon src={ apps } onClick={ handleClick } />
       <Menu isOpen={ isOpen } >
-        <MenuItem to="/sign-in" >登入</MenuItem>
+        {
+          isLogin ? 
+          <MenuLogOut >登出</MenuLogOut> :
+          <MenuItem to="/sign-in" >登入</MenuItem>
+        }
         <MenuItem to="/" >首頁</MenuItem>
         <MenuItem to="/quote" >市場</MenuItem>
-        <MenuItem to="/member" >會員中心</MenuItem>
+        { isLogin && <MenuItem to="/member" >會員中心</MenuItem> }
       </Menu>
     </Container>
   )

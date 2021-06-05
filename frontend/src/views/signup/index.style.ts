@@ -14,7 +14,6 @@ export const SignForm = styled.form`
   height: fit-content;
   color: ${ colors.cream };
   text-align: center;
-  border-radius: 2px;
   background: ${ colors.gray };
 `
 
