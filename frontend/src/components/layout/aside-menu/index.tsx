@@ -1,10 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useRef } from 'react'
 import { Container, Icon, Menu, MenuItem, MenuLogOut } from './index.style'
 import useClickOutside from '@/hooks/useClickOutside'
 import apps from 'images/apps.svg'
 
-const AsideMenu = () => {
+interface AsideMenu {
+  isLogin: boolean;
+}
+
+const AsideMenu = ({ isLogin }: AsideMenu) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleClick = () => setIsOpen((prev) => !prev)
 
@@ -15,8 +18,6 @@ const AsideMenu = () => {
     setIsOpen(false)
   }
   useClickOutside(handleClose)
-
-  const isLogin = useSelector((state: RootState) => state.user.account) !== ''
 
   return (
     <Container ref={ menuElement } >

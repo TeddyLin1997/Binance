@@ -10,14 +10,14 @@ const UserInfo = () => {
   const history = useHistory()
   const handlePush = (route: string) => history.push(`/${route}`)
 
-  const account = useSelector((state: RootState) => state.user.account)
+  const isLogin = useSelector((state: RootState) => state.user.account) !== ''
 
   return (
     <Container>
-      <AsideMenu />
+      <AsideMenu isLogin={isLogin}/>
 
       {
-        account ? 
+        isLogin ? 
         <Avatar src={ avatar } onClick={ () => handlePush('member') } /> :
         <ButtonGroup>
           <Button 
