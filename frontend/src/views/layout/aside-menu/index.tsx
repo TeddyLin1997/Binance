@@ -23,11 +23,7 @@ const AsideMenu = ({ isLogin }: AsideMenu) => {
     <Container ref={ menuElement } >
       <Icon src={ apps } onClick={ handleClick } />
       <Menu isOpen={ isOpen } >
-        {
-          isLogin ? 
-          <MenuLogOut >登出</MenuLogOut> :
-          <MenuItem to="/sign-in" >登入</MenuItem>
-        }
+        { isLogin ? <MenuLogOut>登出</MenuLogOut> : <MenuItem to="/sign-in" >登入</MenuItem> }
         <MenuItem to="/" >首頁</MenuItem>
         <MenuItem to="/quote" >市場</MenuItem>
         { isLogin && <MenuItem to="/member" >會員中心</MenuItem> }

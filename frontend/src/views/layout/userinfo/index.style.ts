@@ -8,9 +8,8 @@ export const Container = styled.div`
   align-items: center;
 `
 
-export const Avatar = styled.img`
+export const AvatarIcon = styled.img`
   @media screen and (max-width: 568px) { display: none; }
-  margin-left: 16px;
   padding: 2px;
   height: 24px;
   border-radius: 100%;
@@ -18,6 +17,15 @@ export const Avatar = styled.img`
   &:hover {
     box-shadow: 0 0 2px 2px #fff;
   }
+`
+
+export const Name = styled.span`
+  @media screen and (max-width: 568px) { display: none; }
+  margin-right: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1.2px;
 `
 
 export const ButtonGroup = styled.div`

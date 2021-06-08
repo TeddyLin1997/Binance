@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Header, Logo, NavItem } from './index.style'
 import logo from 'images/logo.png'
-import UserInfo from '@/components/layout/userinfo'
+import UserInfo from '@/views/layout/userinfo'
 
 const HeaderBar = () => {
   const history = useHistory()
