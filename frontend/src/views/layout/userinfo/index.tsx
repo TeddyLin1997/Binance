@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Container, AvatarIcon, Name, ButtonGroup, buttonStyle } from './index.style'
+import { Container, Logout, Name, ButtonGroup, buttonStyle } from './index.style'
 import AsideMenu from '@/views/layout/aside-menu'
 import Button from '@/components/button'
-import avatar from 'images/user.svg'
+import logout from 'images/logout.svg'
+import { useDispatch } from 'react-redux'
+import { setUser } from 'action/user'
 
 const UserInfo = () => {
   const history = useHistory()
@@ -14,16 +16,21 @@ const UserInfo = () => {
   const user = useSelector((state: RootState) => state.user)
   useEffect(() => setIsLogin(user.account !== ''), [user])
 
-  const Profile = () => (
-    <>
-      <Name>{ user.account }</Name>
-      <AvatarIcon src={ avatar } onClick={ () => handlePush('member') }/>
-    </>
-  )
+  const Profile = () => {
+    const dispatch = useDispatch()
+    const handleLogout = () => dispatch(setUser(null))
+
+    return (
+      <>
+        <Name onClick={ () => handlePush('member') }>{ user.account }</Name>
+        <Logout src={ logout } onClick={ handleLogout }/>
+      </>
+    )
+  }
 
   const SignButtons = () => (
     <ButtonGroup>
-      <Button  label="登入" style={ buttonStyle } onClick={ () => handlePush('sign-in') } />
+      <Button label="登入" style={ buttonStyle } onClick={ () => handlePush('sign-in') } />
       <Button label="註冊" style={ buttonStyle } onClick={ () => handlePush('sign-up') } primary />
     </ButtonGroup>
   )

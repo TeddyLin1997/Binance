@@ -11,7 +11,6 @@ const HeaderBar = () => {
     <Header>
       <Logo src={ logo } onClick={ () => history.push('/') } />
       <NavItem to="/quote" >市場</NavItem>
-
       <UserInfo />
     </Header>
   )

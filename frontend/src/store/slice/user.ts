@@ -19,9 +19,9 @@ const userSlice = createSlice({
   initialState: userInfo,
   reducers: {
     setUser: (state, action) => {
-      state.id = action.payload.id || initialState.id
-      state.account = action.payload.account || initialState.account
-      state.token = action.payload.token || initialState.token
+      state.id = action.payload?.id || initialState.id
+      state.account = action.payload?.account || initialState.account
+      state.token = action.payload?.token || initialState.token
 
       localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(state))
       setAxiosAuth(state.token)

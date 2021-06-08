@@ -8,15 +8,11 @@ export const Container = styled.div`
   align-items: center;
 `
 
-export const AvatarIcon = styled.img`
+export const Logout = styled.img`
   @media screen and (max-width: 568px) { display: none; }
   padding: 2px;
   height: 24px;
-  border-radius: 100%;
   cursor: pointer;
-  &:hover {
-    box-shadow: 0 0 2px 2px #fff;
-  }
 `
 
 export const Name = styled.span`
@@ -26,6 +22,7 @@ export const Name = styled.span`
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 1.2px;
+  cursor: pointer;
 `
 
 export const ButtonGroup = styled.div`

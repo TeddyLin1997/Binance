@@ -34,7 +34,7 @@ export const MenuItem = styled(Link)`
   border-top: 2px solid ${ colors.gray };
 `
 
-export const MenuLogOut = styled.div`
+export const LogOperate = styled.div`
   margin: 0;
   padding: 12px 0;
   color: white;
