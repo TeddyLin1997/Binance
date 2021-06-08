@@ -9,14 +9,11 @@ const HomeView = styled.div`
   width: 100%;
 `
 
-const Home = () => {
-
-  return (
-    <HomeView>
-      <Banner />
-      <Crypto />
-    </HomeView>
-  )
-}
+const Home = () => (
+  <HomeView>
+    <Banner />
+    <Crypto />
+  </HomeView>
+)
 
 export default Home

@@ -46,6 +46,6 @@ const vertifyPassword = (password, hash) => {
   })
 }
 
-const createToken = (payload) => jwt.sign(payload, secret)
+const createToken = (payload) => jwt.sign(payload, secret, { expiresIn: 60 * 60 })
 
 module.exports = run
