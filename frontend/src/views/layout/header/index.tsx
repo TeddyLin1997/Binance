@@ -6,10 +6,11 @@ import UserInfo from '@/views/layout/userinfo'
 
 const HeaderBar = () => {
   const history = useHistory()
+  const goHome = () => history.push('/')
 
   return (
     <Header>
-      <Logo src={ logo } onClick={ () => history.push('/') } />
+      <Logo src={ logo } onClick={ goHome } />
       <NavItem to="/quote" >市場</NavItem>
       <UserInfo />
     </Header>

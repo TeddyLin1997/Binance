@@ -12,7 +12,7 @@ const buttonStyle = {
 
 const Banner = () => {
   const history = useHistory()
-  const handlePush = (route: string) => history.push(`/${route}`)
+  const handlePush = (route: string) => () => history.push(`/${route}`)
 
   return (
     <Wrapper>
@@ -23,7 +23,7 @@ const Banner = () => {
         <Button 
           label="開始交易"
           style={ buttonStyle }
-          onClick={ () => handlePush('quote') }
+          onClick={ handlePush('quote') }
           primary
         />
       </div>

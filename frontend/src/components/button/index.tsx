@@ -6,7 +6,7 @@ interface Button {
   primary?: boolean;
   label: string;
   style?: { [propsName: string]: string };
-  onClick: Function;
+  onClick: () => void;
 }
 
 const StyleButton = styled.button<{ isPrimary?: boolean }>`
@@ -29,7 +29,7 @@ const Button = ({ primary, label, style, onClick }: Button) => {
     <StyleButton
       style={ style }
       isPrimary={ primary }
-      onClick={ () => onClick() }
+      onClick={ onClick }
     >
       { label }
     </StyleButton>

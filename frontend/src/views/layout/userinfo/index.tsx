@@ -10,7 +10,7 @@ import { setUser } from 'action/user'
 
 const UserInfo = () => {
   const history = useHistory()
-  const handlePush = (route: string) => history.push(`/${route}`)
+  const handlePush = (route: string) => () => history.push(`/${route}`)
 
   const [ isLogin, setIsLogin ] = useState(false)
   const user = useSelector((state: RootState) => state.user)
@@ -22,7 +22,7 @@ const UserInfo = () => {
 
     return (
       <>
-        <Name onClick={ () => handlePush('member') }>{ user.account }</Name>
+        <Name onClick={ handlePush('member') }>{ user.account }</Name>
         <Logout src={ logout } onClick={ handleLogout }/>
       </>
     )
@@ -30,8 +30,8 @@ const UserInfo = () => {
 
   const SignButtons = () => (
     <ButtonGroup>
-      <Button label="登入" style={ buttonStyle } onClick={ () => handlePush('sign-in') } />
-      <Button label="註冊" style={ buttonStyle } onClick={ () => handlePush('sign-up') } primary />
+      <Button label="登入" style={ buttonStyle } onClick={ handlePush('sign-in') } />
+      <Button label="註冊" style={ buttonStyle } onClick={ handlePush('sign-up') } primary />
     </ButtonGroup>
   )
 

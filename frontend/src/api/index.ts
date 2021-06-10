@@ -14,6 +14,12 @@ export const setAxiosAuth = (token: string) => {
   AxiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`
 }
 
+export const defaultFormat = {
+  error: true,
+  result: '未知錯誤',
+  status: 0,
+}
+
 export const webSocket = new WebSocket(`ws://${HOST}`)
 
 export let cryptoData: { [props: string]: Omit<Crypto, 'name'> } = {}
