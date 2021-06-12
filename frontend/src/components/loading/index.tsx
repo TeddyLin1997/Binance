@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { colors } from 'style/index'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -23,7 +22,7 @@ const Line = styled.div<{ delay: number }>`
   width: 8px;
   height: 32px;
   border-radius: 4px;
-  background-color: ${ colors.active };
+  background-color: ${ props => props.theme.colors.active };
   animation: ${ animationLine } .6s linear infinite;
   animation-delay: ${ props => props.delay + 's' };
 `

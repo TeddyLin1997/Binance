@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 import { Link } from 'react-router-dom'
 
 export const Header = styled.header`
@@ -10,7 +9,7 @@ export const Header = styled.header`
   width: 100%;
   height: 64px;
   align-items: center;
-  background: ${ colors.dark };
+  background: ${ props => props.theme.colors.dark };
   z-index: 10;
 `
 
@@ -28,6 +27,6 @@ export const NavItem = styled(Link)`
   font-weight: bold;
   color: white;
   &:hover {
-    color: ${colors.active};
+    color: ${ props => props.theme.colors.active };
   }
 `

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Wrapper, Section, Article, Button, Head, More } from './index.style'
-import { colors } from 'style/index'
+import { Container, Wrapper, Section, Article, AmountNumber, Button, Head, More } from './index.style'
 import { getCryptoHomeService } from '@/api/quote'
 import Loading from '@/components/loading'
 
@@ -26,14 +25,13 @@ const CryptoList = () => {
   },[])
 
   const cryptoRender = () => CryptoList.map(item => {
-    const isup = item.changePercent >= 0
-    const color = { color: isup ? colors.green : colors.red }
+    const isUp = item.changePercent >= 0
     return (
       <Article key={ item.name }>
         <div>{ item.name }</div>
-        <div style={ color }>{ item.close ? `$${Number(item.close).toFixed(4)}` : '–' }</div>
-        <div style={ color }>{ item.changePercent ? `${ isup ? '+' : '-' } ${Math.abs(item.changePercent).toFixed(2)}%` : '–' }</div>
-        <div><Button>購買</Button></div>
+        <AmountNumber isUp={ isUp }>{ item.close ? `$${Number(item.close).toFixed(4)}` : '–' }</AmountNumber>
+        <AmountNumber isUp={ isUp }>{ item.changePercent ? `${ isUp ? '+' : '-' } ${Math.abs(item.changePercent).toFixed(2)}%` : '–' }</AmountNumber>
+        <Button>購買</Button>
       </Article>
     )
   })

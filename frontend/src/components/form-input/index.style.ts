@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 
 export const FormItem = styled.div`
   margin-top: 24px;
@@ -7,16 +6,16 @@ export const FormItem = styled.div`
   text-align: left;
 
   &:focus-within {
-    color: ${ colors.active };
+    color: ${ props => props.theme.colors.active };
     input {
-      border-color: ${ colors.active };
+      border-color: ${ props => props.theme.colors.active };
     }
   }
 
   &:hover {
-    color: ${ colors.active };
+    color: ${ props => props.theme.colors.active };
     input {
-      border-color: ${ colors.active };
+      border-color: ${ props => props.theme.colors.active };
     }
   }
 `
@@ -30,10 +29,10 @@ export const Input = styled.input`
   padding: 8px;
   width: 100%;
   height: 32px;
-  color: ${ colors.cream };
+  color: ${ props => props.theme.colors.cream };
   border-radius: 4px;
-  border: 1px solid ${ colors.cream };
-  background: ${ colors.gray };
+  border: 1px solid ${ props => props.theme.colors.cream };
+  background: ${ props => props.theme.colors.gray };
 `
 
 export const Look = styled.img`

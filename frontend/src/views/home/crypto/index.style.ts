@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
@@ -32,22 +31,25 @@ export const Head = styled.div`
     text-align: center;
     color: gray;
     &:nth-child(1) {
-      width: 20%;
+      @media screen and (min-width: 569px) {width: 30% };
+      min-width: 80px;
       text-align: left;
     }
     &:nth-child(2) {
-      width: 15%;
+      @media screen and (min-width: 569px) { width: 20% };
+      min-width: 100px;
       text-align: left;
     }
     &:nth-child(3) {
-      @media screen and (max-width: 568px) { width: 30% };
-      width: 15%;
+      @media screen and (min-width: 569px) { width: 20% };
+      min-width: 60px;
       text-align: right;
     }
     &:nth-child(4) {
       @media screen and (max-width: 568px) { display: none };
-      width: 20%;
-      text-align: right;
+      margin-left: auto;
+      padding: 0 12px;
+      text-align: center;
     }
   }
 `
@@ -65,32 +67,37 @@ export const Article = styled.article`
   & > * {
     font-size: 16px;
     &:nth-child(1) {
-      width: 20%;
+      @media screen and (min-width: 569px) { width: 30% };
+      min-width: 80px;
       text-align: left;
     }
     &:nth-child(2) {
-      width: 15%;
+      @media screen and (min-width: 569px) { width: 20% };
+      min-width: 100px;
       text-align: left;
     }
     &:nth-child(3) {
-      @media screen and (max-width: 568px) { width: 30% };
-      width: 15%;
+      @media screen and (min-width: 569px) { width: 20% };
+      min-width: 60px;
       text-align: right;
     }
     &:nth-child(4) {
       @media screen and (max-width: 568px) { display: none };
-      width: 20%;
-      text-align: right;
+      margin-left: auto;
     }
   }
+`
+
+export const AmountNumber = styled.div<{ isUp: boolean }>`
+  color: ${ props => props.isUp ? props.theme.colors.green : props.theme.colors.red };
 `
 
 export const Button = styled.button`
   width: fit-content;
   padding: 8px 12px;
   border-radius: 6px;
-  color: white;
-  background-color: ${ colors.green };
+  color: ${ props => props.theme.colors.dark };
+  background-color: ${ props => props.theme.colors.active };
 `
 
 export const More = styled(Link)`
@@ -100,6 +107,6 @@ export const More = styled(Link)`
   font-weight: bold;
   cursor: pointer;
   &:hover {
-    color: ${ colors.active };
+    color: ${ props => props.theme.colors.active };
   }
 `

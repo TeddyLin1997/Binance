@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react'
 import Button from '@/components/button'
 import styled from 'styled-components'
-import { colors } from 'style/index'
 
 const Mask = styled.div<{ isShow: boolean }>`
   position: fixed;
@@ -23,7 +22,7 @@ const Window = styled.div`
   width: fit-content;
   min-width: 240px;
   border-radius: 4px;
-  background-color: ${ colors.gray };
+  background-color: ${ props => props.theme.colors.gray };
 `
 
 interface Dialog {

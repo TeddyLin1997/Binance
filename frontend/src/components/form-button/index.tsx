@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from 'style/index'
 
 const Submit = styled.input`
   margin: 36px 0 24px;
@@ -8,7 +7,7 @@ const Submit = styled.input`
   display: block;
   width: 100%;
   border-radius: 4px;
-  background-color: ${ colors.active };
+  background-color: ${ props => props.theme.colors.active };
   cursor: pointer;
   &:hover {
     opacity: .8;

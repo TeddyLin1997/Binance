@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 import { Link } from 'react-router-dom'
 
 export const SignForm = styled.form`
@@ -12,15 +11,15 @@ export const SignForm = styled.form`
   padding: 24px;
   width: 386px;
   height: fit-content;
-  color: ${ colors.cream };
+  color: ${ props => props.theme.colors.cream };
   text-align: center;
   
-  background: ${ colors.gray };
+  background: ${ props => props.theme.colors.gray };
 `
 
 export const SubLink = styled(Link)`
-  color: ${ colors.active };
+  color: ${ props => props.theme.colors.active };
   &:hover {
-    border-bottom: 1px solid ${ colors.active };
+    border-bottom: 1px solid ${ props => props.theme.colors.active };
   }
 `

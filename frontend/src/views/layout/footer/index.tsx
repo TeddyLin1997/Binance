@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from 'style/index'
 
 const Footer = styled.footer`
   margin: auto;
@@ -9,7 +8,7 @@ const Footer = styled.footer`
   font-size: 14px;
   color: gray;
   text-align: center;
-  border-top: 1px solid ${ colors.gray };
+  border-top: 1px solid ${ props => props.theme.colors.gray };
   background-color: black;
   z-index: 10;
 `

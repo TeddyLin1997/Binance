@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from 'style/index'
 
 interface Button {
   primary?: boolean;
@@ -14,7 +13,7 @@ const StyleButton = styled.button<{ isPrimary?: boolean }>`
   width: 100%;
   color: black;
   border-radius: 4px;
-  background-color: ${ prop => prop.isPrimary ? colors.active : 'white' };
+  background-color: ${ props => props.isPrimary ? props.theme.colors.active : 'white' };
   cursor: pointer;
   &:hover {
     opacity: .8;

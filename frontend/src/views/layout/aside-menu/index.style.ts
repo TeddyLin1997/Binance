@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
@@ -20,7 +19,7 @@ export const Menu = styled.aside<{ isOpen: boolean }>`
   color: white;
   text-align: center;
   opacity: 1;
-  background-color: ${ colors.dark };
+  background-color: ${ props => props.theme.colors.dark };
   transition: opacity .2s;
 `
 
@@ -31,7 +30,7 @@ export const MenuItem = styled(Link)`
   color: white;
   font-weight: bold;
   font-size: 18px;
-  border-top: 2px solid ${ colors.gray };
+  border-top: 2px solid ${ props => props.theme.colors.gray };
 `
 
 export const LogOperate = styled.div`
@@ -40,5 +39,5 @@ export const LogOperate = styled.div`
   color: white;
   font-weight: bold;
   font-size: 18px;
-  border-top: 2px solid ${ colors.gray };
+  border-top: 2px solid ${ props => props.theme.colors.gray };
 `

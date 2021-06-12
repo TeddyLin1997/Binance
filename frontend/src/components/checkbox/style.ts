@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 import check from 'images/check.svg'
 
 export const Accept = styled.div`
@@ -10,7 +9,7 @@ export const Check = styled.div<{ value: boolean }>`
   width: 15px;
   height: 15px;
   background-image: url(${ check });
-  background-color: ${ prop => prop.value ? colors.active : 'white' };
+  background-color: ${ props => props.value ? props.theme.colors.active : 'white' };
   background-size: contain;
 `
 

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from 'style/index'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
@@ -32,7 +31,7 @@ export const SignButton = styled(Link)<{ primary?: 'true' | undefined }>`
   margin-left: 16px;
   padding: 6px 16px;
   font-size: 14px;
-  background-color: ${ props => props.primary ? colors.active : 'white' };
+  background-color: ${ props => props.primary ? props.theme.colors.active : 'white' };
   border-radius: 4px;
   transition: opacity .2s;
   &:hover {
