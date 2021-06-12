@@ -18,7 +18,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [ "src/*" ],
-      "style/*": [ "src/assets/style/*" ],
       "images/*": [ "src/assets/images/*" ],
       "action/*": [ "src/store/slice/*" ],
     },
