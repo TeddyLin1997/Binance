@@ -1,46 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Container, Logout, Name, ButtonGroup, buttonStyle } from './index.style'
+import { Container, Logout, Name, SignButton } from './index.style'
 import AsideMenu from '@/views/layout/aside-menu'
-import Button from '@/components/button'
 import logout from 'images/logout.svg'
 import { useDispatch } from 'react-redux'
 import { setUser } from 'action/user'
 
 const UserInfo = () => {
-  const history = useHistory()
-  const handlePush = (route: string) => () => history.push(`/${route}`)
-
-  const [ isLogin, setIsLogin ] = useState(false)
   const user = useSelector((state: RootState) => state.user)
-  useEffect(() => setIsLogin(user.account !== ''), [user])
-
-  const Profile = () => {
-    const dispatch = useDispatch()
-    const handleLogout = () => dispatch(setUser(null))
-
-    return (
-      <>
-        <Name onClick={ handlePush('member') }>{ user.account }</Name>
-        <Logout src={ logout } onClick={ handleLogout }/>
-      </>
-    )
-  }
-
-  const SignButtons = () => (
-    <ButtonGroup>
-      <Button label="登入" style={ buttonStyle } onClick={ handlePush('sign-in') } />
-      <Button label="註冊" style={ buttonStyle } onClick={ handlePush('sign-up') } primary />
-    </ButtonGroup>
-  )
+  const isLogin = useMemo(() => user.account !== '', [user])
 
   return (
     <Container>
-      { isLogin ? <Profile /> : <SignButtons /> }
+      { isLogin ? <Profile label={user.account} /> : <SignButtons /> }
       <AsideMenu isLogin={isLogin}/>
     </Container>
   )
 }
+
+const Profile = ({ label }: { label: string }) => {
+  const dispatch = useDispatch()
+  const handleLogout = () => dispatch(setUser(null))
+
+  const history = useHistory()
+  const handlePush = () => history.push('/member')
+
+  return (
+    <>
+      <Name onClick={ handlePush }>{ label }</Name>
+      <Logout src={ logout } onClick={ handleLogout }/>
+    </>
+  )
+}
+
+const SignButtons = () => (
+  <>
+    <SignButton to='sign-in'>登入</SignButton>
+    <SignButton to='sign-up' primary="true">註冊</SignButton>
+  </>
+)
 
 export default UserInfo

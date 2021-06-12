@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState, Dispatch } from 'react'
+import { useReducer, Dispatch, useMemo } from 'react'
 
 type LoaderState = number
 type LoaderAction = keyof typeof ACTION_TYPE
@@ -19,12 +19,8 @@ function reducer (state: LoaderState, action: LoaderAction) {
 }
 
 const useLoader = () => {
-  const [ isLoading, setIsLoading ] = useState(false)
   const [ state, dispatch ] = useReducer(reducer, initState)
-
-  useEffect(() => {
-    setIsLoading(state !== 0)
-  }, [state])
+  const isLoading = useMemo(() => state !== 0, [state])
 
   return [ isLoading, dispatch ] as [ boolean, Dispatch<LoaderAction>]
 }

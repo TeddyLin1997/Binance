@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { colors } from 'style/index'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   margin-left: auto;
@@ -25,13 +27,15 @@ export const Name = styled.span`
   cursor: pointer;
 `
 
-export const ButtonGroup = styled.div`
-  @media screen and (max-width: 568px) { display: none; }
-  display: flex;
+export const SignButton = styled(Link)<{ primary?: 'true' | undefined }>`
+  @media screen and (max-width: 568px) { display: none }
+  margin-left: 16px;
+  padding: 6px 16px;
+  font-size: 14px;
+  background-color: ${ props => props.primary ? colors.active : 'white' };
+  border-radius: 4px;
+  transition: opacity .2s;
+  &:hover {
+    opacity: .8;
+  }
 `
-
-export const buttonStyle = {
-  margin: '0 4px',
-  padding: '6px 16px',
-  fontSize: '14px',
-}
