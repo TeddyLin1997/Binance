@@ -7,5 +7,23 @@ export const getCryptoHomeService = (): Crypto[] => {
     { name: 'BNB', ...cryptoData['BNBUSDT'] },
     { name: 'ADA', ...cryptoData['ADAUSDT'] },
     { name: 'DOGE', ...cryptoData['DOGEUSDT'] },
-  ].map(item => ({ ...item, changePercent: (Number(item.close) - Number(item.open)) * 100 / Number(item.open) }))
+  ]
+}
+
+export const updateCryptoHomeService = () => {
+  const result = {
+    BTC: cryptoData['BTCUSDT'],
+    ETH: cryptoData['ETHUSDT'],
+    BNB: cryptoData['BNBUSDT'],
+    ADA: cryptoData['ADAUSDT'],
+    DOGE: cryptoData['DOGEUSDT'],
+  }
+
+  Object.keys(result).forEach((key) => {
+    type Key = keyof typeof result
+    let item = result[key as Key]
+    if (item) item.changePercent = (Number(item.close) - Number(item.open)) * 100 / Number(item.open)
+  })
+
+  return result
 }

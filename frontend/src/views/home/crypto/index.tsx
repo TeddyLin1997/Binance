@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Wrapper, Section, Article, AmountNumber, Button, Head, More } from './index.style'
-import { getCryptoHomeService } from '@/api/quote'
+import { getCryptoHomeService, updateCryptoHomeService } from '@/api/quote'
 import Loading from '@/components/loading'
 
 const Thead = React.memo(() => (
@@ -14,13 +14,18 @@ const Thead = React.memo(() => (
 
 const CryptoList = () => {
   const [isLoading, setIsLoading ] = useState(true)
-  const [CryptoList, setCryptoList ] = useState<Crypto[]>([])
+  const [CryptoList, setCryptoList ] = useState<Crypto[]>(getCryptoHomeService())
 
   useEffect(() => {
     const timerID = setInterval(() => {
-      setCryptoList(getCryptoHomeService())
+      setCryptoList(prev => {
+        const updateData = updateCryptoHomeService()
+        type Key =  keyof typeof updateData
+        return prev.map(item => updateData[item.name as Key] ? { name: item.name, ...updateData[item.name as Key] } : item )
+      })
       setIsLoading(false)
     }, 1500)
+
     return () => clearInterval(timerID)
   },[])
 
