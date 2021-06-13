@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Container, Wrapper, Section, Article, AmountNumber, Button, Head, More } from './index.style'
 import { getCryptoHomeService, updateCryptoHomeService } from '@/api/quote'
 import Loading from '@/components/loading'
@@ -13,7 +13,6 @@ const Thead = React.memo(() => (
 ))
 
 const CryptoList = () => {
-  const [isLoading, setIsLoading ] = useState(true)
   const [CryptoList, setCryptoList ] = useState<Crypto[]>(getCryptoHomeService())
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const CryptoList = () => {
         type Key =  keyof typeof updateData
         return prev.map(item => updateData[item.name as Key] ? { name: item.name, ...updateData[item.name as Key] } : item )
       })
-      setIsLoading(false)
     }, 1500)
 
     return () => clearInterval(timerID)
@@ -40,6 +38,8 @@ const CryptoList = () => {
       </Article>
     )
   })
+
+  const isLoading = useMemo(() => CryptoList[0].changePercent === undefined, CryptoList)
 
   return (
     <Container isLoading={ isLoading } >

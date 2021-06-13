@@ -98,6 +98,8 @@ export const Button = styled.button`
   border-radius: 6px;
   color: ${ props => props.theme.colors.dark };
   background-color: ${ props => props.theme.colors.active };
+  cursor: pointer;
+  &:hover { opacity: .8 };
 `
 
 export const More = styled(Link)`
