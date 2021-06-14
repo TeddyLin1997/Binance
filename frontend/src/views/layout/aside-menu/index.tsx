@@ -4,7 +4,7 @@ import { Container, Icon, Menu, MenuItem, LogOperate } from './index.style'
 import useClickOutside from '@/hooks/useClickOutside'
 import apps from 'images/apps.svg'
 import { useDispatch } from 'react-redux'
-import { setUser } from 'action/user'
+import { clearUser } from 'action/user'
 
 interface AsideMenu {
   isLogin: boolean;
@@ -23,7 +23,7 @@ const AsideMenu = ({ isLogin }: AsideMenu) => {
 
   const history = useHistory()
   const dispatch = useDispatch()
-  const handleLog = () => isLogin ? dispatch(setUser(null)) : history.push('sign-in')
+  const handleLog = () => isLogin ? dispatch(clearUser()) : history.push('sign-in')
 
   return (
     <Container ref={ menuElement } onClick={ handleClick } >

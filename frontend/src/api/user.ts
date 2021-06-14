@@ -1,7 +1,7 @@
-import { AxiosInstance, defaultFormat } from './index'
+import { axiosInstance, defaultFormat } from './index'
 
-export const SignUpService = async (data: User): Promise<ApiResponse<boolean>> => {
-  return await AxiosInstance({
+export const signUpService = async (data: UserForm): Promise<ApiResponse<boolean>> => {
+  return await axiosInstance({
     url: '/user/sign-up',
     method: 'post',
     data,
@@ -10,17 +10,21 @@ export const SignUpService = async (data: User): Promise<ApiResponse<boolean>> =
     .catch(() => defaultFormat)
 }
 
-type SignIn = {
-  id: string;
-  account: string;
-  token: string;
-}
-
-export const SignInService = async (data: Omit<User, 'email'>): Promise<ApiResponse<SignIn>> => {
-  return await AxiosInstance({
+export const signInService = async (data: Omit<UserForm, 'email'>): Promise<ApiResponse<string>> => {
+  return await axiosInstance({
     url: '/user/sign-in',
     method: 'post',
     data,
+  })
+    .then(res => res.data)
+    .catch(() => defaultFormat)
+}
+
+export const getUserInfoService = async (token: string) => {
+  return await axiosInstance({
+    url: '/user/info',
+    method: 'post',
+    data: { token },
   })
     .then(res => res.data)
     .catch(() => defaultFormat)

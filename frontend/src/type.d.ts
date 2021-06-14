@@ -20,7 +20,7 @@ interface Crypto {
   changePercent: number;
 }
 
-interface User {
+interface UserForm {
   account: string;
   email: string;
   password: string;

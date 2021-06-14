@@ -5,7 +5,7 @@ import { Container, Logout, Name, SignButton } from './index.style'
 import AsideMenu from '@/views/layout/aside-menu'
 import logout from 'images/logout.svg'
 import { useDispatch } from 'react-redux'
-import { setUser } from 'action/user'
+import { clearUser } from 'action/user'
 
 const UserInfo = () => {
   const user = useSelector((state: RootState) => state.user)
@@ -21,7 +21,7 @@ const UserInfo = () => {
 
 const Profile = ({ label }: { label: string }) => {
   const dispatch = useDispatch()
-  const handleLogout = () => dispatch(setUser(null))
+  const handleLogout = () => dispatch(clearUser())
 
   const history = useHistory()
   const handlePush = () => history.push('/member')

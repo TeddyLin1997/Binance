@@ -2,16 +2,15 @@ import React, { useState, KeyboardEvent, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { useDispatch } from 'react-redux'
-import { setUser } from 'action/user'
-import { SignInService } from '@/api/user'
+import { setToken } from 'action/user'
+import { signInService } from '@/api/user'
 import { SignForm, SubLink } from './index.style'
 import FormInput from '@/components/form-input'
 import FormError from '@/components/form-error'
 import FormButton from '@/components/form-button'
 import useLoader from '@/hooks/useLoader'
 
-
-type LoginForm = Omit<User, 'email'>
+type LoginForm = Omit<UserForm, 'email'>
 
 const SignIn = () => {
   // router
@@ -35,14 +34,16 @@ const SignIn = () => {
   const [ isLoading, loadAction ] = useLoader()
   const login = handleSubmit(async data => {
     loadAction('load')
-    const result = await SignInService(data)
+    const token = await signInService(data)
     loadAction('unload')
 
-    if (result.error && typeof result.result === 'string') setError(result.result)
-    else {
-      dispatch(setUser(result.result))
-      history.push('/')
+    if (token.error) {
+      setError(token.result as string)
+      return
     }
+
+    dispatch(setToken(token.result))
+    history.push('/')
   })
 
   // error

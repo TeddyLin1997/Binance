@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { SignUpService } from '@/api/user'
+import { signUpService } from '@/api/user'
 import { SignForm, SubLink } from './index.style'
 import FormInput from '@/components/form-input'
 import FormError from '@/components/form-error'
@@ -9,7 +9,7 @@ import FormButton from '@/components/form-button'
 import useLoader from '@/hooks/useLoader'
 import CheckBox from '@/components/checkbox'
 
-interface SignUpForm extends User { isAgree: boolean }
+interface SignUpForm extends UserForm { isAgree: boolean }
 
 const SignUp = () => {
   // router
@@ -27,7 +27,7 @@ const SignUp = () => {
   const [ isLoading, loadAction ] = useLoader()
   const createUser = handleSubmit(async data => {
     loadAction('load')
-    const result = await SignUpService(data)
+    const result = await signUpService(data)
     loadAction('unload')
 
     if (result.error && typeof result.result === 'string') setError(result.result)
