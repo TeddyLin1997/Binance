@@ -4,6 +4,26 @@ const { secret } = require('../../common/config')
 const { validator, resJson }  = require('../../common/middleware')
 const { validAccount, validPassword } = require('../../common/validator')
 
+const validateRules = (req, res) => {
+  const rules = [
+    { name: 'account', type: 'string', value: req.body.account, valid: validAccount },
+    { name: 'password', type: 'string', value: req.body.password, valid: validPassword },
+  ]
+
+  const [ isValid, result ] = validator(rules)
+  if (!isValid) res.status(400).json(result)
+
+  return isValid === false
+}
+
+const vertifyPassword = (password, hash) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, hash, (err, isSame) => resolve(isSame))
+  })
+}
+
+const createToken = (payload) => jwt.sign(payload, secret, { expiresIn: 60 * 60 * 3 })
+
 const run = async (req, res) => {
   const isError = validateRules(req, res)
   if (isError) return
@@ -19,33 +39,11 @@ const run = async (req, res) => {
       res.result = '密碼錯誤'
     } else {
       const payload = { id: rows[0].id, account: rows[0].account }
-      res.result = { ...payload, token: createToken(payload) }
+      res.result = createToken(payload)
     }
   })
 
   res.status(200).json(json)
 }
-
-const validateRules = (req, res) => {
-  const rules = [
-    { name: 'account', type: 'string', value: req.body.account, valid: validAccount },
-    { name: 'password', type: 'string', value: req.body.password, valid: validPassword },
-  ]
-
-  const [ isValid, result ] = validator(rules)
-  if (!isValid) res.status(400).json(result)
-
-  return isValid === false
-}
-
-const vertifyPassword = (password, hash) => {
-  return new Promise((resolve, reject) => {
-    bcrypt.compare(password, hash, (err, isSame) => {
-      resolve(isSame)
-    })
-  })
-}
-
-const createToken = (payload) => jwt.sign(payload, secret, { expiresIn: 60 * 60 })
 
 module.exports = run

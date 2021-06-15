@@ -1,26 +1,21 @@
 const db = require('./db')
 const jwt = require('jsonwebtoken')
-const { secret } = require('./config')
+const { secret, authErrorRes, defaultRes } = require('./config')
 
 const auth = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1]
-  const errorResult = {
-    error: true,
-    status: 401,
-    result: 'Unauthorized',
-  }
 
   jwt.verify(token, secret, (err, decoded) => {
-    if (err || !decoded) res.status(401).json(errorResult)
+    if (err || !decoded) res.status(401).json(authErrorRes)
     else next()
   })
 }
 
 const validator = (rules) => {
-  const res = { error: false, status: 200, result: null }
+  const res = { ...defaultRes }
 
   const isValid = rules.every(item => {
-    if ( typeof item.value !== item.type) {
+    if (typeof item.value !== item.type) {
       res.error = true
       res.status = 400
       res.result = `${item.name} type is ${item.type}`
@@ -40,7 +35,7 @@ const validator = (rules) => {
 }
 
 const resJson = (sql, value, callback) => {
-  const res = { error: false, status: 200, result: '' }
+  const res = { ...defaultRes }
 
   // sql
   return new Promise((resolve, reject) => {
