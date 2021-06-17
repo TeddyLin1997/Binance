@@ -4,11 +4,11 @@ import Loading from '@/components/loading'
 
 interface PriceList {
   data: Crypto[];
-  height: string;
+  height?: string;
 }
 
 const PriceList = ({ data, height }: PriceList) => {
-  const isLoading = useMemo(() => data.some(item => !item.changePercent), data)
+  const isLoading = useMemo(() => data.slice(0, 4).some(item => !item.changePercent), data)
 
   const listRender = () => data.map(item => {
     const isUp = item.changePercent >= 0
@@ -28,7 +28,7 @@ const PriceList = ({ data, height }: PriceList) => {
   })
 
   return (
-    <Container isLoading={ isLoading } height={ height } >
+    <Container isLoading={ isLoading } height={ height || '100%' } >
       {
         isLoading ? <Loading /> :
         <>

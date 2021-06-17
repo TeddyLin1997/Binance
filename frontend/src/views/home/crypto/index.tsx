@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Wrapper, More } from './index.style'
-import { getCryptoHomeService, updateCryptoHomeService } from '@/api/quote'
+import { getHomeListService, updateHomeListService } from '@/api/quote'
 import PriceList from '@/components/price-list'
 
+const initHomeList = getHomeListService()
+
 const Crypto = () => {
-  const [ homeList, setHomeList ] = useState<Crypto[]>(getCryptoHomeService())
+  const [ homeList, setHomeList ] = useState<Crypto[]>(initHomeList)
 
   useEffect(() => {
     const timerID = setInterval(() => {
       setHomeList(prev => {
-        const updateData = updateCryptoHomeService()
+        const updateData = updateHomeListService()
         type Key =  keyof typeof updateData
         return prev.map(item => updateData[item.name as Key] ? { name: item.name, ...updateData[item.name as Key] } : item )
       })
