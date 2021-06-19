@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import PriceList from '@/components/price-list'
 import Dialog from '@/components/dialog'
-import DialogContent from './dialog-content'
+import TradeDialog from '@/components/trade-dialog'
 import { getCryptoListService, updateCryptoListService } from '@/api/quote'
 
 const Wrapper = styled.div`
@@ -45,7 +45,7 @@ const Quote = () => {
       <PriceList data={cryptoList} handleTrade={handleTrade}/>
 
       <Dialog value={openDialog} handle={setOpenDialog}>
-        <DialogContent form={tradeForm} setForm={setTradeForm}/>
+        <TradeDialog form={tradeForm} setForm={setTradeForm}/>
       </Dialog>
     </Wrapper>
   )
