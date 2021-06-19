@@ -27,11 +27,12 @@ const Window = styled.div`
 
 interface Dialog {
   value: boolean;
-  handler: Dispatch<SetStateAction<boolean>>;
+  handle: Dispatch<SetStateAction<boolean>>;
+  confirm?: true;
   children?: ReactNode;
 }
 
-const Dialog = ({ value, handler, children }: Dialog) => {
+const Dialog = ({ value, handle, confirm, children }: Dialog) => {
   const buttonStyle = {
     marginTop: '12px',
     padding: '6px 16px',
@@ -39,10 +40,10 @@ const Dialog = ({ value, handler, children }: Dialog) => {
   }
 
   return (
-    <Mask isShow={ value } >
-      <Window>
+    <Mask isShow={ value } onClick={ () => handle(false) }>
+      <Window onClick={ (event) => event.stopPropagation() }>
         { children }
-        <Button style={ buttonStyle } label="確定" onClick={ () => handler(false) } primary />
+        { confirm ? <Button style={ buttonStyle } label="確定" onClick={ () => handle(false) } primary /> : null }
       </Window>
     </Mask>
   )
