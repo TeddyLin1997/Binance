@@ -51,9 +51,10 @@ export const Article = styled.article`
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  cursor: pointer;
+  transition: all .4s;
   &:hover {
     background-color: white;
-    transition: all .4s;
   }
   & > * {
     font-size: 16px;

@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react'
 import Button from '@/components/button'
 import styled from 'styled-components'
+import close from 'images/close.svg'
 
 const Mask = styled.div<{ isShow: boolean }>`
   position: fixed;
@@ -23,6 +24,17 @@ const Window = styled.div`
   min-width: 240px;
   border-radius: 4px;
   background-color: ${ props => props.theme.colors.gray };
+
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 10px;
+    cursor: pointer;
+    &:hover {
+      opacity: .3;
+    }
+  }
 `
 
 interface Dialog {
@@ -42,6 +54,7 @@ const Dialog = ({ value, handle, confirm, children }: Dialog) => {
   return (
     <Mask isShow={ value } onClick={ () => handle(false) }>
       <Window onClick={ (event) => event.stopPropagation() }>
+        <img className="close" src={close} onClick={ () => handle(false) } />
         { children }
         { confirm ? <Button style={ buttonStyle } label="確定" onClick={ () => handle(false) } primary /> : null }
       </Window>
