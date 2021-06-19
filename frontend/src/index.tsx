@@ -4,7 +4,7 @@ import App from './routers'
 import store from '@/store'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { GlobalStyle, theme } from '@/index.style'
+import { GlobalStyle, theme } from '@/global.style'
 
 ReactDOM.render(
   <React.StrictMode>

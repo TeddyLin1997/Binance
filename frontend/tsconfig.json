@@ -22,5 +22,5 @@
       "action/*": [ "src/store/slice/*" ],
     },
   },
-  "include": ["./src"]
+  "include": ["./src/", "src/type/module.type.d.tss"]
 }
