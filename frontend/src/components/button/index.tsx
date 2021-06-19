@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface Button {
-  primary?: boolean;
+  primary?: true;
   label: string;
   style?: { [propsName: string]: string };
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const StyleButton = styled.button<{ isPrimary?: boolean }>`

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import PriceList from '@/components/price-list'
+import Dialog from '@/components/dialog'
+import DialogContent from './dialog-content'
 import { getCryptoListService, updateCryptoListService } from '@/api/quote'
 
 const Wrapper = styled.div`
@@ -14,6 +16,7 @@ const Wrapper = styled.div`
 const initCryptoList = getCryptoListService()
 
 const Quote = () => {
+  // price data
   const [ cryptoList, setCryptoList ] = useState(initCryptoList)
 
   useEffect(() => {
@@ -28,9 +31,22 @@ const Quote = () => {
     return () => clearInterval(timerID)
   },[])
 
+  // dialog
+  const [openDialog, setOpenDialog] = useState(false)
+  const [tradeForm, setTradeForm] = useState({ name: '', price: '', amount: '0' })
+
+  const handleTrade = (item: Crypto) => {
+    setTradeForm({ name: item.name, price: item.close, amount: '0' })
+    setOpenDialog(true)
+  }
+
   return (
     <Wrapper>
-      <PriceList data={cryptoList}/>
+      <PriceList data={cryptoList} handleTrade={handleTrade}/>
+
+      <Dialog value={openDialog} handle={setOpenDialog}>
+        <DialogContent form={tradeForm} setForm={setTradeForm}/>
+      </Dialog>
     </Wrapper>
   )
 }
