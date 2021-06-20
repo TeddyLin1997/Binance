@@ -3,9 +3,10 @@ import axios from 'axios'
 const PORT = '8000'
 const DOMAIN = document.domain
 const HOST = import.meta.env.DEV ? `${DOMAIN}:${PORT}` : document.location.host
+const SECURITY = import.meta.env.DEV ? '' : 's'
 
 export const axiosInstance = axios.create({
-  baseURL: `http://${HOST}`,
+  baseURL: `http${SECURITY}://${HOST}`,
   method: 'get',
   headers: { Authorization: 'Bearer ' },
 })
@@ -20,7 +21,7 @@ export const defaultFormat = {
   status: 0,
 }
 
-export const webSocket = new WebSocket(`ws://${HOST}`)
+export const webSocket = new WebSocket(`ws${SECURITY}://${HOST}`)
 
 export let cryptoData: { [props: string]: Omit<Crypto, 'name'> } = {}
 
