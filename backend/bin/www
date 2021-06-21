@@ -2,12 +2,10 @@ const http = require('http')
 const debug = require('debug')('backend:server')
 const app = require('../app')
 const createWebSocketServer = require('../common/websocket.js')
-const db = require('../common/db.js')
+const handleDisconnect = require('../common/db.js')
 
 // Connect database
-db.connect((err) => {
-  console.log(`Database connecting ${err ? 'error' : 'success' }`)
-})
+handleDisconnect()
 
 // Create HTTP server.
 const server = http.createServer(app)
