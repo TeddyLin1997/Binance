@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysqlPlugin = require('mysql')
 
 const DB_CONFIGS = {
   host: 'localhost',
@@ -10,7 +10,7 @@ const DB_CONFIGS = {
 let mysql = null
 
 const handleConnect = () => {
-  mysql = mysql.createConnection(mysql_CONFIGS)
+  mysql = mysqlPlugin.createConnection(mysql_CONFIGS)
 
   mysql.connect(err => {
     console.log(`Database connecting ${err ? 'error' : 'success' }`)
