@@ -7,10 +7,12 @@ const DB_CONFIGS = {
   database: 'binance',
 }
 
-const handleDisconnect = () => {
-  db = mysql.createConnection(DB_CONFIGS)
+let mysql = null
 
-  db.connect(err => {
+const handleConnect = () => {
+  mysql = mysql.createConnection(mysql_CONFIGS)
+
+  mysql.connect(err => {
     console.log(`Database connecting ${err ? 'error' : 'success' }`)
 
     if(err) {
@@ -19,11 +21,14 @@ const handleDisconnect = () => {
     }
   });
 
-  db.on('error', (err) => {
+  mysql.on('error', (err) => {
     console.log('db error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') handleDisconnect()
     else throw err;                                  
   });
 }
 
-module.exports = handleDisconnect
+module.exports = {
+  mysql,
+  handleConnect,
+}

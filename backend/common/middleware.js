@@ -39,7 +39,7 @@ const resJson = (sql, value, callback) => {
 
   // sql
   return new Promise((resolve, reject) => {
-    db.query(sql, value, async (err, rows, fields) => {
+    db.mysql.query(sql, value, async (err, rows, fields) => {
       if (!err) await callback(res, rows, fields)
       else {
         res.error = true
