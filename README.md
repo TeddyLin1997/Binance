@@ -1,9 +1,5 @@
 # Binance
 
-## Description
-
-a simple virtual cryptocurrency exchange
-
 https://chris-binance.herokuapp.com/
 
 ## Tech Stack
