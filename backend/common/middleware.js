@@ -39,14 +39,20 @@ const resJson = (sql, value, callback) => {
 
   // sql
   return new Promise((resolve, reject) => {
-    db.mysql.query(sql, value, async (err, rows, fields) => {
-      if (!err) await callback(res, rows, fields)
-      else {
-        res.error = true
-        res.status = 500
-        res.result = '遠端伺服器發生錯誤'
-      }
-      resolve(res)
+    db.getConnection((err, connection) => {
+      if (err) resolve(err)
+
+      connection.query(sql, value, async (err, rows, fields) => {
+        connection.release()
+        if (!err) await callback(res, rows, fields)
+        else {
+          res.error = true
+          res.status = 500
+          res.result = '遠端伺服器發生錯誤'
+        }
+
+        resolve(res)
+      })
     })
   })
 }
