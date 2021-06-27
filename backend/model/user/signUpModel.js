@@ -1,3 +1,4 @@
+const db = require('../../common/db')
 const bcrypt = require('bcrypt')
 const { validator, resJson } = require('../../common/middleware')
 const { validAccount, validPassword, validEmail } = require('../../common/validator')
@@ -11,6 +12,20 @@ const run = async (req, res) => {
   const json = await resJson(sql, value, res => res.result = true )
   // 特例處理 未來需修正
   if (json.error) json.result = '已有相同使用者名稱'
+  else {
+    // 新增錢包
+    db.getConnection((err, connection) => {
+      const searchSql = 'select id from user where account=?'
+      const searchVal = [req.body.account]
+      const insertSql = 'insert into user_wallet set user_id=?, balance=?'
+      const insertVal = [null, 30000]
+
+      connection.query(searchSql, searchVal, (err, rows) => {
+        insertVal[0] = rows[0].id
+        connection.query(insertSql, insertVal, () => connection.release())
+      })
+    })
+  }
 
   res.status(200).json(json)
 }
