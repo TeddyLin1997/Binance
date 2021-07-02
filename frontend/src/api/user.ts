@@ -20,11 +20,19 @@ export const signInService = async (data: Omit<UserForm, 'email'>): Promise<ApiR
     .catch(() => defaultFormat)
 }
 
-export const getUserInfoService = async (token: string) => {
+export const getUserInfoService = async () => {
   return await axiosInstance({
     url: '/user/info',
     method: 'post',
-    data: { token },
+  })
+    .then(res => res.data)
+    .catch(() => defaultFormat)
+}
+
+export const getUserBalance = async () => {
+  return await axiosInstance({
+    url: '/user/balance',
+    method: 'post',
   })
     .then(res => res.data)
     .catch(() => defaultFormat)

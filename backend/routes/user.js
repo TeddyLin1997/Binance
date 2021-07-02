@@ -15,7 +15,7 @@ router.post('/sign-in', (req, res) => {
   user.signInModel(req, res)
 })
 
-router.post('/info', (req, res) => {
+router.post('/info', auth, (req, res) => {
   user.userInfoModel(req, res)
 })
 

@@ -17,7 +17,7 @@ const Banner = () => {
   return (
     <Wrapper>
       <div>
-        <Title>TWD買加密貨幣</Title>
+        <Title>用加密貨幣</Title>
         <Title>買賣整個世界</Title>
         <SubTitle>全球最大的區塊鏈資產交易平台</SubTitle>
         <Button 

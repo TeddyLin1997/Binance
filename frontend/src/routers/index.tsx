@@ -23,7 +23,7 @@ const App = () => {
 
       getUserInfo()
       async function getUserInfo () {
-        const result = await getUserInfoService(token)
+        const result = await getUserInfoService()
 
         if (result.error) dispatch(clearUser())
         else dispatch(setUserInfo(result.result))
