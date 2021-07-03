@@ -1,4 +1,50 @@
-import { cryptoData } from './index'
+let cryptoData: { [props: string]: Omit<Crypto, 'name'> } = {}
+
+const list = [
+  'BTCUSDT',
+  'ETHUSDT',
+  'BNBUSDT',
+  'ADAUSDT',
+  'DOGEUSDT',
+  'XRPUSDT',
+  'TRXUSDT',
+  'LTCUSDT',
+  'DOTUSDT',
+  'UNIUSDT',
+  'SOLUSDT',
+  'LINKUSDT',
+  'MATICUSDT',
+  'XLMUSDT',
+  'ICPUSDT',
+  'VETUSDT',
+  'ETCUSDT',
+  'FILUSDT',
+  'XMRUSDT',
+  'EOSUSDT',
+  'AAVEUSDT',
+  'NEOUSDT',
+  'ALGOUSDT',
+  'KSMUSDT',
+  'DASHUSDT',
+  'THETAUSDT',
+  'ATOMUSDT',
+]
+
+export const createWebSocket = (security: string, host: string) => {
+  const webSocket = new WebSocket(`ws${security}://${host}`)
+
+  webSocket.onmessage = event => {
+    const data = JSON.parse(event.data)
+
+    list.forEach(key => {
+      const item = data[key]
+      if (item) cryptoData[key] = {
+        ...item,
+        changePercent: (Number(item.close) - Number(item.open)) * 100 / Number(item.open),
+      }
+    })
+  }
+}
 
 export const getHomeListService = (): Crypto[] => ([
   { name: 'BTC', ...cryptoData['BTCUSDT'] },
@@ -6,28 +52,7 @@ export const getHomeListService = (): Crypto[] => ([
   { name: 'BNB', ...cryptoData['BNBUSDT'] },
   { name: 'ADA', ...cryptoData['ADAUSDT'] },
   { name: 'DOGE', ...cryptoData['DOGEUSDT'] },
-].map(item => ({ 
-  ...item,
-  changePercent: (Number(item.close) - Number(item.open)) * 100 / Number(item.open),
-})))
-
-export const updateHomeListService = () => {
-  const mapping = {
-    BTC: cryptoData['BTCUSDT'],
-    ETH: cryptoData['ETHUSDT'],
-    BNB: cryptoData['BNBUSDT'],
-    ADA: cryptoData['ADAUSDT'],
-    DOGE: cryptoData['DOGEUSDT'],
-  }
-
-  Object.keys(mapping).forEach((key) => {
-    type Key = keyof typeof mapping
-    let item = mapping[key as Key]
-    if (item) item.changePercent = (Number(item.close) - Number(item.open)) * 100 / Number(item.open)
-  })
-
-  return mapping
-}
+])
 
 export const getCryptoListService = () => ([
   { name: 'BTC', ...cryptoData['BTCUSDT'] },
@@ -40,7 +65,6 @@ export const getCryptoListService = () => ([
   { name: 'LTC', ...cryptoData['LTCUSDT'] },
   { name: 'DOT', ...cryptoData['DOTUSDT'] },
   { name: 'UNI', ...cryptoData['UNIUSDT'] },
-  { name: 'BCH', ...cryptoData['BCHUSDT'] },
   { name: 'SOL', ...cryptoData['SOLUSDT'] },
   { name: 'LINK', ...cryptoData['LINKUSDT'] },
   { name: 'MATIC', ...cryptoData['MATICUSDT'] },
@@ -58,24 +82,4 @@ export const getCryptoListService = () => ([
   { name: 'DASH', ...cryptoData['DASHUSDT'] },
   { name: 'THETA', ...cryptoData['THETAUSDT'] },
   { name: 'ATOM', ...cryptoData['ATOMUSDT'] },
-].map(item => ({ 
-  ...item,
-  changePercent: (Number(item.close) - Number(item.open)) * 100 / Number(item.open),
-})))
-
-export const updateCryptoListService = () => {
-  const mapping: typeof cryptoData = {}
-
-  Object.keys(cryptoData).forEach(key => {
-    const re = /(.*)USDT$/
-    if (re.test(key)) {
-      const rename = key.replace(re, '$1')
-      mapping[rename] = {
-        ...cryptoData[key],
-        changePercent: (Number(cryptoData[key].close) - Number(cryptoData[key].open)) * 100 / Number(cryptoData[key].open)
-      }
-    }
-  })
-
-  return mapping
-}
+])

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import PriceList from '@/components/price-list'
 import Dialog from '@/components/dialog'
 import TradeDialog from '@/components/trade-dialog'
-import { getCryptoListService, updateCryptoListService } from '@/api/quote'
+import { getCryptoListService } from '@/api/quote'
 
 const Wrapper = styled.div`
   margin: 16px auto;
@@ -13,19 +13,13 @@ const Wrapper = styled.div`
   text-align: center;
 `
 
-const initCryptoList = getCryptoListService()
-
 const Quote = () => {
-  // price data
-  const [ cryptoList, setCryptoList ] = useState(initCryptoList)
+  // price
+  const [ cryptoList, setCryptoList ] = useState(getCryptoListService())
 
   useEffect(() => {
     const timerID = setInterval(() => {
-      setCryptoList(prev => {
-        const updateData = updateCryptoListService()
-        type Key =  keyof typeof updateData
-        return prev.map(item => updateData[item.name as Key] ? { name: item.name, ...updateData[item.name as Key] } : item )
-      })
+      setCryptoList(getCryptoListService())
     }, 1500)
 
     return () => clearInterval(timerID)

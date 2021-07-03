@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { createWebSocket } from './quote'
 
 const PORT = '8000'
 const DOMAIN = document.domain
@@ -21,10 +22,4 @@ export const defaultFormat = {
   status: 0,
 }
 
-export const webSocket = new WebSocket(`ws${SECURITY}://${HOST}`)
-
-export let cryptoData: { [props: string]: Omit<Crypto, 'name'> } = {}
-
-webSocket.onmessage = event => {
-  cryptoData = JSON.parse(event.data)
-}
+createWebSocket(SECURITY, HOST)
