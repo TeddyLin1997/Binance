@@ -1,9 +1,9 @@
-const signUpModel = require('./signUpModel');
-const signInModel = require('./signInModel');
-const userInfoModel = require('./userInfoModel');
+const signUp = require('./signUpModel');
+const signIn = require('./signInModel');
+const userInfo = require('./userInfoModel');
 
 module.exports = {
-  signUpModel,
-  signInModel,
-  userInfoModel,
+  signUp,
+  signIn,
+  userInfo,
 }

@@ -1,28 +1,29 @@
 import { axiosInstance, defaultFormat } from './index'
 
-export const signUpService = async (data: UserForm): Promise<ApiResponse<boolean>> => {
+export const getAssetsBalance = async (): Promise<ApiResponse<number>> => {
   return await axiosInstance({
-    url: '/user/sign-up',
+    url: '/assets/balance',
     method: 'post',
-    data,
+  })
+    .then(res => res.data)
+    .catch(() => ({
+      error: false,
+      result: 100000,
+    }))
+}
+
+export const getAssetsWallet = async () => {
+  return await axiosInstance({
+    url: '/assets/wallet',
+    method: 'post',
   })
     .then(res => res.data)
     .catch(() => defaultFormat)
 }
 
-export const signInService = async (data: Omit<UserForm, 'email'>): Promise<ApiResponse<string>> => {
+export const getAssetsCashFlow = async () => {
   return await axiosInstance({
-    url: '/user/sign-in',
-    method: 'post',
-    data,
-  })
-    .then(res => res.data)
-    .catch(() => defaultFormat)
-}
-
-export const getUserInfoService = async () => {
-  return await axiosInstance({
-    url: '/user/info',
+    url: '/assets/cash-flow',
     method: 'post',
   })
     .then(res => res.data)

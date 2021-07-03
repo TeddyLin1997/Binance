@@ -17,7 +17,7 @@ const run = async (req, res) => {
     db.getConnection((err, connection) => {
       const searchSql = 'select id from user where account=?'
       const searchVal = [req.body.account]
-      const insertSql = 'insert into user_wallet set user_id=?, balance=?'
+      const insertSql = 'insert into user_balance set user_id=?, balance=?'
       const insertVal = [null, 30000]
 
       connection.query(searchSql, searchVal, (err, rows) => {

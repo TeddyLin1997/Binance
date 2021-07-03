@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import styled from "styled-components"
 import PriceList from '@/components/price-list'
 import Dialog from '@/components/dialog'
@@ -14,6 +15,9 @@ const Wrapper = styled.div`
 `
 
 const Quote = () => {
+  // user
+  const isLogin = useSelector((state: RootState) => state.user.account) !== ''
+
   // price
   const [ cryptoList, setCryptoList ] = useState(getCryptoListService())
 
@@ -30,8 +34,10 @@ const Quote = () => {
   const [tradeForm, setTradeForm] = useState({ name: '', price: '', amount: '0' })
 
   const handleTrade = (item: Crypto) => {
-    setTradeForm({ name: item.name, price: item.close, amount: '0' })
-    setOpenDialog(true)
+    if (isLogin) {
+      setTradeForm({ name: item.name, price: item.close, amount: '0' })
+      setOpenDialog(true)
+    }
   }
 
   return (
