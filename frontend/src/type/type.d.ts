@@ -6,7 +6,6 @@ interface ApiResponse<T> {
   result: T | string;
   status: number;
 }
-
 interface Crypto {
   name: string;
   close: string;
@@ -28,20 +27,16 @@ interface UserInfo {
   account: string;
   token: string;
 }
-
 interface TradeForm {
   name: string;
   price: string;
   amount: string;
 }
-
-interface CryptoDetail {
+interface WalletDetail {
   name: string;
   amount: number;
   cost: number;
-  value: number;
 }
-
 interface CashFlowDetail {
   id: string;
   time: string;

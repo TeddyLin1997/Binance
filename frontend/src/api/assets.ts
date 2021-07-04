@@ -12,7 +12,7 @@ export const getAssetsBalance = async (): Promise<ApiResponse<number>> => {
     }))
 }
 
-export const getAssetsWallet = async () => {
+export const getAssetsWallet = async (): Promise<ApiResponse<WalletDetail[]>> => {
   return await axiosInstance({
     url: '/assets/wallet',
     method: 'post',

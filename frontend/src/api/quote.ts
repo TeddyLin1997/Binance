@@ -1,4 +1,4 @@
-let cryptoData: { [props: string]: Omit<Crypto, 'name'> } = {}
+export let cryptoData: { [props: string]: Omit<Crypto, 'name'> } = {}
 
 const list = [
   'BTCUSDT',

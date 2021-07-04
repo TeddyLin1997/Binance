@@ -1,21 +1,43 @@
-import React from 'react'
-import { CardTitle, MoneyTotal, MoneyNum } from './index.style'
+import React, { useState } from 'react'
+import { CardHead, CardTitle, MoneyTotal, MoneyNum, Update } from './index.style'
 import Card from '@/components/card'
+import refresh from 'images/refresh.svg'
 
-const MoneySummary = () => {
+interface MoneySummary {
+  total: number;
+  balance: number;
+  wallet: number;
+  update: () => void;
+}
+
+const MoneySummary = ({ total, balance, wallet, update }: MoneySummary) => {
+
+  const [isLoad, setIsload] = useState(false)
+
+  const handleUpdate = async () => {
+    setIsload(true)
+    await update()
+    setIsload(false)
+  }
+
   return (
     <Card>
-      <CardTitle>資產總值</CardTitle>
-      <MoneyTotal>$ 312,411.00 USD</MoneyTotal>
+      <CardHead>
+        <h3>資產總值</h3>
+        <Update isLoad={isLoad} src={refresh} onClick={handleUpdate}/>
+      </CardHead>
+
+      <MoneyTotal>$ {total.toFixed(2)} USD</MoneyTotal>
 
       <CardTitle>明細</CardTitle>
+
       <MoneyNum>
         <span>餘額</span>
-        <span>$ 92513.00</span>
+        <span>$ {balance.toFixed(2)}</span>
       </MoneyNum>
       <MoneyNum>
         <span>持幣估值</span>
-        <span>$ 227188.12</span>
+        <span>$ {wallet.toFixed(2)}</span>
       </MoneyNum>
     </Card>
   )
