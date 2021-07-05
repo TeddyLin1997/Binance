@@ -11,7 +11,6 @@ interface MoneySummary {
 }
 
 const MoneySummary = ({ total, balance, wallet, update }: MoneySummary) => {
-
   const [isLoad, setIsload] = useState(false)
 
   const handleUpdate = async () => {

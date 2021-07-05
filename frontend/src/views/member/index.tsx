@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getAssetsWallet } from '@/api/assets'
+import { setBalance } from 'action/balance'
+import { getAssetsWallet, getAssetsBalance } from '@/api/assets'
 import { Wrapper, WrapAside, WrapMain } from './index.style'
 import { cryptoData } from '@/api/quote'
 import MoneySummary from './money-detail'
@@ -31,8 +32,13 @@ const Member = () => {
   }, [])
 
   async function handleUpdate () {
-    const result = await getAssetsWallet()
-    if (typeof result.result !== 'string') setWallet(result.result)
+    const allResult = await Promise.all([
+      getAssetsBalance(),
+      getAssetsWallet(),
+    ])
+
+    if (typeof allResult[0].result !== 'string') setBalance(allResult[0].result)
+    if (typeof allResult[1].result !== 'string') setWallet(allResult[1].result)
   }
 
   return (
