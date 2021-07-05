@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const db = require('../../common/db')
 const { secret } = require('../../common/config')
 const { resJson } = require('../../common/middleware')
 
