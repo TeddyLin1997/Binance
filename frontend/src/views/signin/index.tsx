@@ -38,7 +38,7 @@ const SignIn = () => {
     loadAction('unload')
 
     if (token.error) {
-      setError(token.result as string)
+      setError(token.result)
       return
     }
 

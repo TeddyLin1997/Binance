@@ -16,10 +16,4 @@ export const setAxiosAuth = (token: string) => {
   axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`
 }
 
-export const defaultFormat = {
-  error: true,
-  result: '未知錯誤',
-  status: 0,
-}
-
 createWebSocket(SECURITY, HOST)

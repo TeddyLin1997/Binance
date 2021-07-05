@@ -1,31 +1,28 @@
-import { axiosInstance, defaultFormat } from './index'
+import { axiosInstance } from './index'
 
 export const getAssetsBalance = async (): Promise<ApiResponse<number>> => {
-  return await axiosInstance({
+  return axiosInstance({
     url: '/assets/balance',
     method: 'post',
   })
     .then(res => res.data)
-    .catch(() => ({
-      error: false,
-      result: 100000,
-    }))
+    .catch(err => err.response.data)
 }
 
 export const getAssetsWallet = async (): Promise<ApiResponse<WalletDetail[]>> => {
-  return await axiosInstance({
+  return axiosInstance({
     url: '/assets/wallet',
     method: 'post',
   })
     .then(res => res.data)
-    .catch(() => defaultFormat)
+    .catch(err => err.response.data)
 }
 
 export const getAssetsCashFlow = async () => {
-  return await axiosInstance({
+  return axiosInstance({
     url: '/assets/cash-flow',
     method: 'post',
   })
     .then(res => res.data)
-    .catch(() => defaultFormat)
+    .catch(err => err.response.data)
 }

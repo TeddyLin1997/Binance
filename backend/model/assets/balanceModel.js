@@ -4,11 +4,7 @@ const { resJson } = require('../../common/middleware')
 
 const run = async (req, res) => {
   const token = req.headers['authorization'].split(' ')[1]
-  let userId = null
-
-  jwt.verify(token, secret, (err, decoded) => {
-    userId = decoded.id
-  })
+  let userId = jwt.verify(token, secret).id
 
   const sql = 'select balance from user_balance where user_id=?'
   const value = [userId]

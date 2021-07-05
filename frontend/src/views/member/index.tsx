@@ -1,25 +1,23 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { getAssetsWallet } from '@/api/assets'
 import { Wrapper, WrapAside, WrapMain } from './index.style'
-import MoneySummary from './money-detail'
-import CryptoDetail from './crypto-detail'
-import CashFlow from './cash-flow'
-import { getAssetsBalance, getAssetsWallet } from '@/api/assets'
 import { cryptoData } from '@/api/quote'
+import MoneySummary from './money-detail'
+import CryptoDetail from './wallet-detail'
+import CashFlow from './cash-flow'
 
 const Member = () => {
-  const [balance, setBalance] = useState(0)
-  const [wallet, setWallet] = useState(0)
-  const total = useMemo(() => balance + wallet, [balance, wallet])
+  const balance = useSelector((state: RootState) => state.balance)
+  const [wallet, setWallet] = useState<WalletDetail[]>([])
 
-  const handleUpdate = async () => {
-    const result = await Promise.all([getAssetsBalance(), getAssetsWallet()])
-    if (typeof result[0].result === 'number') setBalance(result[0].result)
-    if (result[1].error === false) setWallet(calcWallet(result[1].result as WalletDetail[]))
+  const walletValue = useMemo(() => calcWallet(wallet), [wallet])
+  function calcWallet (list: WalletDetail[]) {
+    return list.reduce((acc, curr) => cryptoData[curr.name + 'USDT'] ? 
+      acc + Number(cryptoData[curr.name + 'USDT'].close) * curr.amount : acc, 0)
   }
 
-  const calcWallet = (list: WalletDetail[]) => list.reduce((acc, curr) => {
-    return cryptoData[curr.name + 'USDT'] ? acc + Number(cryptoData[curr.name + 'USDT'].close) * curr.amount : acc
-  }, 0)
+  const total = useMemo(() => balance + walletValue, [balance, walletValue])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -28,7 +26,14 @@ const Member = () => {
         clearInterval(timer)
       }
     }, 500)
+
+    return clearInterval(timer)
   }, [])
+
+  async function handleUpdate () {
+    const result = await getAssetsWallet()
+    if (typeof result.result !== 'string') setWallet(result.result)
+  }
 
   return (
     <Wrapper>
@@ -36,14 +41,14 @@ const Member = () => {
         <MoneySummary
           total={total}
           balance={balance}
-          wallet={wallet}
+          wallet={walletValue}
           update={handleUpdate}
         />
         <br />
       </WrapAside>
 
       <WrapMain>
-        <CryptoDetail />
+        <CryptoDetail list={wallet} />
         <br />
         <CashFlow />
       </WrapMain>

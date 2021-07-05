@@ -2,21 +2,6 @@ import React from 'react'
 import { CardTitle, Container, Head, Item, SpanAlign } from './index.style'
 import Card from '@/components/card'
 
-const list = [
-  {
-    name: 'ETC',
-    amount: 100.8712,
-    cost: 6200100.33,
-    value: 78159.44,
-  },
-  {
-    name: 'BTC',
-    amount: 0.87123,
-    cost: 62000.33,
-    value: 78159.44,
-  },
-]
-
 const Thead = () => (
   <Head>
     <SpanAlign align="left">名稱</SpanAlign>
@@ -26,14 +11,12 @@ const Thead = () => (
   </Head>
 )
 
-const CryptoTable = () => {
-
+const WalletTable = ({ list }: { list: WalletDetail[] }) => {
   const listRender = () => list.map(item => (
     <Item key={item.name}>
       <SpanAlign align="left">{item.name}</SpanAlign>
       <SpanAlign align="right">{item.amount}</SpanAlign>
       <SpanAlign align="right">{item.cost}</SpanAlign>
-      <SpanAlign align="right">{item.value}</SpanAlign>
     </Item>
   ))
 
@@ -45,11 +28,11 @@ const CryptoTable = () => {
   )
 }
 
-const CryptoDetail = () => (
+const WalletDetail = ({ list }: { list: WalletDetail[] }) => (
   <Card height={'384px'}>
     <CardTitle>持幣明細</CardTitle>
-    <CryptoTable />
+    <WalletTable list={list} />
   </Card>
 )
 
-export default CryptoDetail
+export default WalletDetail

@@ -1,5 +1,6 @@
 interface RootState {
   user: UserInfo;
+  balance: number;
 }
 interface ApiResponse<T> {
   error: boolean;

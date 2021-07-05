@@ -3,8 +3,10 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Layout from '@/views/layout'
 import Loading from '@/components/loading'
-import { getUserInfoService } from '@/api/user'
 import { setUserInfo, clearUser } from 'action/user'
+import { setBalance } from 'action/balance'
+import { getUserInfoService } from '@/api/user'
+import { getAssetsBalance } from '@/api/assets'
 
 const Home = lazy(() => import('@/views/home'))
 const Quote = lazy(() => import('@/views/quote'))
@@ -14,21 +16,26 @@ const SignUp = lazy(() => import('@/views/signup'))
 
 const App = () => {
   const dispatch = useDispatch()
-
-  const isLogin = useSelector((state: RootState) => state.user.account) !== ''
-  const token = useSelector((state: RootState) => state.user.token)
+  const isLogin = useSelector((state: RootState) => state.user.token) !== ''
 
   useEffect(() => {
-      if (token === '' || isLogin) return 
+      if (isLogin === false) return 
 
-      getUserInfo()
-      async function getUserInfo () {
-        const result = await getUserInfoService()
+      (async function getUserInfo () {
+        const allResult = await Promise.all([
+          getUserInfoService(),
+          getAssetsBalance(),
+        ])
+        
+        if (allResult[0].status === 401) {
+          dispatch(clearUser())
+          return
+        }
 
-        if (result.error) dispatch(clearUser())
-        else dispatch(setUserInfo(result.result))
-      }
-  }, [token])
+        if (typeof allResult[0].result !== 'string') dispatch(setUserInfo(allResult[0].result))
+        if (typeof allResult[1].result !== 'string') dispatch(setBalance(allResult[1].result))
+      })()
+  }, [isLogin])
 
   return (
     <BrowserRouter>
