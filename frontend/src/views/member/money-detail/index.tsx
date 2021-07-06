@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { CardHead, CardTitle, MoneyTotal, MoneyNum, Update } from './index.style'
 import Card from '@/components/card'
 import refresh from 'images/refresh.svg'
+import { NumberFormat } from '@/helper'
 
 interface MoneySummary {
   total: number;
@@ -26,17 +27,17 @@ const MoneySummary = ({ total, balance, wallet, update }: MoneySummary) => {
         <Update isLoad={isLoad} src={refresh} onClick={handleUpdate}/>
       </CardHead>
 
-      <MoneyTotal>$ {total.toFixed(2)} USD</MoneyTotal>
+      <MoneyTotal>$ {NumberFormat(total)} USD</MoneyTotal>
 
       <CardTitle>明細</CardTitle>
 
       <MoneyNum>
         <span>餘額</span>
-        <span>$ {balance.toFixed(2)}</span>
+        <span>$ {NumberFormat(balance)}</span>
       </MoneyNum>
       <MoneyNum>
         <span>持幣估值</span>
-        <span>$ {wallet.toFixed(2)}</span>
+        <span>$ {NumberFormat(wallet)}</span>
       </MoneyNum>
     </Card>
   )

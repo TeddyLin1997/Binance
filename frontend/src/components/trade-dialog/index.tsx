@@ -1,8 +1,9 @@
-import React, { Dispatch, SetStateAction, ChangeEvent, useMemo, useState, useEffect } from 'react'
+import React, { ChangeEvent, useMemo, useState } from 'react'
 import { Content, Detail, Input, ButtonGroup } from './index.style'
+import { useSelector } from 'react-redux'
 import Button from "@/components/button";
 import { theme } from '@/global.style'
-import { useSelector } from 'react-redux'
+import { NumberFormat } from '@/helper'
 
 interface DialogContent {
   product: string;
@@ -29,7 +30,7 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
   }
 
   const price = useMemo(() => product ? Number(data.find(item => item.name === product)?.close ?? 0) : 0, [data])
-  const cost = useMemo(() => (Number(amount) * price).toFixed(2), [price, amount])
+  const cost = useMemo(() => (Number(amount) * price), [price, amount])
 
   return (
     <Content>
@@ -41,7 +42,7 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
       </Detail>
       <Detail>
         <span>價格:</span>
-        <span>$ { price.toFixed(2) }</span>
+        <span>$ { NumberFormat(price) }</span>
       </Detail>
       <Detail>
         <span>數量: </span>
@@ -49,11 +50,11 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
       </Detail>
       <Detail>
         <span>總價: </span>
-        <span>$ { cost }</span>
+        <span>$ { NumberFormat(cost) }</span>
       </Detail>
       <Detail>
         <span>錢包餘額: </span>
-        <span>$ { balance.toFixed(2) }</span>
+        <span>$ { NumberFormat(balance) }</span>
       </Detail>
 
       <ButtonGroup>

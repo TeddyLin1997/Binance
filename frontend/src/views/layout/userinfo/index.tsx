@@ -6,6 +6,7 @@ import AsideMenu from '@/views/layout/aside-menu'
 import logout from 'images/logout.svg'
 import { useDispatch } from 'react-redux'
 import { clearUser } from 'action/user'
+import { NumberFormat } from '@/helper'
 
 const UserInfo = () => {
   const user = useSelector((state: RootState) => state.user)
@@ -31,7 +32,7 @@ const Profile = ({ label }: { label: string }) => {
   return (
     <>
       <Name onClick={ handlePush }>{ label }</Name>
-      <Balance>USD：$ { balance.toFixed(2) }</Balance>
+      <Balance>USD：$ { NumberFormat(balance) }</Balance>
       <Logout src={ logout } onClick={ handleLogout }/>
     </>
   )
