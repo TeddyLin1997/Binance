@@ -16,7 +16,7 @@ export const Detail = styled.div`
 
 export const Input = styled.input`
   padding: 4px;
-  width: 100px;
+  width: 120px;
   color: #fff;
   text-align: right;
   font-weight: bold;

@@ -31,11 +31,11 @@ const Quote = () => {
 
   // dialog
   const [openDialog, setOpenDialog] = useState(false)
-  const [tradeForm, setTradeForm] = useState({ name: '', price: '', amount: '0' })
+  const [product, setProduct] = useState('')
 
   const handleTrade = (item: Crypto) => {
     if (isLogin) {
-      setTradeForm({ name: item.name, price: item.close, amount: '0' })
+      setProduct(item.name)
       setOpenDialog(true)
     }
   }
@@ -45,7 +45,7 @@ const Quote = () => {
       <PriceList data={cryptoList} handleTrade={handleTrade}/>
 
       <Dialog value={openDialog} handle={setOpenDialog}>
-        <TradeDialog form={tradeForm} setForm={setTradeForm}/>
+        <TradeDialog product={product} data={cryptoList}/>
       </Dialog>
     </Wrapper>
   )

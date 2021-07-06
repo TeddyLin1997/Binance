@@ -27,7 +27,7 @@ const Banner = () => {
           primary
         />
       </div>
-      <Images src={ Taipei } />
+      <Images src={ Taipei } draggable="false"/>
     </Wrapper>
   )
 }

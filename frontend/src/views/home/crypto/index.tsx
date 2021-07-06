@@ -23,11 +23,11 @@ const Crypto = () => {
 
   // dialog
   const [openDialog, setOpenDialog] = useState(false)
-  const [tradeForm, setTradeForm] = useState({ name: '', price: '', amount: '0' })
+  const [product, setProduct] = useState('')
 
   const handleTrade = (item: Crypto) => {
     if (isLogin) {
-      setTradeForm({ name: item.name, price: item.close, amount: '0' })
+      setProduct(item.name)
       setOpenDialog(true)
     }
   }
@@ -38,7 +38,7 @@ const Crypto = () => {
       <More to="/quote" >查看更多 ＞</More>
 
       <Dialog value={openDialog} handle={setOpenDialog}>
-        <TradeDialog form={tradeForm} setForm={setTradeForm}/>
+        <TradeDialog product={product} data={homeList}/>
       </Dialog>
     </Wrapper>
   )

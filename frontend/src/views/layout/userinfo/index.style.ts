@@ -26,6 +26,14 @@ export const Name = styled.span`
   cursor: pointer;
 `
 
+export const Balance = styled.span`
+  @media screen and (max-width: 568px) { display: none; }
+  margin-right: 24px;
+  font-weight: bold;
+  font-size: 18px;
+  color: ${ props => props.theme.colors.active };
+`
+
 export const SignButton = styled(Link)<{ primary?: 'true' | undefined }>`
   @media screen and (max-width: 568px) { display: none }
   margin-left: 16px;

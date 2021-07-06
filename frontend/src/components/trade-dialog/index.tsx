@@ -1,17 +1,13 @@
-import React, { Dispatch, SetStateAction, ChangeEvent } from 'react'
+import React, { Dispatch, SetStateAction, ChangeEvent, useMemo, useState, useEffect } from 'react'
 import { Content, Detail, Input, ButtonGroup } from './index.style'
 import Button from "@/components/button";
 import { theme } from '@/global.style'
+import { useSelector } from 'react-redux'
 
 interface DialogContent {
-  form: {
-    name: string;
-    price: string;
-    amount: string;
-  };
-  setForm: Dispatch<SetStateAction<DialogContent['form']>>;
+  product: string;
+  data: Crypto[];
 }
-// const re = /^[1-9]+[0-9]*(\.[0-9]+)?$/
 
 const getButtonStyle = (color: string) => ({
   padding: '8px 0',
@@ -21,13 +17,19 @@ const getButtonStyle = (color: string) => ({
   color: '#fff',
 })
 
-const DialogContent = React.memo(({ form, setForm }: DialogContent) => {
+const DialogContent = React.memo(({ product, data }: DialogContent) => {
+  const balance = useSelector((state: RootState) => state.balance)
+
+  const [ amount, setAmount ] = useState('0')
 
   const handleChange = (e: ChangeEvent) => {
     let value = (e.target as HTMLInputElement).value
     if (/^0[0-9]+$/.test(value)) value = value.replace('0', '')
-    setForm(prev => ({ ...prev, amount: value }))
+    setAmount(value)
   }
+
+  const price = useMemo(() => product ? Number(data.find(item => item.name === product)?.close ?? 0) : 0, [data])
+  const cost = useMemo(() => (Number(amount) * price).toFixed(2), [price, amount])
 
   return (
     <Content>
@@ -35,15 +37,23 @@ const DialogContent = React.memo(({ form, setForm }: DialogContent) => {
 
       <Detail>
         <span>商品:</span>
-        <span>{form.name}</span>
+        <span>{product}</span>
       </Detail>
       <Detail>
         <span>價格:</span>
-        <span>{Number(form.price).toFixed(4)}</span>
+        <span>$ { price.toFixed(2) }</span>
       </Detail>
       <Detail>
         <span>數量: </span>
-        <Input value={ form.amount } onChange={ handleChange } type="number" />
+        <Input value={ amount } onChange={ handleChange } type="number" />
+      </Detail>
+      <Detail>
+        <span>總價: </span>
+        <span>$ { cost }</span>
+      </Detail>
+      <Detail>
+        <span>錢包餘額: </span>
+        <span>$ { balance.toFixed(2) }</span>
       </Detail>
 
       <ButtonGroup>

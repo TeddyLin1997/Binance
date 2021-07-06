@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Container, Logout, Name, SignButton } from './index.style'
+import { Container, Logout, Name, Balance, SignButton } from './index.style'
 import AsideMenu from '@/views/layout/aside-menu'
 import logout from 'images/logout.svg'
 import { useDispatch } from 'react-redux'
@@ -26,9 +26,12 @@ const Profile = ({ label }: { label: string }) => {
   const history = useHistory()
   const handlePush = () => history.push('/member')
 
+  const balance = useSelector((state: RootState) => state.balance)
+
   return (
     <>
       <Name onClick={ handlePush }>{ label }</Name>
+      <Balance>USD：$ { balance.toFixed(2) }</Balance>
       <Logout src={ logout } onClick={ handleLogout }/>
     </>
   )
