@@ -2,10 +2,12 @@ const createError = require('http-errors')
 const path = require('path')
 const userRouter = require('./user')
 const assetsRouter = require('./assets')
+const tradeRouter = require('./trade')
 
 const setRouters = (app) => {
   app.use('/user', userRouter)
   app.use('/assets', assetsRouter)
+  app.use('/trade', tradeRouter)
 
   setupHandler(app)
 }
