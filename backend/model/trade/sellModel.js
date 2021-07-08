@@ -71,7 +71,7 @@ const run = async (req, res) => {
           if (err) {
             response.result = false
             connection.release()
-            return res.status(200).json(response)
+          return res.status(200).json(response)
           }
         })
         // 增加餘額

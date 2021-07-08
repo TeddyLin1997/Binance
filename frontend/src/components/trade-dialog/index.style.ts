@@ -39,3 +39,17 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
 `
+
+export const getButtonStyle = (color: string) => ({
+  padding: '8px 0',
+  width: '45%',
+  fontSize: '16px',
+  background: color,
+  color: '#fff',
+})
+
+export const comfirmBtn = {
+  margin: '28px auto 0',
+  width: '120px',
+  padding: '8px 0',
+}

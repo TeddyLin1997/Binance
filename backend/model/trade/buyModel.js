@@ -38,8 +38,8 @@ const run = async (req, res) => {
           if (rows.length) {
             // 更新錢包資料
             const updateAmount = Number(rows[0].amount) + amount
-            const createWalletSql = 'update user_wallet set name=?, amount=? where user_id=?'
-            const createWalletVal = [name, updateAmount, userId]
+            const createWalletSql = 'update user_wallet set amount=? where user_id=? and name=?'
+            const createWalletVal = [updateAmount, userId, name]
             connection.query(createWalletSql, createWalletVal)
           } else {
             // 新增錢包資料
@@ -49,7 +49,7 @@ const run = async (req, res) => {
           }
         })
 
-        response.result = '交易成功'
+        response.result = '交易完成'
         connection.release()
         return res.status(200).json(response)
       }

@@ -1,6 +1,6 @@
 import { axiosInstance } from './index'
 
-export const tradeBuyService = async (data: BuyForm): Promise<ApiResponse<boolean>> => {
+export const tradeBuyService = async (data: BuyForm): Promise<ApiResponse<string>> => {
   return axiosInstance({
     url: '/trade/buy',
     method: 'post',
@@ -10,7 +10,7 @@ export const tradeBuyService = async (data: BuyForm): Promise<ApiResponse<boolea
     .catch(err => err.response.data)
 }
 
-export const tradeSellService = async (data: SellForm): Promise<ApiResponse<boolean>> => {
+export const tradeSellService = async (data: SellForm): Promise<ApiResponse<string>> => {
   return axiosInstance({
     url: '/trade/sell',
     method: 'post',
