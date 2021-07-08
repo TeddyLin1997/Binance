@@ -8,7 +8,7 @@ router.post('/buy', auth, (req, res) => {
 })
 
 router.post('/sell', auth, (req, res) => {
-  trade.buy(req, res)
+  trade.sell(req, res)
 })
 
 module.exports = router

@@ -33,10 +33,16 @@ interface UserInfo {
   token: string;
 }
 
-interface TradeForm {
+interface BuyForm {
   name: string;
-  price: string;
-  amount: string;
+  amount: number;
+  cost: number;
+}
+
+interface SellForm {
+  name: string;
+  amount: number;
+  total: number;
 }
 
 interface WalletDetail {

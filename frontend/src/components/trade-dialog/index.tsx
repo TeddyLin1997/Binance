@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useMemo, useState } from 'react'
 import { Content, Detail, Input, ButtonGroup } from './index.style'
 import { useSelector } from 'react-redux'
-import Button from "@/components/button";
+import { tradeBuyService, tradeSellService } from '@/api/trade'
 import { theme } from '@/global.style'
 import { NumberFormat } from '@/helper'
+import Button from "@/components/button";
 
 interface DialogContent {
   product: string;
@@ -32,6 +33,24 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
   const price = useMemo(() => product ? Number(data.find(item => item.name === product)?.close ?? 0) : 0, [data])
   const cost = useMemo(() => (Number(amount) * price), [price, amount])
 
+  const handleBuy = async () => {
+    const buyForm = {
+      name: product,
+      amount: Number(amount),
+      cost: Number(cost),
+    }
+    const result = await tradeBuyService(buyForm)
+  }
+
+  const handleSell = async () => {
+    const sellForm = {
+      name: product,
+      amount: Number(amount),
+      total: Number(cost),
+    }
+    const result = await tradeSellService(sellForm)
+  }
+
   return (
     <Content>
       <h3>交易內容</h3>
@@ -58,8 +77,8 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
       </Detail>
 
       <ButtonGroup>
-        <Button label="買進" onClick={ () => {}} style={ getButtonStyle(theme.colors.green) }/>
-        <Button label="賣出" onClick={ () => {}} style={ getButtonStyle(theme.colors.red) }/>
+        <Button label="買進" onClick={ () => handleBuy() } style={ getButtonStyle(theme.colors.green) }/>
+        <Button label="賣出" onClick={ () => handleSell() } style={ getButtonStyle(theme.colors.red) }/>
       </ButtonGroup>
     </Content>
   )

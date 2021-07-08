@@ -3,13 +3,13 @@ const jwt = require('jsonwebtoken')
 const { secret, defaultRes } = require('../../common/config')
 
 const run = async (req, res) => {
-  const response = defaultRes
+  const response = { ...defaultRes }
 
   const token = req.headers['authorization'].split(' ')[1]
   const userId = jwt.verify(token, secret).id
   const name = req.body.name
-  const cost = req.body.cost
-  const amount = req.body.amount
+  const amount = Number(req.body.amount)
+  const cost = Number(req.body.cost)
 
   db.getConnection((err, connection) => {
 
@@ -18,11 +18,12 @@ const run = async (req, res) => {
 
     connection.query(searchSql, searchVal, (err, rows) => {
 
-      const balance = rows[0].balance - cost
+      const balance = Number(rows[0].balance) - cost
 
       if (balance < 0) {
-        response.result = false
+        response.result = '餘額不足'
         connection.release()
+        return res.status(200).json(response)
       } else {
 
         // 更新餘額
@@ -31,31 +32,30 @@ const run = async (req, res) => {
         connection.query(balanceSql, balanceVal)
 
         // 搜尋錢包
-        const searchWalletSql = 'select * from user_wallet where user_id=?, name=?'
+        const searchWalletSql = 'select * from user_wallet where user_id=? and name=?'
         const searchWalletVal = [userId, name]
         connection.query(searchWalletSql, searchWalletVal, (err, rows) => {
           if (rows.length) {
             // 更新錢包資料
-            const updateAmount = rows[0].amount + amount
-            const updateCost = rows[0].cost + cost
-            const createWalletSql = 'update user_wallet set name=?, amount=?, cost=? where user_id=?'
-            const createWalletVal = [name, updateAmount, updateCost, userId]
+            const updateAmount = Number(rows[0].amount) + amount
+            const createWalletSql = 'update user_wallet set name=?, amount=? where user_id=?'
+            const createWalletVal = [name, updateAmount, userId]
             connection.query(createWalletSql, createWalletVal)
           } else {
             // 新增錢包資料
-            const createWalletSql = 'insert into user_wallet set user_id=?, name=?, amount=?, cost=?'
-            const createWalletVal = [userId, name, amount, cost]
+            const createWalletSql = 'insert into user_wallet set user_id=?, name=?, amount=?'
+            const createWalletVal = [userId, name, amount]
             connection.query(createWalletSql, createWalletVal)
           }
         })
 
-        response.result = true
+        response.result = '交易成功'
         connection.release()
+        return res.status(200).json(response)
       }
     })
   })
 
-  res.status(200).json(response)
 }
 
 module.exports = run
