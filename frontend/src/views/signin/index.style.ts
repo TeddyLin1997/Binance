@@ -23,3 +23,11 @@ export const SubLink = styled(Link)`
     border-bottom: 1px solid ${ props => props.theme.colors.active };
   }
 `
+
+export const SubLogin = styled.label`
+  margin-left: 12px;
+  color: ${ props => props.theme.colors.active };
+  &:hover {
+    border-bottom: 1px solid ${ props => props.theme.colors.active };
+  }
+`

@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form"
 import { useDispatch } from 'react-redux'
 import { setToken } from 'action/user'
 import { signInService } from '@/api/user'
-import { SignForm, SubLink } from './index.style'
+import { SignForm, SubLink, SubLogin } from './index.style'
 import FormInput from '@/components/form-input'
 import FormError from '@/components/form-error'
 import FormButton from '@/components/form-button'
 import useLoader from '@/hooks/useLoader'
+import Button from '@/components/button'
 
 type LoginForm = Omit<UserForm, 'email'>
 
@@ -21,6 +22,7 @@ const SignIn = () => {
   const state = location.state as LoginForm  
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>({ defaultValues: state })
@@ -52,6 +54,13 @@ const SignIn = () => {
 
   // init
   useEffect(() => { if (state) login() }, [])
+
+
+  const visitorLogin = () => {
+    setValue('account', 'Visitor')
+    setValue('password', 'qweqweqwe')
+    login()
+  }
 
   return (
     <>
@@ -95,6 +104,7 @@ const SignIn = () => {
         <sub>
           尚未註冊？ {'\u00A0'}
           <SubLink to="/sign-up">註冊</SubLink>
+          <SubLogin onClick={ visitorLogin }>訪客登入</SubLogin>
         </sub>
       </SignForm>
     </>

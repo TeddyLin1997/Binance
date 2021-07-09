@@ -35,7 +35,7 @@ const Crypto = () => {
   return (
     <Wrapper>
       <PriceList data={homeList} handleTrade={handleTrade} height="348px"/>
-      <More to="/quote" >查看更多 ＞</More>
+      <More to="/quote" >查看更多</More>
 
       <Dialog value={openDialog} handle={setOpenDialog}>
         <TradeDialog product={product} data={homeList}/>
