@@ -1,5 +1,5 @@
 const Binance = require('node-binance-api')
-const env = require('../.env')
+const env = require('../../.env')
 
 const binance = new Binance().options(env.BINANCE_CONFIGS)
 
