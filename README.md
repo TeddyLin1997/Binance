@@ -15,11 +15,3 @@ https://chris-binance.herokuapp.com/
   - `Express`
   - `Mysql`
 
-## Start Up
-- frontend 
-  - `yarn install` or `npm install`
-  - `yarn dev` or `npm dev`
-- backend
-  -  set database configs
-  - `yarn install` or `npm install`
-  - `yarn start` or `npm start`
