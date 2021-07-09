@@ -1,8 +1,7 @@
 const Binance = require('node-binance-api')
-const binance = new Binance().options({
-  APIKEY: 'dO3hG4pc9Sb3E0qS1KhzZqA66nSlB6sRwkT3lQshTvvbYfsnmy4cMa9VW0gJ2DFL',
-  APISECRET: 'TJLBAc7YHBrlZoZVEMwCGcX8f0SLmsqEUL6ibeQTnXOdB37waZVB3jytshp7ewl5',
-})
+const env = require('../.env')
+
+const binance = new Binance().options(env.BINANCE_CONFIGS)
 
 let cryptoMarkets = {}
 binance.websockets.miniTicker(markets => {

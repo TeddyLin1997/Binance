@@ -1,4 +1,6 @@
-const secret = '%^&TOKEN_SECRET#$_./-'
+const env = require('../.env')
+
+const secret = env.secret
 
 const authErrorRes = {
   error: true,

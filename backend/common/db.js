@@ -1,13 +1,6 @@
 const mysql = require('mysql')
+const env = require('../.env')
 
-const DB_CONFIGS = {
-  connectionLimit: 20,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'binance',
-}
-
-const pool = mysql.createPool(DB_CONFIGS)
+const pool = mysql.createPool(env.DB_CONFIGS)
 
 module.exports = pool
