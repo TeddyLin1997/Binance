@@ -53,9 +53,9 @@ interface WalletDetail {
 
 interface CashFlowDetail {
   id: string;
-  time: string;
-  type: string;
+  type: 1 | 2;
   name: string;
   amount: number;
   cost: number;
+  time: number;
 }

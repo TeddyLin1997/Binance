@@ -18,7 +18,7 @@ export const getAssetsWallet = async (): Promise<ApiResponse<WalletDetail[]>> =>
     .catch(err => err.response.data)
 }
 
-export const getAssetsCashFlow = async () => {
+export const getAssetsCashFlow = async (): Promise<ApiResponse<CashFlowDetail[]>> => {
   return axiosInstance({
     url: '/assets/cash-flow',
     method: 'post',

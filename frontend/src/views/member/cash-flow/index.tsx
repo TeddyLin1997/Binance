@@ -1,17 +1,8 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { CardTitle, Container, Head, Item, SpanAlign } from './index.style'
+import { getAssetsCashFlow } from '@/api/assets'
 import Card from '@/components/card'
-
-const list = [
-  {
-    id: '1',
-    time: '2021/07/01 12:32:11',
-    type: '1',
-    name: 'ETH',
-    amount: '0.1',
-    cost: '190',
-  },
-]
 
 const Thead = () => (
   <Head>
@@ -24,11 +15,22 @@ const Thead = () => (
 )
 
 const CashFlowTable = () => {
+  const balance = useSelector((state: RootState) => state.balance)
+  const [cashFlow, setCashFlow] = useState<CashFlowDetail[]>([])
+  
+  useEffect(() => {
+    getCashFlow()
+  }, [balance])
 
-  const listRender = () => list.map(item => (
+  async function getCashFlow () {
+    const result = await getAssetsCashFlow()
+    if (typeof result.result !== 'string') setCashFlow(result.result)
+  }
+
+  const cashFlowRender = () => cashFlow.map(item => (
     <Item key={item.id}>
       <SpanAlign align="left">{item.time}</SpanAlign>
-      <SpanAlign>{item.type === '1' ? '購買' : '出售'}</SpanAlign>
+      <SpanAlign>{item.type === 1 ? '買入' : '賣出'}</SpanAlign>
       <SpanAlign>{item.name}</SpanAlign>
       <SpanAlign align="right">{item.amount}</SpanAlign>
       <SpanAlign align="right">{item.cost}</SpanAlign>
@@ -38,7 +40,7 @@ const CashFlowTable = () => {
   return (
     <Container>
       <Thead />
-      { listRender() }
+      { cashFlowRender() }
     </Container>
   )
 }

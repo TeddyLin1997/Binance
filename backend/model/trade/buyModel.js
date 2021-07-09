@@ -49,6 +49,11 @@ const run = async (req, res) => {
           }
         })
 
+        // 紀錄明細
+        const cashFlowSql = 'insert into user_cash_flow set user_id=?, type=?, name=?, amount=?, cost=?, time=?'
+        const cashFlowVal = [userId, 1, name, amount, cost, Math.floor(Date.now()/1000)]
+        connection.query(cashFlowSql, cashFlowVal)
+
         response.result = '交易完成'
         connection.release()
         return res.status(200).json(response)

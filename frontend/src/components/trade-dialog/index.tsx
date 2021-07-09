@@ -15,7 +15,7 @@ interface DialogContent {
 
 const DialogContent = React.memo(({ product, data }: DialogContent) => {
   const balance = useSelector((state: RootState) => state.balance)
-  const [ amount, setAmount ] = useState('0')
+  const [ amount, setAmount ] = useState('1')
   const [ message, setMessage ] = useState('')
   const hasMsg = useMemo(() => message !== '', [message])
 
@@ -36,6 +36,8 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
   }
 
   const handleBuy = async () => {
+    if (amount === '0') return
+
     const buyForm = {
       name: product,
       amount: Number(amount),
@@ -47,6 +49,8 @@ const DialogContent = React.memo(({ product, data }: DialogContent) => {
   }
 
   const handleSell = async () => {
+    if (amount === '0') return
+
     const sellForm = {
       name: product,
       amount: Number(amount),

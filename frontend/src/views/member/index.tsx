@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { setBalance } from 'action/balance'
-import { getAssetsWallet, getAssetsBalance } from '@/api/assets'
+import { getAssetsBalance, getAssetsWallet, getAssetsCashFlow } from '@/api/assets'
 import { Wrapper, WrapAside, WrapMain } from './index.style'
 import { cryptoData } from '@/api/quote'
 import MoneySummary from './money-detail'
@@ -11,6 +11,14 @@ import CashFlow from './cash-flow'
 const Member = () => {
   const balance = useSelector((state: RootState) => state.balance)
   const [wallet, setWallet] = useState<WalletDetail[]>([])
+  useEffect(() => {
+    getWalletList()
+  }, [])
+
+  async function getWalletList () {
+    const result = await getAssetsWallet()
+    if (typeof result.result !== 'string') setWallet(result.result)
+  }
 
   const walletValue = useMemo(() => calcWallet(wallet), [wallet])
   function calcWallet (list: WalletDetail[]) {
