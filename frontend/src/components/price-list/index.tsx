@@ -10,7 +10,7 @@ interface PriceList {
 }
 
 const PriceList = ({ data, handleTrade, height }: PriceList) => {
-  const isLoading = useMemo(() => data.slice(0, 5).some(item => !item.changePercent), data)
+  const isLoading = useMemo(() => data.slice(0, 5).some(item => item.changePercent === undefined), data)
 
   return (
     <Container isLoading={ isLoading } height={ height || '100%' }>

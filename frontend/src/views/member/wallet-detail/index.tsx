@@ -1,8 +1,8 @@
 import React from 'react'
 import { CardTitle, Container, Head, Item, SpanAlign, moneyStyle } from './index.style'
 import Card from '@/components/card'
-import { cryptoData } from '@/api/quote'
 import { NumberFormat } from '@/helper'
+import useBinance from '@/hooks/useBinance'
 
 const Thead = () => (
   <Head>
@@ -13,11 +13,14 @@ const Thead = () => (
 )
 
 const WalletTable = ({ list }: { list: WalletDetail[] }) => {
+  const binance = useBinance(false)
   const listRender = () => list.map(item => (
     <Item key={item.name}>
       <SpanAlign align="left">{item.name}</SpanAlign>
       <SpanAlign align="right">{item.amount}</SpanAlign>
-      <SpanAlign align="right" style={moneyStyle}>$ { NumberFormat(Number(cryptoData[item.name + 'USDT']?.close ?? 0) * Number(item.amount)) }</SpanAlign>
+      <SpanAlign align="right" style={moneyStyle}>
+        $ {NumberFormat(Number(binance.find(node => node.name === item.name)?.close ?? 0) * Number(item.amount))}
+        </SpanAlign>
     </Item>
   ))
 

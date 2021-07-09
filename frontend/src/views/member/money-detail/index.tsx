@@ -8,39 +8,25 @@ interface MoneySummary {
   total: number;
   balance: number;
   wallet: number;
-  update: () => void;
 }
 
-const MoneySummary = ({ total, balance, wallet, update }: MoneySummary) => {
-  const [isLoad, setIsload] = useState(false)
+const MoneySummary = ({ total, balance, wallet }: MoneySummary) => (
+  <Card>
+    <h3>資產總值</h3>
 
-  const handleUpdate = async () => {
-    setIsload(true)
-    await update()
-    setIsload(false)
-  }
+    <MoneyTotal>$ {NumberFormat(total)} USD</MoneyTotal>
 
-  return (
-    <Card>
-      <CardHead>
-        <h3>資產總值</h3>
-        <Update isLoad={isLoad} src={refresh} onClick={handleUpdate}/>
-      </CardHead>
+    <CardTitle>明細</CardTitle>
 
-      <MoneyTotal>$ {NumberFormat(total)} USD</MoneyTotal>
-
-      <CardTitle>明細</CardTitle>
-
-      <MoneyNum>
-        <span>餘額</span>
-        <span>$ {NumberFormat(balance)}</span>
-      </MoneyNum>
-      <MoneyNum>
-        <span>持幣估值</span>
-        <span>$ {NumberFormat(wallet)}</span>
-      </MoneyNum>
-    </Card>
-  )
-}
+    <MoneyNum>
+      <span>餘額</span>
+      <span>$ {NumberFormat(balance)}</span>
+    </MoneyNum>
+    <MoneyNum>
+      <span>持幣估值</span>
+      <span>$ {NumberFormat(wallet)}</span>
+    </MoneyNum>
+  </Card>
+)
 
 export default MoneySummary

@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { setBalance } from 'action/balance'
-import { getAssetsBalance, getAssetsWallet, getAssetsCashFlow } from '@/api/assets'
+import { getAssetsBalance, getAssetsWallet } from '@/api/assets'
 import { Wrapper, WrapAside, WrapMain } from './index.style'
 import { cryptoData } from '@/api/quote'
 import MoneySummary from './money-detail'
 import CryptoDetail from './wallet-detail'
 import CashFlow from './cash-flow'
+import useBinance from '@/hooks/useBinance'
 
 const Member = () => {
   const balance = useSelector((state: RootState) => state.balance)
@@ -20,24 +21,15 @@ const Member = () => {
     if (typeof result.result !== 'string') setWallet(result.result)
   }
 
-  const walletValue = useMemo(() => calcWallet(wallet), [wallet])
+  const binance = useBinance(false)
+  const walletValue = useMemo(() => calcWallet(wallet), [wallet, binance])
   function calcWallet (list: WalletDetail[]) {
-    return list.reduce((acc, curr) => cryptoData[curr.name + 'USDT'] ? 
-      acc + Number(cryptoData[curr.name + 'USDT'].close) * curr.amount : acc, 0)
+    return list.reduce((acc, curr) => acc + Number(binance.find(node => node.name === curr.name)?.close ?? 0) * curr.amount, 0)
   }
 
   const total = useMemo(() => balance + walletValue, [balance, walletValue])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (Object.keys(cryptoData).length) {
-        handleUpdate()
-        clearInterval(timer)
-      }
-    }, 500)
-
-    return clearInterval(timer)
-  }, [])
+  useEffect(() => { handleUpdate() }, [])
 
   async function handleUpdate () {
     const allResult = await Promise.all([
@@ -56,7 +48,6 @@ const Member = () => {
           total={total}
           balance={balance}
           wallet={walletValue}
-          update={handleUpdate}
         />
         <br />
       </WrapAside>
