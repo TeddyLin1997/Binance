@@ -52,9 +52,9 @@ export const Article = styled.article`
   align-items: center;
   height: 60px;
   cursor: pointer;
-  transition: all .4s;
+  transition: all .2s;
   &:hover {
-    background-color: white;
+    background-color: ${ props => props.theme.colors.dark };
   }
   & > * {
     font-size: 16px;

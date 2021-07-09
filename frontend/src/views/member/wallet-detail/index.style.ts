@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { theme } from '@/global.style'
 
 export const CardTitle = styled.h3`
   margin-bottom: 16px;
@@ -49,3 +50,7 @@ export const Item = styled.article`
 export const SpanAlign = styled.span<{ align?: string }>`
   text-align: ${ props => props.align || 'center' };
 `
+
+export const moneyStyle = {
+  color: theme.colors.active,
+}

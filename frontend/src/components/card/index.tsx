@@ -13,9 +13,9 @@ const Wrapper = styled.div<{ width?: string, height?: string }>`
   height: ${ props => props.height || '' };
   box-shadow: 0 0 4px 0px ${ props => props.theme.colors.cream };
   border-radius: 4px;
-  background-color: white;
-  /* color: white;
-  background-color: ${ props => props.theme.colors.gray }; */
+  /* background-color: white; */
+  color: white;
+  background-color: ${ props => props.theme.colors.gray };
 `
 
 const Card = ({ width, height, children }: Card) => (

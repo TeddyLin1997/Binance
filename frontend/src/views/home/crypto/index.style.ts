@@ -15,7 +15,8 @@ export const More = styled(Link)`
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  color: ${ props => props.theme.colors.active };
   &:hover {
-    color: ${ props => props.theme.colors.active };
+    opacity: .5;
   }
 `

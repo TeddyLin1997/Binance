@@ -7,5 +7,6 @@ export const MainView = styled.main`
   height: 100%;
   min-height: calc(100vh - 112px);
   overflow: auto;
-  background-color: whitesmoke;
+  color: white;
+  background-color: ${ props => props.theme.colors.gray };
 `

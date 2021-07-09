@@ -1,8 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { CardTitle, Container, Head, Item, SpanAlign } from './index.style'
 import { getAssetsCashFlow } from '@/api/assets'
+import { theme } from '@/global.style'
 import Card from '@/components/card'
+import dayjs from 'dayjs'
 
 const Thead = () => (
   <Head>
@@ -28,8 +30,8 @@ const CashFlowTable = () => {
   }
 
   const cashFlowRender = () => cashFlow.map(item => (
-    <Item key={item.id}>
-      <SpanAlign align="left">{item.time}</SpanAlign>
+    <Item key={item.id} style={{ color: item.type === 1 ? theme.colors.green : theme.colors.red }}>
+      <SpanAlign align="left">{dayjs(item.time * 1000).format('YYYY/MM/DD HH:mm:ss')}</SpanAlign>
       <SpanAlign>{item.type === 1 ? '買入' : '賣出'}</SpanAlign>
       <SpanAlign>{item.name}</SpanAlign>
       <SpanAlign align="right">{item.amount}</SpanAlign>

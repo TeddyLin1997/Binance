@@ -16,12 +16,17 @@ export const MoneyTotal = styled.div`
   font-size: 24px;
   font-weight: bold;
   text-align: right;
+  color: ${ props => props.theme.colors.active };
 `
 
 export const MoneyNum = styled.div`
   margin-bottom: 6px;
   display: flex;
   justify-content: space-between;
+  & > span:nth-child(2) {
+    color: ${ props => props.theme.colors.active };
+    font-weight: bold;
+  }
 `
 
 export const Update = styled.img<{ isLoad: boolean }>`

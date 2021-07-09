@@ -13,6 +13,6 @@ const Footer = styled.footer`
   z-index: 10;
 `
 
-const FooterBar = () => <Footer>Binance @ 2021</Footer>
+const FooterBar = () => <Footer>Chris Binance @ 2021</Footer>
 
 export default React.memo(FooterBar)
