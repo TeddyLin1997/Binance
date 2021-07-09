@@ -17,7 +17,6 @@ export const Logout = styled.img`
 `
 
 export const Name = styled.span`
-  /* @media screen and (max-width: 568px) { display: none; } */
   margin-right: 24px;
   color: white;
   font-weight: bold;

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from "styled-components"
 import PriceList from '@/components/price-list'
 import Dialog from '@/components/dialog'
 import TradeDialog from '@/components/trade-dialog'
-import { getCryptoListService } from '@/api/quote'
+import useBinance from '@/hooks/useBinance'
 
 const Wrapper = styled.div`
   margin: 16px auto;
@@ -19,15 +19,7 @@ const Quote = () => {
   const isLogin = useSelector((state: RootState) => state.user.account) !== ''
 
   // price
-  const [ cryptoList, setCryptoList ] = useState(getCryptoListService())
-
-  useEffect(() => {
-    const timerID = setInterval(() => {
-      setCryptoList(getCryptoListService())
-    }, 1500)
-
-    return () => clearInterval(timerID)
-  },[])
+  const cryptoList = useBinance(false)
 
   // dialog
   const [openDialog, setOpenDialog] = useState(false)
