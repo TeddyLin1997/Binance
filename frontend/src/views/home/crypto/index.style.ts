@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `
 
 export const More = styled(Link)`
-  margin-top: 32px;
+  margin-top: 18px;
   display: inline-block;
   font-size: 16px;
   font-weight: bold;

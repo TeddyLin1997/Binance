@@ -17,10 +17,10 @@ export const Head = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
+  color: gray;
+  font-size: 14px;
+
   & > * {
-    font-size: 14px;
-    text-align: center;
-    color: gray;
     &:nth-child(1) {
       @media screen and (min-width: 569px) {width: 30% };
       min-width: 80px;
