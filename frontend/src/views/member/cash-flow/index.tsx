@@ -35,13 +35,12 @@ const CashFlowTable = () => {
       <SpanAlign>{item.type === 1 ? '買入' : '賣出'}</SpanAlign>
       <SpanAlign>{item.name}</SpanAlign>
       <SpanAlign align="right">{item.amount}</SpanAlign>
-      <SpanAlign align="right">{item.cost}</SpanAlign>
+      <SpanAlign align="right">${item.cost}</SpanAlign>
     </Item>
   ))
 
   return (
     <Container>
-      <Thead />
       { cashFlowRender() }
     </Container>
   )
@@ -49,8 +48,9 @@ const CashFlowTable = () => {
 
 const CashFlow = () => {
   return (
-    <Card height={'384px'}>
+    <Card>
       <CardTitle>資金明細</CardTitle>
+      <Thead />
       <CashFlowTable />
     </Card>
   )

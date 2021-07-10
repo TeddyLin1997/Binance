@@ -6,44 +6,40 @@ export const CardTitle = styled.h3`
 `
 
 export const Container = styled.div`
-  position: relative;
-  padding-top: 32px;
-  height: 312px;
+  @media screen and (max-width: 568px) { height: 160px; };
+  height: 192px;
   overflow: auto;
 `
 
 export const Head = styled.div`
-  padding-right: 24px;
-  position: absolute;
+  margin-bottom: .4rem;
+  padding-right: 1.4rem;
   width: 100%;
-  min-width: 400px;
-  top: 0;
   display: flex;
-  font-size: 16px;
+  font-size: 1rem;
 
-  & > *:not(:nth-child(1)) {
+  & > *:not(:last-child) {
     width: 100%;
-    flex: 1;
+    flex: 0.5;
   }
 
-  & > *:nth-child(1) {
-    flex: 0.5;
+  & > *:last-child {
+    flex: 1;
   }
 `
 
 export const Item = styled.article`
-  padding: 12px 24px 12px 0;
+  padding: 1rem 1.4rem 1rem 0;
   display: flex;
   align-items: center;
-  min-width: 400px;
 
-  & > *:not(:nth-child(1)) {
+  & > *:not(:last-child) {
     width: 100%;
-    flex: 1;
+    flex: 0.5;
   }
 
-  & > *:nth-child(1) {
-    flex: 0.5;
+  & > *:last-child {
+    flex: 1;
   }
 `
 

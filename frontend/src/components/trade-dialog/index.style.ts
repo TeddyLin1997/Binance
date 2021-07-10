@@ -43,7 +43,7 @@ export const ButtonGroup = styled.div`
 export const getButtonStyle = (color: string) => ({
   padding: '8px 0',
   width: '45%',
-  fontSize: '16px',
+  fontSize: '1rem',
   background: color,
   color: '#fff',
 })

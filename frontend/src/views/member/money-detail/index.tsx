@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { CardHead, CardTitle, MoneyTotal, MoneyNum, Update } from './index.style'
+import React from 'react'
+import { CardTitle, MoneyTotal, MoneyNum } from './index.style'
 import Card from '@/components/card'
-import refresh from 'images/refresh.svg'
 import { NumberFormat } from '@/helper'
 
 interface MoneySummary {

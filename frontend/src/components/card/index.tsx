@@ -8,12 +8,11 @@ interface Card {
 
 const Wrapper = styled.div<{ width?: string, height?: string }>`
   @media screen and (max-width: 768px) { width: 100% };
-  padding: 16px 24px;
+  padding: 1rem 1.2rem;
   width: ${ props => props.width || '100%' };
   height: ${ props => props.height || '' };
   box-shadow: 0 0 4px 0px ${ props => props.theme.colors.cream };
   border-radius: 4px;
-  /* background-color: white; */
   color: white;
   background-color: ${ props => props.theme.colors.gray };
 `

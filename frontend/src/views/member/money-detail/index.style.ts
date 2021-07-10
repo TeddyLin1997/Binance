@@ -12,8 +12,8 @@ export const CardTitle = styled.h3`
 `
 
 export const MoneyTotal = styled.div`
-  margin-bottom: 16px;
-  font-size: 24px;
+  margin: 1rem 0;
+  font-size: 1.6rem;
   font-weight: bold;
   text-align: right;
   color: ${ props => props.theme.colors.active };
@@ -22,6 +22,7 @@ export const MoneyTotal = styled.div`
 export const MoneyNum = styled.div`
   margin-bottom: 6px;
   display: flex;
+  font-size: 1rem;
   justify-content: space-between;
   & > span:nth-child(2) {
     color: ${ props => props.theme.colors.active };

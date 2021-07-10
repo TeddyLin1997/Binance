@@ -19,7 +19,12 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
     border: none;
     text-decoration: none;
-    user-select: none;
+    user-select: auto;
+  }
+
+  html {
+    @media screen and (max-width: 568px) { font-size: 12px; };
+    font-size: 16px;
   }
 
   body {
@@ -32,5 +37,12 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     color: black;
+  }
+
+  input {
+    // 移除內建樣式
+    -webkit-appearance: none; // Safari, Chrome
+    -moz-appearance: none;  // FireFox
+    appearance: none;
   }
 `

@@ -26,15 +26,15 @@ const WalletTable = ({ list }: { list: WalletDetail[] }) => {
 
   return (
     <Container>
-      <Thead />
       { listRender() }
     </Container>
   )
 }
 
 const WalletDetail = ({ list }: { list: WalletDetail[] }) => (
-  <Card height={'384px'}>
+  <Card>
     <CardTitle>持幣明細</CardTitle>
+    <Thead />
     <WalletTable list={list} />
   </Card>
 )

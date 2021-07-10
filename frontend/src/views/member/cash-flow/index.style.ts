@@ -5,42 +5,42 @@ export const CardTitle = styled.h3`
 `
 
 export const Container = styled.div`
-  position: relative;
-  padding-top: 28px;
-  height: 312px;
+  padding-top: .4rem;
+  height: 384px;
   overflow: auto;
 `
 
 export const Head = styled.div`
-  padding-right: 24px;
-  position: absolute;
+  margin-bottom: .4rem;
+  padding-right: .8rem;
   width: 100%;
-  min-width: 400px;
-  top: 0;
   display: flex;
-  font-size: 16px;
+  font-size: .8rem;
 
   & > * {
-    width: 100%;
+    flex: .5;
+  }
+  & > *:nth-child(1) {
     flex: .8;
   }
-
-  & > *:nth-child(1) {
+  & > *:last-child {
     flex: 1;
   }
 `
 
 export const Item = styled.article`
-  padding: 12px 24px 12px 0;
+  padding: .8rem .8rem .8rem 0;
   display: flex;
   align-items: center;
-  min-width: 400px;
+  font-size: .8rem;
 
   & > * {
-    width: 100%;
-    flex: .8;
+    flex: .5;
   }
   & > *:nth-child(1) {
+    flex: .8;
+  }
+  & > *:last-child {
     flex: 1;
   }
 `
