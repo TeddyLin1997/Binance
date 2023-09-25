@@ -1,7 +1,5 @@
 # Binance
 
-[Demo](https://binance-reprod.herokuapp.com/)
-
 ## Tech Stack
 
 - Frontend
